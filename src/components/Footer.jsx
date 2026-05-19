@@ -498,18 +498,6 @@ export default function Footer() {
                     ref={timeBarRef}
                 >
                     <div className="icon_time_container">
-                        <img src={news} alt="news"
-                                onClick={(e) => {
-                                    e.stopPropagation()
-                                    setNewsPopup(!newsPopup)
-                                }}
-                        />
-                        {isBitcoinInstalled && (
-                            <img src={btc_icon} alt="btc_icon"
-    
-                                onClick={() => btcShow.show ? deleteTap('Bitcoin') : handleShow('Bitcoin')}
-                            />
-                        )}
                         <img src={display} alt="display"
                             style={{width: '20px'}}
                             onClick={(e) => {
