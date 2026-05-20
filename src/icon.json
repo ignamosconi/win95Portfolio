@@ -1,10 +1,10 @@
 [
     {
-        "name": "About",
-        "pic": "About",
+        "name": "RecycleBin",
+        "pic": "RecycleBin",
         "folderId": "Desktop",
         "size": 4,
-        "type": ".exe",
+        "type": "folder",
         "x": 1,
         "y": 1
     },
@@ -14,8 +14,17 @@
         "folderId": "Desktop",
         "size": 4,
         "type": "Drive",
-        "x": 1.5,
-        "y": 1.5
+        "x": 1,
+        "y": 2
+    },
+    {
+        "name": "About",
+        "pic": "About",
+        "folderId": "Desktop",
+        "size": 4,
+        "type": ".exe",
+        "x": 1,
+        "y": 3
     },
     {
         "name": "Resume",
@@ -23,18 +32,29 @@
         "folderId": "Desktop",
         "size": 30,
         "type": "folder",
-        "x": 2,
-        "y": 2
+        "x": 1,
+        "y": 4
     },
     {
         "name": "Project",
         "pic": "Project",
         "folderId": "Desktop",
-        "size": 2000,
+        "size": 30,
         "type": "folder",
-        "x": 3,
-        "y": 3
+        "x": 1,
+        "y": 5
     },
+    {
+        "name": "IE",
+        "pic": "IE",
+        "folderId": "Desktop",
+        "size": 4,
+        "type": ".exe",
+        "x": 1,
+        "y": 6
+    },
+
+
     {
         "name": "Mail",
         "pic": "Mail",
@@ -90,28 +110,6 @@
         "y": 8,
         "category": "Productivity",
         "description": "Digital resume file containing work experience and skills."
-    },
-    {
-        "name": "Nft",
-        "pic": "Nft",
-        "folderId": "Project",
-        "size": 15,
-        "type": ".exe",
-        "x": 9,
-        "y": 9,
-        "category": "Productivity",
-        "description": "Tool for creating and managing digital art assets as NFTs."
-    },
-    {
-        "name": "Note",
-        "pic": "Note",
-        "folderId": "Project",
-        "size": 10,
-        "type": ".exe",
-        "x": 10,
-        "y": 10,
-        "category": "Productivity",
-        "description": "Simple note-taking program for writing text or ideas."
     },
     {
         "name": "Hard Disk (C:)",
@@ -242,15 +240,6 @@
         "y": 24
     },
     {
-        "name": "010",
-        "pic": "Jpeg",
-        "folderId": "RecycleBin",
-        "size": 50,
-        "type": ".jpeg",
-        "x": 25,
-        "y": 25
-    },
-    {
         "name": "011",
         "pic": "Jpeg",
         "folderId": "Picture",
@@ -304,15 +293,6 @@
         "description": "Virtual pet simulation game featuring a cute cat spinning."
     },
     {
-        "name": "RecycleBin",
-        "pic": "RecycleBin",
-        "folderId": "Desktop",
-        "size": 250,
-        "type": "ReCycleBin",
-        "x": 31,
-        "y": 31
-    },
-    {
         "name": "ResetStorage",
         "pic": "ResetStorage",
         "folderId": "Utility",
@@ -355,28 +335,6 @@
         "description": "Software patch used to fix bugs or apply updates."
     },
     {
-        "name": "3dObject",
-        "pic": "3dObject",
-        "folderId": "Project",
-        "size": 1000,
-        "type": ".exe",
-        "x": 36,
-        "y": 36,
-        "category": "Productivity",
-        "description": "3D Interactive modeling, three-dimensional objects."
-    },
-    {
-        "name": "Fortune",
-        "pic": "Fortune",
-        "folderId": "Project",
-        "size": 1900,
-        "type": ".exe",
-        "x": 37,
-        "y": 37,
-        "category": "Games",
-        "description": "Random fortune or quote generator for entertainment."
-    },
-    {
         "name": "TaskManager",
         "pic": "TaskManager",
         "folderId": "Utility",
@@ -395,25 +353,5 @@
         "type": ".exe",
         "x": 39,
         "y": 39
-    },
-    {
-        "name": "PixelPic",
-        "pic": "PixelPic",
-        "folderId": "Project",
-        "size": 3000,
-        "type": ".exe",
-        "x": 40,
-        "y": 40,
-        "category": "Productivity",
-        "description": "Pixel art creation and editing tool for designing pixel-based images."
-    },{
-        "name": "IE",
-        "pic": "IE",
-        "folderId": "Desktop",
-        "size": 3000,
-        "type": ".exe",
-        "x": 41,
-        "y": 41
     }
-
 ]

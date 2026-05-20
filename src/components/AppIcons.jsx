@@ -27,7 +27,13 @@ const EDGE_ZONE        = 80;
 const EDGE_DELAY       = 650;
 const STORAGE_KEY      = "appicons_order";
 
-const bannedApp = ['Hard Disk (C:)', 'Hard Disk (D:)'];
+const bannedApp = [
+  'Hard Disk (C:)', 
+  'Hard Disk (D:)',
+  'Mail',
+  'MSN',
+  'Store'
+];
 
 // ── persist helpers ────────────────────────────────────────────────────────────
 function loadOrder(defaultIcons) {
