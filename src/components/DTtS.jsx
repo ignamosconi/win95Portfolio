@@ -2,7 +2,7 @@ import UseContext from '../Context'
 import { useContext } from "react";
 import Draggable from 'react-draggable'
 
-function DontTouchTheSpikes() {
+function DTtS() {
 
   const {
     themeDragBar,
@@ -20,8 +20,8 @@ function DontTouchTheSpikes() {
     >
       <div
         className="folder_folder-open-project"
-        onClick={() => handleSetFocusItemTrue('DontTouchTheSpikes')}
-        style={inlineStyle('DontTouchTheSpikes')}
+        onClick={() => handleSetFocusItemTrue('DTtS')}
+        style={inlineStyle('DTtS')}
       >
 
         <div
@@ -37,7 +37,7 @@ function DontTouchTheSpikes() {
 
             <div
               onClick={!isTouchDevice ? () => {
-                StyleHide('DontTouchTheSpikes')
+                StyleHide('DTtS')
               } : undefined}
             >
               <p className='dash'></p>
@@ -47,7 +47,7 @@ function DontTouchTheSpikes() {
               <p
                 className='x'
                 onClick={!isTouchDevice ? () => {
-                  deleteTap('DontTouchTheSpikes')
+                  deleteTap('DTtS')
                 } : undefined}
               >
                 ×
@@ -78,4 +78,4 @@ function DontTouchTheSpikes() {
   )
 }
 
-export default DontTouchTheSpikes
+export default DTtS

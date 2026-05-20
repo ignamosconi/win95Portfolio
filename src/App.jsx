@@ -15,7 +15,7 @@ import ResumeFile from './components/ResumeFile';
 import Shutdown from './components/Shutdown';
 import MineSweeper from './components/MineSweeper'
 import FlappyBird from './components/FlappyBird'
-import DontTouchTheSpikes from './components/DontTouchTheSpikes'
+import DTtS from './components/DTtS';
 import iconInfo from './icon.json'
 import Login from './components/Login';
 import OpenProject from './components/OpenProject';
@@ -259,7 +259,7 @@ function App() {
   const [FlappyBirdExpand, setFlappyBirdExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
-  const [DontTouchTheSpikesExpand, setDontTouchTheSpikesExpand] = useState(
+  const [DTtSExpand, setDTtSExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [MSNExpand, setMSNExpand] = useState(
@@ -1053,7 +1053,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     shutdownWindow, setShutdownWindow,
     MineSweeperExpand, setMineSweeperExpand,
     FlappyBirdExpand, setFlappyBirdExpand,
-    DontTouchTheSpikesExpand, setDontTouchTheSpikesExpand,
+    DTtSExpand, setDTtSExpand,
     MSNExpand, setMSNExpand,
     chatData, setChatData,
     chatValue, setChatValue,
@@ -1215,7 +1215,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <WebampPlayer/>
         <MineSweeper/>
         <FlappyBird/>
-        <DontTouchTheSpikes/>
+        <DTtS/>
         <OpenProject/>
         <BgSetting/>
         <Run/>
@@ -1518,7 +1518,7 @@ function ObjectState() {
     { name: 'ResumeFile',  setter: setResumeFileExpand, usestate: ResumeFileExpand, color: 'rgba(133, 165, 67, 0.85)', size: 'small' },
     { name: 'MineSweeper', setter: setMineSweeperExpand,usestate: MineSweeperExpand,color: 'rgba(187, 51, 48, 0.85)', size: 'small' },
     { name: 'FlappyBird',  setter: setFlappyBirdExpand, usestate: FlappyBirdExpand, color: 'rgba(0, 180, 255, 0.85)', size: 'small' },
-    { name: 'DontTouchTheSpikes', setter: setDontTouchTheSpikesExpand, usestate: DontTouchTheSpikesExpand, color: 'rgba(255, 80, 80, 0.85)', size: 'small' },
+    { name: 'DTtS', setter: setDTtSExpand, usestate: DTtSExpand, color: 'rgba(255, 80, 80, 0.85)', size: 'small' },
     { name: 'Internet',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Settings',    setter: setBgSettingExpand,  usestate: BgSettingExpand,  color: 'rgba(140, 140, 140, 0.85)', size: 'small' },
     { name: 'Run',         setter: setRunExpand,        usestate: RunExpand,        color: 'rgba(86, 114, 122, 0.85)', size: 'small' },
