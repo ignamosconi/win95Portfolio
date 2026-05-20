@@ -11,6 +11,7 @@ function FlappyBird() {
     deleteTap,
     handleSetFocusItemTrue,
     inlineStyle,
+    FlappyBirdExpand,
   } = useContext(UseContext);
 
   return (
@@ -26,7 +27,7 @@ function FlappyBird() {
 
         <div
           className="folder_dragbar"
-          style={{ background: themeDragBar }}
+          style={{ background: FlappyBirdExpand.focusItem ? themeDragBar : '#808080' }}
         >
 
           <div className="folder_barname">

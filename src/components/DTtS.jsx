@@ -11,6 +11,7 @@ function DTtS() {
     deleteTap,
     handleSetFocusItemTrue,
     inlineStyle,
+    DTtSExpand,
   } = useContext(UseContext);
 
   return (
@@ -26,11 +27,11 @@ function DTtS() {
 
         <div
           className="folder_dragbar"
-          style={{ background: themeDragBar }}
+          style={{ background: DTtSExpand.focusItem ? themeDragBar : '#808080' }}
         >
 
           <div className="folder_barname">
-            <span>Don't touch the spikes by Igna</span>
+            <span>Don't touch the spikes by Igna :)</span>
           </div>
 
           <div className="folder_barbtn">
