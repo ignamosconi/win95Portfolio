@@ -36,7 +36,7 @@
         "y": 4
     },
     {
-        "name": "Projects",
+        "name": "Project",
         "pic": "Project",
         "folderId": "Desktop",
         "size": 30,
@@ -110,28 +110,6 @@
         "y": 8,
         "category": "Productivity",
         "description": "Digital resume file containing work experience and skills."
-    },
-    {
-        "name": "Nft",
-        "pic": "Nft",
-        "folderId": "Project",
-        "size": 15,
-        "type": ".exe",
-        "x": 9,
-        "y": 9,
-        "category": "Productivity",
-        "description": "Tool for creating and managing digital art assets as NFTs."
-    },
-    {
-        "name": "Note",
-        "pic": "Note",
-        "folderId": "Project",
-        "size": 10,
-        "type": ".exe",
-        "x": 10,
-        "y": 10,
-        "category": "Productivity",
-        "description": "Simple note-taking program for writing text or ideas."
     },
     {
         "name": "Hard Disk (C:)",
@@ -357,28 +335,6 @@
         "description": "Software patch used to fix bugs or apply updates."
     },
     {
-        "name": "3dObject",
-        "pic": "3dObject",
-        "folderId": "Project",
-        "size": 1000,
-        "type": ".exe",
-        "x": 36,
-        "y": 36,
-        "category": "Productivity",
-        "description": "3D Interactive modeling, three-dimensional objects."
-    },
-    {
-        "name": "Fortune",
-        "pic": "Fortune",
-        "folderId": "Project",
-        "size": 1900,
-        "type": ".exe",
-        "x": 37,
-        "y": 37,
-        "category": "Games",
-        "description": "Random fortune or quote generator for entertainment."
-    },
-    {
         "name": "TaskManager",
         "pic": "TaskManager",
         "folderId": "Utility",
@@ -397,16 +353,5 @@
         "type": ".exe",
         "x": 39,
         "y": 39
-    },
-    {
-        "name": "PixelPic",
-        "pic": "PixelPic",
-        "folderId": "Project",
-        "size": 3000,
-        "type": ".exe",
-        "x": 40,
-        "y": 40,
-        "category": "Productivity",
-        "description": "Pixel art creation and editing tool for designing pixel-based images."
     }
 ]

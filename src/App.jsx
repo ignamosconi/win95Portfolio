@@ -1498,7 +1498,7 @@ function ObjectState() {
 
     { name: 'Resume',      setter: setResumeExpand,     usestate: ResumeExpand,     color: 'rgba(65, 138, 68, 0.85)', size: 'small' },
     { name: 'About',       setter: setMybioExpand,      usestate: MybioExpand,      color: 'rgba(46, 108, 176, 0.85)', size: 'small' },
-    { name: 'Projects',     setter: setProjectExpand,    usestate: ProjectExpand,    color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
+    { name: 'Project',     setter: setProjectExpand,    usestate: ProjectExpand,    color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
     { name: 'Picture',     setter: setPictureExpand,    usestate: pictureExpand,    color: 'rgba(85, 50, 148, 0.85)', size: 'large' },
     { name: 'Note',        setter: setNoteExpand,       usestate: NoteExpand,       color: 'rgba(114, 81, 54, 0.85)', size: 'small' },
     { name: 'IE',          setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
