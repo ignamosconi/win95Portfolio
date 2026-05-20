@@ -16,7 +16,7 @@ function OpenProject() {
 
   const [iframeKey, setIframeKey] = useState(0);
   const [expandAddy, setExpandAddy] = useState(false);
-  const allIEPRojects = ['Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'PixelPic']
+  const allIEPRojects = ['Todos']
 
   const { 
     handleShow,
@@ -99,6 +99,14 @@ function OpenProject() {
     default: return;
     }
   }
+
+  const safeUrl =
+  projectUrl &&
+  (projectUrl.startsWith('https://') ||
+   projectUrl.startsWith('http://'))
+    ? projectUrl
+    : 'about:blank';
+
   return (
     <>
       <Draggable
@@ -210,8 +218,8 @@ function OpenProject() {
             </div>
             <div className="btn_addy"
               onClick={() => {
+                setProjectUrl('https://www.google.com');
                 setIframeKey(prevKey => prevKey + 1);
-                handleShow('IE')
               }}
             >
               <img src={home} alt="" style={{top: '-1px'}} />
@@ -222,7 +230,17 @@ function OpenProject() {
           <div className="address_container">
             <p className='address'>Address:</p>
             <div className="address_box">
-                <p>{projectUrl.length > 1 ? projectUrl : 'Type your URL here'}</p>
+                <input
+                  type="text"
+                  value={projectUrl}
+                  onChange={(e) => setProjectUrl(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      setIframeKey(prev => prev + 1);
+                    }
+                  }}
+                  placeholder="Type your URL here"
+                />
                 <div 
                   onClick={() => setExpandAddy(prev => !prev)}
                 >
@@ -260,7 +278,7 @@ function OpenProject() {
         {openProjectExpand.show && (
           <iframe
           key={iframeKey}
-          src={projectUrl}
+          src={safeUrl}
           width="100%"
           height="100%"
           frameBorder="0"

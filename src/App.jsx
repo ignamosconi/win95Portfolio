@@ -177,7 +177,7 @@ function App() {
   const [time, setTime] = useState('');
   const [tap, setTap] = useState([])
   const [lastTapTime, setLastTapTime] = useState(0)
-  const [projectUrl, setProjectUrl] = useState('')
+  const [projectUrl, setProjectUrl] = useState('https://www.google.com')
   const [MybioExpand, setMybioExpand] = useState(
   {
     expand: false, // fullscreen
@@ -318,12 +318,29 @@ function App() {
       </>
   ) 
   
-  function projectname() { // project name 
-      if(projectUrl.length < 1) return;
+  function projectname() {
 
-      const projectlinkletter = projectUrl.slice(8).split('.')[0];
+    if (!projectUrl || projectUrl.trim().length === 0) {
+      return 'Internet Explorer';
+    }
 
-      return projectlinkletter[0].toUpperCase() + projectlinkletter.slice(1);
+    try {
+
+      const cleanUrl = projectUrl
+        .replace('https://', '')
+        .replace('http://', '');
+
+      const domain = cleanUrl.split('.')[0];
+
+      if (!domain) {
+        return 'Internet Explorer';
+      }
+
+      return domain.charAt(0).toUpperCase() + domain.slice(1);
+
+    } catch {
+      return 'Internet Explorer';
+    }
   }
 
   // Define all state setter functions and corresponding clear functions in an array

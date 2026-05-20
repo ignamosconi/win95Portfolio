@@ -347,11 +347,7 @@ export function handleDoubleTapiframeMobile(name, lastTapTime, setLastTapTime, s
 export function handleDoubleClickEnterLink(name, handleshow) {
 
   switch(name) {
-    case 'Nft': window.open('https://opennft.netlify.app/', '_blank'); break;
-    case 'Note': window.open('https://fullstack-stickynotes.netlify.app/', '_blank'); break;
-    case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
-    case '3dObject': window.open('https://yuteoctober.github.io/3d_book/', '_blank'); break;
-    case 'Fortune': window.open('https://yuteoctober.github.io/week_fortune/', '_blank'); break;
+    case 'Todos': window.open('https://todo.ignamosconi.com.ar', '_blank'); break;
     case 'Github': 
       handleshow('Github'); 
       break;
@@ -365,12 +361,7 @@ export function handleDoubleTapEnterMobile(name, lastTapTime, setLastTapTime, se
 const now = Date.now();
 if (now - lastTapTime < 300) {
   switch(name) {
-    case 'Nft': window.open('https://opennft.netlify.app/', '_blank'); break;
-    case 'Note': window.open('https://fullstack-stickynotes.netlify.app/', '_blank'); break;
-    case 'Type': window.open('https://yuteoctober.github.io/typingGame/', '_blank'); break;
-    case 'Github': window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank'); break;
-    case '3dObject': window.open('https://yuteoctober.github.io/3d_book/', '_blank'); break;
-    case 'Fortune': window.open('https://yuteoctober.github.io/week_fortune/', '_blank'); break;
+    case 'Todos': window.open('https://todo.ignamosconi.com.ar', '_blank'); break;
     default: break; 
   }
 }
