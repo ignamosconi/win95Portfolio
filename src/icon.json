@@ -79,6 +79,38 @@
         "description": "Classic puzzle game where you clear mines without detonating them."
     },
     {
+        "name": "FlappyBird",
+        "pic": "MineSweeper",
+        "folderId": "Project",
+        "size": 10,
+        "type": ".exe",
+        "x": 1,
+        "y": 1
+    },
+    {
+        "name": "DontTouchTheSpikes",
+        "pic": "MineSweeper",
+        "folderId": "Project",
+        "size": 10,
+        "type": ".exe",
+        "x": 2,
+        "y": 1
+    },
+    {
+        "name": "Todos",
+        "pic": "MineSweeper",
+        "folderId": "Project",
+        "size": 10,
+        "type": ".exe",
+        "x": 3,
+        "y": 1
+    },
+
+
+
+
+
+    {
         "name": "MSN",
         "pic": "MSN",
         "folderId": "Desktop",
