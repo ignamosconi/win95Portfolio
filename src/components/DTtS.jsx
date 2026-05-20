@@ -35,14 +35,6 @@ function DTtS() {
 
           <div className="folder_barbtn">
 
-            <div
-              onClick={!isTouchDevice ? () => {
-                StyleHide('DTtS')
-              } : undefined}
-            >
-              <p className='dash'></p>
-            </div>
-
             <div>
               <p
                 className='x'

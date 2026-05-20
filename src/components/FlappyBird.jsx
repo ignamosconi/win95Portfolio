@@ -35,14 +35,6 @@ function FlappyBird() {
 
           <div className="folder_barbtn">
 
-            <div
-              onClick={!isTouchDevice ? () => {
-                StyleHide('FlappyBird')
-              } : undefined}
-            >
-              <p className='dash'></p>
-            </div>
-
             <div>
               <p
                 className='x'

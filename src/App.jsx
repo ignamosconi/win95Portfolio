@@ -1519,6 +1519,7 @@ function ObjectState() {
     { name: 'MineSweeper', setter: setMineSweeperExpand,usestate: MineSweeperExpand,color: 'rgba(187, 51, 48, 0.85)', size: 'small' },
     { name: 'FlappyBird',  setter: setFlappyBirdExpand, usestate: FlappyBirdExpand, color: 'rgba(0, 180, 255, 0.85)', size: 'small' },
     { name: 'DTtS', setter: setDTtSExpand, usestate: DTtSExpand, color: 'rgba(255, 80, 80, 0.85)', size: 'small' },
+    { name: 'Todos', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Internet',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Settings',    setter: setBgSettingExpand,  usestate: BgSettingExpand,  color: 'rgba(140, 140, 140, 0.85)', size: 'small' },
     { name: 'Run',         setter: setRunExpand,        usestate: RunExpand,        color: 'rgba(86, 114, 122, 0.85)', size: 'small' },
@@ -1580,6 +1581,14 @@ function handleShow(name) {
   setRightClickDefault(false);
 
   if(name === '' || !name) return;
+  
+  if(name === 'Todos') {
+    setProjectUrl('https://todo.ignamosconi.com.ar');
+  }
+
+  if(name === 'IE') {
+    setProjectUrl('https://www.google.com/search?igu=1');
+  }
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
   const allSetItems = ObjectState();
