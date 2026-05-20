@@ -16,7 +16,7 @@ function OpenProject() {
 
   const [iframeKey, setIframeKey] = useState(0);
   const [expandAddy, setExpandAddy] = useState(false);
-  const allIEPRojects = ['Todos']
+  const allIEPRojects = ['Google', 'Todos']
 
   const { 
     handleShow,
@@ -93,10 +93,15 @@ function OpenProject() {
 
   function handleFetchLinkDes(projectName) {
     switch(projectName) {
-    case 'Todo': 
-      return 'https://todo.ignamosconi.com.ar/'
-    
-    default: return;
+
+      case 'Google':
+        return 'https://www.google.com/search?igu=1';
+
+      case 'Todos':
+        return 'https://todo.ignamosconi.com.ar';
+
+      default:
+        return '';
     }
   }
 
@@ -218,7 +223,7 @@ function OpenProject() {
             </div>
             <div className="btn_addy"
               onClick={() => {
-                setProjectUrl('https://www.google.com');
+                setProjectUrl('https://www.google.com/search?igu=1');
                 setIframeKey(prevKey => prevKey + 1);
               }}
             >
@@ -230,17 +235,7 @@ function OpenProject() {
           <div className="address_container">
             <p className='address'>Address:</p>
             <div className="address_box">
-                <input
-                  type="text"
-                  value={projectUrl}
-                  onChange={(e) => setProjectUrl(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      setIframeKey(prev => prev + 1);
-                    }
-                  }}
-                  placeholder="Type your URL here"
-                />
+                <p>{projectUrl.length > 1 ? projectUrl : 'Select your URL'}</p>
                 <div 
                   onClick={() => setExpandAddy(prev => !prev)}
                 >
@@ -252,8 +247,12 @@ function OpenProject() {
                 {allIEPRojects.map((project) => (
                   <div key={project}
                     onClick={() => {
-                      handleShow(project)
-                      setExpandAddy(false)
+                      const url = handleFetchLinkDes(project);
+
+                      setProjectUrl(url);
+                      setIframeKey(prev => prev + 1);
+
+                      setExpandAddy(false);
                     }}
                   >
                     <p>

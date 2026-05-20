@@ -177,7 +177,7 @@ function App() {
   const [time, setTime] = useState('');
   const [tap, setTap] = useState([])
   const [lastTapTime, setLastTapTime] = useState(0)
-  const [projectUrl, setProjectUrl] = useState('https://www.google.com')
+  const [projectUrl, setProjectUrl] = useState('https://www.google.com/search?igu=1')
   const [MybioExpand, setMybioExpand] = useState(
   {
     expand: false, // fullscreen
