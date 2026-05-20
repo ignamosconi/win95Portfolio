@@ -1581,7 +1581,6 @@ function handleShow(name) {
   setRightClickDefault(false);
 
   if(name === '' || !name) return;
-  
   if(name === 'Todos') {
     setProjectUrl('https://todo.ignamosconi.com.ar');
   }
@@ -1648,13 +1647,14 @@ function handleShow(name) {
   });
 
   
-  if(tap.includes(name)) return;
-  setStartActive(false);
-
-  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic','IE'];
+  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic'];
   if (notToOpenList.includes(name)) return;
 
-  setTap(prevTap => [...prevTap, name]);
+  const tapName = (name === 'Todos' || name === 'IE') ? 'Internet' : name;
+  if (tap.includes(tapName)) return;
+
+  setStartActive(false);
+  setTap(prevTap => [...prevTap, tapName]);
   setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
 }
 
@@ -1731,14 +1731,14 @@ function handleShowMobile(name) {
       }
     });
 
-    if(tap.includes(name)) return;
     setStartActive(false)
   
-    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic','IE'];
+    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic'];
     if (notToOpenList.includes(name)) return;
-  
-    setTap(prevTap => [...prevTap, name]);
-    setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
+
+    const tapName = (name === 'Todos' || name === 'IE') ? 'Internet' : name;
+    if (tap.includes(tapName)) return;
+    setTap(prevTap => [...prevTap, tapName]);
   
   }
   setLastTapTime(now)
