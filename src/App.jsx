@@ -225,17 +225,31 @@ function App() {
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [desktopIcon, setDesktopIcon] = useState(() => {
-  const localItems = localStorage.getItem('icons');
+    const localItems = localStorage.getItem('icons');
 
-  const deleteIcon = ['Cat', 'AiAgent','Winamp','Paint','3dObject'];
+    const deleteIcon = [
+      'Cat',
+      'AiAgent',
+      'Winamp',
+      'Paint',
+      '3dObject',
+      'Mail',
+      'MSN',
+      'Store'
+    ];
 
-  const filteredItems = iconInfo.filter(item => !deleteIcon.includes(item.name));
+    const filteredItems = iconInfo.filter(
+      item => !deleteIcon.includes(item.name)
+    );
 
-  const parsedItems = localItems ? JSON.parse(localItems) : filteredItems;
+    const parsedItems = localItems
+      ? JSON.parse(localItems).filter(
+          item => !deleteIcon.includes(item.name)
+        )
+      : filteredItems;
 
- 
-  return parsedItems;
-});
+    return parsedItems;
+  });
 
   const [MineSweeperExpand, setMineSweeperExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
@@ -995,7 +1009,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     clippyThanks, setClippyThanks,
     clippySendemail, setClippySendemail,
     clippyThanksYouFunction,
-    clippySendemailfunction,
     RandomTimeoutShowClippy,
     firstTimoutShowclippy,
     SecondRandomTimeoutShowClippy,
@@ -1163,7 +1176,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
           photoMode={true}
         />
         <AppIcons/>
-        <Store/>
         <TaskManager/>
         <RightClickWindows/>
         <Notification/>
@@ -1172,7 +1184,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <MyBioFolder/>
         <ResumeFolder/>
         <ProjectFolder/>
-        <MailFolder/>
         <ResumeFile/>
         <WebampPlayer/>
         <MineSweeper/>
@@ -1224,7 +1235,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 // }
 
   function deletepermanently(deleteName) { // delete from desktopIcon
-    if(deleteName === 'Store') return;
     
     setItemIsBeingDeleted(deleteName)
     console.log(deleteName)
@@ -1586,40 +1596,7 @@ function handleShow(name) {
       }, 100);
       
       // Your existing special cases...
-      if(lowerCaseName === 'mail') clippySendemailfunction();
       if(lowerCaseName === 'winamp') clippySongFunction();
-      if(lowerCaseName === 'msn') clippyUsernameFunction();
-      if(lowerCaseName === 'mail') clippySendemailfunction();
-        if(lowerCaseName === 'winamp') clippySongFunction();
-        if(lowerCaseName === 'msn') clippyUsernameFunction();
-        if(lowerCaseName === 'nft') {
-          handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-          handleShow('Internet');
-        }
-        if(lowerCaseName === 'note') {
-          handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-          handleShow('Internet');
-        }
-        if(lowerCaseName === 'aiagent') {
-          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe   )
-          handleShow('Internet');
-        }
-        if(lowerCaseName === '3dobject') {
-        handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl , setBackTrackIe, setForwardTrackIe)
-        handleShow('Internet');
-        }
-        if(lowerCaseName === 'fortune') {
-        handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-        handleShow('Internet');
-        }
-        if(lowerCaseName === 'pixelpic') {
-        handleDoubleClickiframe('PixelPic', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-        handleShow('Internet');
-        }
-        if(lowerCaseName === 'ie') {
-        handleDoubleClickiframe('IE', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-        handleShow('Internet');
-      }
     } else {
       // Set other items to not focused
       if(item.type === 'userCreatedFolder') {
@@ -1697,32 +1674,10 @@ function handleShowMobile(name) {
         }
         maxZindexRef.current += 1;
       }, 100);
-        if(lowerCaseName === 'mail') clippySendemailfunction();
         if(lowerCaseName === 'winamp') clippySongFunction();
-        if(lowerCaseName === 'msn') clippyUsernameFunction();
-        if(lowerCaseName === 'nft') {
-          handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-          handleShow('Internet');
-        }
         if(lowerCaseName === 'note') {
           handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
           handleShow('Internet');
-        }
-        if(lowerCaseName === 'aiagent') {
-          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-          handleShow('Internet');
-        }
-        if(lowerCaseName === '3dobject') {
-        handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
-        handleShow('Internet');
-        }
-        if(lowerCaseName === 'fortune') {
-        handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-        handleShow('Internet');
-        }
-        if(lowerCaseName === 'pixelpic') {
-        handleDoubleClickiframe('PixelPic', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-        handleShow('Internet');
         }
         if(lowerCaseName === 'ie') {
           handleDoubleClickiframe('IE', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
@@ -1778,16 +1733,8 @@ function handleShowMobile(name) {
     handleClippyFunction(setClippyThanks, ClearTOclippyThanksYouFunction, allSetters);
   }
 
-  function clippySendemailfunction() {
-    handleClippyFunction(setClippySendemail, ClearTOclippySendemailfunction, allSetters);
-  }
-
   function clippySongFunction() {
     handleClippyFunction(setClippySong, ClearTOSongfunction, allSetters);
-  }
-
-  function clippyUsernameFunction() {
-    handleClippyFunction(setClippyUsername, ClearTOclippyUsernameFunction, allSetters);
   }
 
   function handleSetFocusItemTrue(name) {

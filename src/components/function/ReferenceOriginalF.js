@@ -68,7 +68,6 @@
 //           setTypeExpand(prev => ({...prev, focusItem: false}));
 //           setWinampExpand(prev => ({...prev, focusItem: false}));
 //           setResumeFileExpand(prev => ({...prev, focusItem: false}));
-//           clippySendemailfunction()
 //           if(tap.includes('Mail')) return;
 //           setTap(prevTap => [...prevTap, 'Mail'])
 //           setIconState(prevIcons => prevIcons.map(icon => ({
@@ -247,7 +246,6 @@
 //         setTypeExpand(prev => ({...prev, focusItem: false}));
 //         setWinampExpand(prev => ({...prev, focusItem: false}));
 //         setResumeFileExpand(prev => ({...prev, focusItem: false}));
-//         clippySendemailfunction()
 //     if(tap.includes('Mail')) return;
 //         setTap(prevTap => [...prevTap, 'Mail'])
 //         setIconState(prevIcons => prevIcons.map(icon => ({
