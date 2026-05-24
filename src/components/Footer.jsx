@@ -330,10 +330,17 @@ export default function Footer() {
                     hide: tap[index] === item.name ? false : item.usestate.hide,
                 });
             }
+
             if(itemName === lowerCaseName) {
-                item.setter(prev => ({...prev, focusItem: true}));
-                if(item.usestate.hide) {
-                    item.setter(prev => ({...prev, hide: false}));
+                if(!item.usestate.hide && item.usestate.focusItem) {
+                    // está visible y en foco → minimizar
+                    item.setter(prev => ({...prev, hide: true, focusItem: false}));
+                } else if(!item.usestate.hide && !item.usestate.focusItem) {
+                    // está visible pero sin foco → traer al frente
+                    item.setter(prev => ({...prev, focusItem: true}));
+                } else {
+                    // está oculta → mostrar
+                    item.setter(prev => ({...prev, hide: false, focusItem: true}));
                     if(lowerCaseName === 'winamp') {
                         const webampElement = document.querySelector('#webamp');
                         if (webampElement) {
@@ -345,6 +352,7 @@ export default function Footer() {
                     }
                 }
             }
+
             if(itemName !== lowerCaseName) {
                 item.setter(prev => ({...prev, focusItem: false}));
             }
