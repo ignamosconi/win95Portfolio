@@ -742,8 +742,8 @@ const handleOnDrag = (name, ref, type) => () => {
       iconRect.top < projectFolderRect.bottom - offset &&
       iconRect.bottom > projectFolderRect.top + offset
     ) {
-      if(name === 'Project') return;
-      setDropTargetFolder('Project');
+      if(name === 'My Projects') return;
+      setDropTargetFolder('My Projects');
     }
     // Check for intersection with the Disk 
     else if (
@@ -755,7 +755,7 @@ const handleOnDrag = (name, ref, type) => () => {
       // check within MyComputer
       if (name === 'MyComputer') return;
       // add new folder in this array
-      const validFolders = ['DiskC', 'DiskD', 'Resume', 'Project', 'Picture', 'RecycleBin', 'Utility', ...UserCreatedFolder.map(item => item.name)];
+      const validFolders = ['DiskC', 'DiskD', 'Resume', 'My Projects', 'Picture', 'RecycleBin', 'Utility', ...UserCreatedFolder.map(item => item.name)];
       if (validFolders.includes(currentFolder)) {
         setDropTargetFolder(currentFolder);
       }
@@ -802,10 +802,10 @@ function handleShowInfolder(name, type) { //important handleshow for in folder
       return;
     }
 
-    if (name === 'Project') {
-      setCurrentFolder('Project')
-      setSelectedFolder({label: 'Project', img: imageMapping(name)})
-      setUndo(prev => [...prev, 'Project'])
+    if (name === 'My Projects') {
+      setCurrentFolder('My Projects')
+      setSelectedFolder({label: 'My Projects', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'My Projects'])
       return;
     }
 
@@ -879,12 +879,12 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
       return;
     }
 
-    if (name === 'Project') {
+    if (name === 'My Projects') {
       setTimeout(() => {
-        setCurrentFolder('Project')
+        setCurrentFolder('My Projects')
       }, 100);
-      setSelectedFolder({label: 'Project', img: imageMapping(name)})
-      setUndo(prev => [...prev, 'Project'])
+      setSelectedFolder({label: 'My Projects', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'My Projects'])
       return;
     }
 
@@ -1510,7 +1510,7 @@ function ObjectState() {
 
     { name: 'Resume',      setter: setResumeExpand,     usestate: ResumeExpand,     color: 'rgba(65, 138, 68, 0.85)', size: 'small' },
     { name: 'About',       setter: setMybioExpand,      usestate: MybioExpand,      color: 'rgba(46, 108, 176, 0.85)', size: 'small' },
-    { name: 'Project',     setter: setProjectExpand,    usestate: ProjectExpand,    color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
+    { name: 'My Projects', setter: setProjectExpand,    usestate: ProjectExpand,    color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
     { name: 'Picture',     setter: setPictureExpand,    usestate: pictureExpand,    color: 'rgba(85, 50, 148, 0.85)', size: 'large' },
     { name: 'Note',        setter: setNoteExpand,       usestate: NoteExpand,       color: 'rgba(114, 81, 54, 0.85)', size: 'small' },
     { name: 'IE',          setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
@@ -1609,7 +1609,7 @@ function handleShow(name) {
   }
 
   allSetItems.forEach((item) => {
-    const itemName = item.name.toLowerCase().trim();
+    const itemName = item.name.toLowerCase().split(' ').join(''); // agregar split y join
 
     if(itemName === lowerCaseName) {
       setTimeout(() => {
@@ -1689,8 +1689,8 @@ function handleShowMobile(name) {
   }
   
     allSetItems.forEach((item) => {
-  
-      const itemName = item.name.toLowerCase().trim();
+      
+      const itemName = item.name.toLowerCase().split(' ').join(''); // agregar split y join
   
       if(itemName === lowerCaseName) {
         setTimeout(() => {
@@ -1778,13 +1778,13 @@ function handleShowMobile(name) {
   }
 
   function handleSetFocusItemTrue(name) {
-    const LowerCaseName = name.toLowerCase().split(' ').join('');
+    const LowerCaseName = name.toLowerCase().split(' ').join(''); // fix: definir correctamente
     const setState = ObjectState();
-
+  
     const newZIndex = (maxZindexRef.current || 0) + 1;
 
     setState.forEach((item) => {
-      const itemName = item.name.toLowerCase();
+      const itemName = item.name.toLowerCase().split(' ').join(''); // fix: eliminar espacios
 
       if (itemName === LowerCaseName) {
         if (item.type === 'userCreatedFolder') {

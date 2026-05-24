@@ -87,7 +87,7 @@ export default function Footer() {
             className: "project",
             imgSrc: project,
             imgAlt: "project",
-            spanText: "Project",
+            spanText: "My Projects",
             arrow: true,
             onClick: () => {
                 setProjectStartBar(!projectStartBar)
@@ -317,43 +317,39 @@ export default function Footer() {
         setTime(currentTime12Hour);
     };
 
-    function handleHideFolder(index) { // unhide icon from tap
-
+    function handleHideFolder(index) {
         const lowerCaseName = tap[index].toLowerCase().split(' ').join('');
-
-        const allSetItems =  ObjectState() // all the usestate name to toggle
-
+        const allSetItems = ObjectState();
 
         allSetItems.forEach((item) => {
-
-          const itemName = item.name.toLowerCase().trim();
-          if(item.type === 'userCreatedFolder') { // for user created folder
-          item.setter({
-            focusItem: tap[index] === item.name,
-            hide: tap[index] === item.name ? false : item.usestate.hide,
-          });
-        }
-          if(itemName === lowerCaseName) {
-            item.setter(prev => ({...prev, focusItem: true}));
-            if(item.usestate.hide) {
-                item.setter(prev => ({...prev, hide: false}));
-                if(lowerCaseName === 'winamp') {
-                    const webampElement = document.querySelector('#webamp');
-                    if (webampElement) {
-                        webampElement.style.opacity = 1;
-                        webampElement.style.pointerEvents = 'auto';
-                        webampElement.style.touchAction = 'auto'
-                        setWinampExpand(prev => ({...prev, hide: false}));
+            const itemName = item.name.toLowerCase().split(' ').join('');
+            
+            if(item.type === 'userCreatedFolder') {
+                item.setter({
+                    focusItem: tap[index] === item.name,
+                    hide: tap[index] === item.name ? false : item.usestate.hide,
+                });
+            }
+            if(itemName === lowerCaseName) {
+                item.setter(prev => ({...prev, focusItem: true}));
+                if(item.usestate.hide) {
+                    item.setter(prev => ({...prev, hide: false}));
+                    if(lowerCaseName === 'winamp') {
+                        const webampElement = document.querySelector('#webamp');
+                        if (webampElement) {
+                            webampElement.style.opacity = 1;
+                            webampElement.style.pointerEvents = 'auto';
+                            webampElement.style.touchAction = 'auto';
+                            setWinampExpand(prev => ({...prev, hide: false}));
+                        }
                     }
                 }
             }
-          }
-
-          if(itemName !== lowerCaseName) {
-            item.setter(prev => ({...prev, focusItem: false}));
-          }
+            if(itemName !== lowerCaseName) {
+                item.setter(prev => ({...prev, focusItem: false}));
+            }
         });
-      }
+    }
 
 
     useEffect(() => { // display clippy when windows start
@@ -444,7 +440,7 @@ export default function Footer() {
         { label: '3480x2160', value: 5 }
     ];
 
-    const projectFolderItem = desktopIcon.filter(icon => icon.folderId === 'Project').length
+    const projectFolderItem = desktopIcon.filter(icon => icon.folderId === 'My Projects').length
     const resumeFolderItem = desktopIcon.filter(icon => icon.folderId === 'Resume').length
 
     const recycleBin = desktopIcon.filter(icon => icon.folderId === 'RecycleBin');
@@ -553,7 +549,7 @@ export default function Footer() {
                                 ref={projectRef}
                                 style={{display: projectFolderItem === 0 ? 'none' : ''}}
                             >
-                            {desktopIcon.filter(icon => icon.folderId === 'Project').map(icon => (
+                            {desktopIcon.filter(icon => icon.folderId === 'My Projects').map(icon => (
                                 <div className="icon_sub_start" key={icon.name}
                                     onClick={() => handleShow(icon.name)}
                                 >

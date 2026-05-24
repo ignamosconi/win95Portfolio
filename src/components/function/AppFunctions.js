@@ -91,6 +91,7 @@ export function imageMapping (name, type) {
     case 'Mail':
       return Mail;
 
+    case 'My Projects':
     case 'Project':
     case 'Picture':
     case 'Utility':

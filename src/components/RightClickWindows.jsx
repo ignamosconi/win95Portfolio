@@ -188,7 +188,7 @@ function CreateFolder() {
 
   const newFolder = {
     id,
-    pic: "Project",
+    pic: "My Projects",
     name: checkedNameNoSpace,
     type: "folder",
     folderId: "Desktop",
