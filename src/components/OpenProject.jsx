@@ -16,7 +16,7 @@ function OpenProject() {
 
   const [iframeKey, setIframeKey] = useState(0);
   const [expandAddy, setExpandAddy] = useState(false);
-  const allIEPRojects = ['Google', 'Todos']
+  const allIEPRojects = ['Google', 'Todos', ]
 
   const { 
     handleShow,
