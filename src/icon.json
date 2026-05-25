@@ -80,7 +80,7 @@
     },
     {
         "name": "FlappyBird",
-        "pic": "MineSweeper",
+        "pic": "FlappyBird",
         "folderId": "My Projects",
         "size": 10,
         "type": ".exe",
@@ -89,7 +89,7 @@
     },
     {
         "name": "DTtS",
-        "pic": "MineSweeper",
+        "pic": "DTtS",
         "folderId": "My Projects",
         "size": 10,
         "type": ".exe",
@@ -98,7 +98,7 @@
     },
     {
         "name": "Todos",
-        "pic": "MineSweeper",
+        "pic": "Todos",
         "folderId": "My Projects",
         "size": 10,
         "type": ".exe",

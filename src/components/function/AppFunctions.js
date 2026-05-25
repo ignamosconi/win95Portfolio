@@ -41,6 +41,9 @@ import taskmanager from '../../assets/taskmanager.png'
 import notepad from '../../assets/notepad.png'
 import store from '../../assets/store.png'
 import layer from '../../assets/layer.png'
+import flappyBird from '../../assets/flappy_bird_icon.png'
+import dtts from '../../assets/dtts_icon.png'
+import todo from '../../assets/todo_icon.png'
 
 
 
@@ -204,6 +207,15 @@ export function imageMapping (name, type) {
     case "IE":
     case "ie":
       return ie;
+
+    case 'FlappyBird':
+      return flappyBird;
+
+    case 'DTtS':
+      return dtts;
+
+    case 'Todos':
+      return todo;
 
     default:
       if(type === 'folder') {
