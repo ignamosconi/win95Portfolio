@@ -127,24 +127,9 @@ export default function Footer() {
             imgSrc: github,
             imgAlt: "github",
             style: { borderRadius: '5px' },
-            spanText: "Github",
+            spanText: "This Repo",
             onClick: () => {
-                handleDoubleClickEnterLink('Github', handleShow)
-                setStartActive(false)
-            },
-            onmouseenter: () => {
-                setResumejectStartBar(false);
-                setProjectStartBar(false);
-            },
-        },
-        {
-            className: "linked",
-            imgSrc: tile,
-            imgAlt: "Tile",
-            style: { borderRadius: '5px' },
-            spanText: "Tile Screen",
-            onClick: () => {
-                classicTileMode ? setAppIconToggle(true) : setTileScreen(true),
+                window.open('https://github.com/ignamosconi/win95Portfolio', '_blank')
                 setStartActive(false)
             },
             onmouseenter: () => {
@@ -171,6 +156,7 @@ export default function Footer() {
             onClick: () => {
                 handleShow('Run')
                 remountRunPosition()
+                setStartActive(false)
             },
             onmouseenter: () => {
                 setResumejectStartBar(false);
