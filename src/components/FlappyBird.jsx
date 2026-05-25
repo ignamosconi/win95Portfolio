@@ -1,6 +1,7 @@
 import UseContext from '../Context'
 import { useContext } from "react";
 import Draggable from 'react-draggable'
+import flappyBirdIcon from '../assets/flappy_bird_icon.png'
 
 function FlappyBird() {
 
@@ -31,6 +32,7 @@ function FlappyBird() {
         >
 
           <div className="folder_barname">
+            <img src={flappyBirdIcon} alt="FlappyBird" />
             <span>Flappy Bird by Igna :)</span>
           </div>
 

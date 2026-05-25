@@ -34,27 +34,14 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
             setDeleteIconName(name);
             return;
         }   
+
+        if (name.toLowerCase() === 'github') return; // no mostrar nada en github
                 
         switch (name.toLowerCase()) {
 
             case "resetstorage":
                 setYesNo(true);
                 setContent(textResetStroage);
-                break;
-
-            case "github":
-                setYesNo(true);
-                setContent(textGithub);
-                break;
-
-            case "webresume":
-                setYesNo(true);
-                setContent(textGithub);
-                break;
-
-            case "cat":
-                setYesNo(true);
-                setContent(textCat);
                 break;
 
             default:
@@ -79,15 +66,16 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 return removeLocalStorage();
 
             case "github": 
-                return window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank');
-
+                return window.open('https://github.com/ignamosconi', '_blank');
+            
+            /*
             case "webresume": 
-                
-            return window.open('https://yuteoctober.github.io/resume_web/', '_blank');
+                return window.open('https://yuteoctober.github.io/resume_web/', '_blank');
             
             case "cat": 
                 setRunCatVideo(true)
                 return;
+            */
 
             default:
                 return runOpenFuction();

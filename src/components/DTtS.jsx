@@ -1,7 +1,9 @@
 import UseContext from '../Context'
 import { useContext } from "react";
 import Draggable from 'react-draggable'
+import dtts_icon from '../assets/dtts_icon.png'
 
+//Don't Touch the Spikes - PICO8 game
 function DTtS() {
 
   const {
@@ -31,6 +33,7 @@ function DTtS() {
         >
 
           <div className="folder_barname">
+            <img src={dtts_icon} alt="DTtS" />
             <span>Don't touch the spikes by Igna :)</span>
           </div>
 

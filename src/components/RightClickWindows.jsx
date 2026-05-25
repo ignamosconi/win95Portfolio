@@ -12,6 +12,7 @@ function RightClickWindows() {
   const [restoreIcon, setRestoreIcon] = useState(0)
   const [popUpCreateFolderName, setPopUpCreateFolderName] = useState(false);
   const [newFolderNameVal, setNewFolderNameVal] = useState('');
+  const [folderError, setFolderError] = useState('');
 
   const {
     regErrorPopUpVal,
@@ -41,22 +42,20 @@ function RightClickWindows() {
     setSortExpand(false);
   }, [rightClickDefault]);
 
+  const inputRef = useRef(null);
+  useEffect(() => {
+    if (popUpCreateFolderName && inputRef.current) {
+      setTimeout(() => {
+        inputRef.current.focus();
+      }, 0);
+    }
+  }, [popUpCreateFolderName]);
+
   function refreshed() {
     setRightClickDefault(false);
     setRefresh(prev => prev + 1);
     // setSortIconTrigger(prev => prev + 1)
   }
-
-
-  // useEffect(() =>{
-  //   if(sortIconTrigger > 0){
-  //     const updatedSortedIcon = sortedIcon.length > 1 ? sortedIcon : desktopIcon
-  //     setDesktopIcon(updatedSortedIcon)
-  //     setRefresh(prev => prev + 1);
-  //   }
-
-  // },[sortIconTrigger])
-
 
   function handleSwitchOpenFolder() { // decide which folder function to call
 
@@ -180,7 +179,10 @@ function CreateFolder() {
 
   const checkIfFolderExist = allState.some(item => item.name === newFolderNameVal.trim());
 
-  if (checkIfFolderExist) return;
+  if (checkIfFolderExist) {
+    setFolderError("Folder name already in use");
+    return;
+  }
 
   const checkedNameNoSpace = newFolderNameVal.trim().replace(/\s+/g, '');
 
@@ -223,6 +225,7 @@ function CreateFolder() {
   });
   setPopUpCreateFolderName(false)
   setNewFolderNameVal('')
+  setFolderError('');
 }
   console.log(iconBeingRightClicked.name, regErrorPopUpVal)
 
@@ -276,18 +279,33 @@ function CreateFolder() {
       }
     }, 350);
 }
-  
+
   return (
     <>
       {popUpCreateFolderName && (
         <div className="pop_up_create">
           <p>Enter folder name: </p>
-          <input type="text" 
-          value={newFolderNameVal} 
-          onChange={(e) => setNewFolderNameVal(e.target.value)} 
-          maxLength={10} 
-          onKeyDown={(e) => e.key === 'Enter' ? CreateFolder() : null}
+          <input 
+            ref={inputRef}
+            type="text" 
+            value={newFolderNameVal} 
+            onChange={(e) => {
+                setNewFolderNameVal(e.target.value);
+                setFolderError('');
+              }
+            } 
+            maxLength={10} 
+            onKeyDown={(e) => e.key === 'Enter' ? CreateFolder() : null}
           />
+
+          {folderError && (
+            <p style={{ color: 'red', fontSize: '12px', marginTop: '4px' }}>
+              {folderError}
+            </p>
+          )}
+
+
+
           <div className="ok_cancel_btn">
             <button
               onClick={CreateFolder}

@@ -1598,6 +1598,11 @@ function iconFocusIcon(name) { // if focus on one, the rest goes unfocus
 function handleShow(name) {
   setRightClickDefault(false);
 
+  if(name === 'Github') {
+    window.open('https://github.com/ignamosconi', '_blank');
+    return;
+  }
+
   if(name === '' || !name) return;
   if(name === 'Todos') {
     setProjectUrl('https://todo.ignamosconi.com.ar');
