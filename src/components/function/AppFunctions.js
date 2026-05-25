@@ -44,6 +44,7 @@ import layer from '../../assets/layer.png'
 import flappyBird from '../../assets/flappy_bird_icon.png'
 import dtts from '../../assets/dtts_icon.png'
 import todo from '../../assets/todo_icon.png'
+import wordle from '../../assets/wordle_icon.png'
 
 
 
@@ -216,6 +217,9 @@ export function imageMapping (name, type) {
 
     case 'Todos':
       return todo;
+    
+    case 'Wordle':
+      return wordle;
 
     default:
       if(type === 'folder') {

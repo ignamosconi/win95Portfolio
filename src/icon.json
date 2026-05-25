@@ -105,6 +105,15 @@
         "x": 3,
         "y": 1
     },
+    {
+        "name": "Wordle",
+        "pic": "Wordle",
+        "folderId": "My Projects",
+        "size": 50,
+        "type": ".exe",
+        "x": 4,
+        "y": 1
+    },
 
 
 
