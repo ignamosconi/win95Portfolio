@@ -9,7 +9,7 @@
         "y": 1
     },
     {
-        "name": "MyComputer",
+        "name": "My Computer",
         "pic": "MyComputer",
         "folderId": "Desktop",
         "size": 4,
@@ -144,7 +144,7 @@
     {
         "name": "Hard Disk (C:)",
         "pic": "Hard Disk (C:)",
-        "folderId": "MyComputer",
+        "folderId": "My Computer",
         "size": 4000,
         "type": "Drive",
         "x": 11,
@@ -153,20 +153,11 @@
     {
         "name": "Hard Disk (D:)",
         "pic": "Hard Disk (D:)",
-        "folderId": "MyComputer",
+        "folderId": "My Computer",
         "size": 1000,
         "type": "Drive",
         "x": 12,
         "y": 12
-    },
-    {
-        "name": "CD-ROM",
-        "pic": "CD-ROM",
-        "folderId": "MyComputer",
-        "size": 500,
-        "type": "Drive",
-        "x": 13,
-        "y": 13
     },
     {
         "name": "Picture",
@@ -259,13 +250,22 @@
         "y": 24
     },
     {
+        "name": "010",
+        "pic": "Jpeg",
+        "folderId": "Picture",
+        "size": 50,
+        "type": ".jpeg",
+        "x": 25,
+        "y": 25
+    },
+    {
         "name": "011",
         "pic": "Jpeg",
         "folderId": "Picture",
         "size": 50,
         "type": ".jpeg",
-        "x": 26,
-        "y": 26
+        "x": 30,
+        "y": 30
     },
     {
         "name": "Github",

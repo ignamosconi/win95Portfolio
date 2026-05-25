@@ -53,7 +53,6 @@ function MyComputer() {
     {name: 'MyComputer', pic: imageMapping('MyComputer'), at: 'MyComputer'},
     {name: 'Hard Disk (C:)', pic: imageMapping('Hard Disk (C:)'), at: 'DiskC'},
     {name: 'Hard Disk (D:)', pic: imageMapping('Hard Disk (D:)'), at: 'DiskD'},
-    {name: 'CD-ROM', pic: imageMapping('CD-ROM'), at: 'CD-ROM'},
   ]
 
   const folderMap = [ // important all the folder name
