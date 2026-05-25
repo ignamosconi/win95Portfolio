@@ -41,22 +41,20 @@ function RightClickWindows() {
     setSortExpand(false);
   }, [rightClickDefault]);
 
+  const inputRef = useRef(null);
+  useEffect(() => {
+    if (popUpCreateFolderName && inputRef.current) {
+      setTimeout(() => {
+        inputRef.current.focus();
+      }, 0);
+    }
+  }, [popUpCreateFolderName]);
+
   function refreshed() {
     setRightClickDefault(false);
     setRefresh(prev => prev + 1);
     // setSortIconTrigger(prev => prev + 1)
   }
-
-
-  // useEffect(() =>{
-  //   if(sortIconTrigger > 0){
-  //     const updatedSortedIcon = sortedIcon.length > 1 ? sortedIcon : desktopIcon
-  //     setDesktopIcon(updatedSortedIcon)
-  //     setRefresh(prev => prev + 1);
-  //   }
-
-  // },[sortIconTrigger])
-
 
   function handleSwitchOpenFolder() { // decide which folder function to call
 
@@ -276,13 +274,14 @@ function CreateFolder() {
       }
     }, 350);
 }
-  
+
   return (
     <>
       {popUpCreateFolderName && (
         <div className="pop_up_create">
           <p>Enter folder name: </p>
           <input 
+            ref={inputRef}
             type="text" 
             value={newFolderNameVal} 
             onChange={(e) => setNewFolderNameVal(e.target.value)} 
