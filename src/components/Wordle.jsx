@@ -215,7 +215,7 @@ function Wordle() {
           {/* Start screen */}
           {phase === 'start' && (
             <div className="wordle_lang_select">
-              <p className="wordle_sys_line">&gt; Guess the 5-letter english word in 6 tries.</p>
+              <p className="wordle_sys_line">&gt; Guess the 5-letter word in 6 tries.</p>
               <div className="wordle_lang_btns">
                 <button className="wordle_lang_btn" onClick={startGame}>
                   &gt; PLAY
