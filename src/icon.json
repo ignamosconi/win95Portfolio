@@ -131,17 +131,6 @@
         "description": "Instant messaging application for chatting with friends."
     },
     {
-        "name": "Winamp",
-        "pic": "Winamp",
-        "folderId": "Utility",
-        "size": 4300,
-        "type": ".exe",
-        "x": 7,
-        "y": 7,
-        "category": "Utilities",
-        "description": "Media player for playing music and audio files."
-    },
-    {
         "name": "ResumeFile",
         "pic": "ResumeFile",
         "folderId": "Resume",
@@ -187,17 +176,6 @@
         "type": "folder",
         "x": 14,
         "y": 14
-    },
-    {
-        "name": "Bitcoin",
-        "pic": "Bitcoin",
-        "folderId": "Utility",
-        "size": 500,
-        "type": ".exe",
-        "x": 15,
-        "y": 15,
-        "category": "Utilities",
-        "description": "Crypto tracking and wallet utility tool."
     },
     {
         "name": "001",
@@ -300,17 +278,7 @@
         "category": "Productivity",
         "description": "Tool for accessing and managing code repositories online."
     },
-    {
-        "name": "WebResume",
-        "pic": "WebResume",
-        "folderId": "Resume",
-        "size": 2100,
-        "type": ".exe",
-        "x": 28,
-        "y": 28,
-        "category": "Productivity",
-        "description": "Interactive web-based resume showcasing personal work and experience."
-    },
+
     {
         "name": "AiAgent",
         "pic": "AiAgent",
@@ -345,17 +313,6 @@
         "description": "Clears or resets storage data to free up system space."
     },
     {
-        "name": "Paint",
-        "pic": "Paint",
-        "folderId": "Utility",
-        "size": 200,
-        "type": ".exe",
-        "x": 33,
-        "y": 33,
-        "category": "Utilities",
-        "description": "Basic drawing program for creating and editing images."
-    },
-    {
         "name": "Utility",
         "pic": "Utility",
         "folderId": "DiskD",
@@ -363,17 +320,6 @@
         "type": "folder",
         "x": 34,
         "y": 34
-    },
-    {
-        "name": "Patch",
-        "pic": "Patch",
-        "folderId": "Utility",
-        "size": 500,
-        "type": ".exe",
-        "x": 35,
-        "y": 35,
-        "category": "Utilities",
-        "description": "Software patch used to fix bugs or apply updates."
     },
     {
         "name": "TaskManager",
