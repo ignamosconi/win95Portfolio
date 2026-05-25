@@ -160,15 +160,6 @@
         "y": 12
     },
     {
-        "name": "CD-ROM",
-        "pic": "CD-ROM",
-        "folderId": "MyComputer",
-        "size": 500,
-        "type": "Drive",
-        "x": 13,
-        "y": 13
-    },
-    {
         "name": "Picture",
         "pic": "Picture",
         "folderId": "DiskC",
