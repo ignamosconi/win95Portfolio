@@ -79,8 +79,8 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 return removeLocalStorage();
 
             case "github": 
-                return window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank');
-
+                return window.open('https://github.com/ignamosconi', '_blank');
+            
             case "webresume": 
                 
             return window.open('https://yuteoctober.github.io/resume_web/', '_blank');

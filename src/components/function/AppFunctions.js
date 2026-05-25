@@ -365,10 +365,7 @@ export function handleDoubleClickEnterLink(name, handleshow) {
 
   switch(name) {
     case 'Todos': window.open('https://todo.ignamosconi.com.ar', '_blank'); break;
-    case 'Github': 
-      handleshow('Github'); 
-      break;
-
+    case 'Github': handleshow('Github'); break;
     default: break; 
   }
 }
