@@ -36,7 +36,7 @@
         "y": 4
     },
     {
-        "name": "Project",
+        "name": "My Projects",
         "pic": "Project",
         "folderId": "Desktop",
         "size": 30,
@@ -70,7 +70,7 @@
     {
         "name": "MineSweeper",
         "pic": "MineSweeper",
-        "folderId": "Project",
+        "folderId": "My Projects",
         "size": 250,
         "type": ".exe",
         "x": 5,
@@ -78,6 +78,38 @@
         "category": "Games",
         "description": "Classic puzzle game where you clear mines without detonating them."
     },
+    {
+        "name": "FlappyBird",
+        "pic": "FlappyBird",
+        "folderId": "My Projects",
+        "size": 10,
+        "type": ".exe",
+        "x": 1,
+        "y": 1
+    },
+    {
+        "name": "DTtS",
+        "pic": "DTtS",
+        "folderId": "My Projects",
+        "size": 10,
+        "type": ".exe",
+        "x": 2,
+        "y": 1
+    },
+    {
+        "name": "Todos",
+        "pic": "Todos",
+        "folderId": "My Projects",
+        "size": 10,
+        "type": ".exe",
+        "x": 3,
+        "y": 1
+    },
+
+
+
+
+
     {
         "name": "MSN",
         "pic": "MSN",

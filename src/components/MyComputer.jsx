@@ -62,7 +62,7 @@ function MyComputer() {
     {folder: 'DiskD',label: 'Hard Disk (D:)', img: imageMapping('Hard Disk (D:)')},
     {folder: 'CD-ROM',label: 'CD-ROM', img: imageMapping('CD-ROM')},
     {folder: 'Resume',label: 'Resume', img: imageMapping('Resume')},
-    {folder: 'Project',label: 'Project', img: imageMapping('Project')},
+    {folder: 'My Projects',label: 'My Projects', img: imageMapping('Project')},
     {folder: 'Picture',label: 'Picture', img: imageMapping('Picture')},
     {folder: 'Utility',label: 'Utility', img: imageMapping('Utility')},
   ]

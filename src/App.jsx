@@ -14,6 +14,8 @@ import WebampPlayer from './components/WinampPlayer';
 import ResumeFile from './components/ResumeFile';
 import Shutdown from './components/Shutdown';
 import MineSweeper from './components/MineSweeper'
+import FlappyBird from './components/FlappyBird'
+import DTtS from './components/DTtS';
 import iconInfo from './icon.json'
 import Login from './components/Login';
 import OpenProject from './components/OpenProject';
@@ -253,6 +255,12 @@ function App() {
 
   const [MineSweeperExpand, setMineSweeperExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+
+  const [FlappyBirdExpand, setFlappyBirdExpand] = useState(
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+
+  const [DTtSExpand, setDTtSExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [MSNExpand, setMSNExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
@@ -734,8 +742,8 @@ const handleOnDrag = (name, ref, type) => () => {
       iconRect.top < projectFolderRect.bottom - offset &&
       iconRect.bottom > projectFolderRect.top + offset
     ) {
-      if(name === 'Project') return;
-      setDropTargetFolder('Project');
+      if(name === 'My Projects') return;
+      setDropTargetFolder('My Projects');
     }
     // Check for intersection with the Disk 
     else if (
@@ -747,7 +755,7 @@ const handleOnDrag = (name, ref, type) => () => {
       // check within MyComputer
       if (name === 'MyComputer') return;
       // add new folder in this array
-      const validFolders = ['DiskC', 'DiskD', 'Resume', 'Project', 'Picture', 'RecycleBin', 'Utility', ...UserCreatedFolder.map(item => item.name)];
+      const validFolders = ['DiskC', 'DiskD', 'Resume', 'My Projects', 'Picture', 'RecycleBin', 'Utility', ...UserCreatedFolder.map(item => item.name)];
       if (validFolders.includes(currentFolder)) {
         setDropTargetFolder(currentFolder);
       }
@@ -794,10 +802,10 @@ function handleShowInfolder(name, type) { //important handleshow for in folder
       return;
     }
 
-    if (name === 'Project') {
-      setCurrentFolder('Project')
-      setSelectedFolder({label: 'Project', img: imageMapping(name)})
-      setUndo(prev => [...prev, 'Project'])
+    if (name === 'My Projects') {
+      setCurrentFolder('My Projects')
+      setSelectedFolder({label: 'My Projects', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'My Projects'])
       return;
     }
 
@@ -871,12 +879,12 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
       return;
     }
 
-    if (name === 'Project') {
+    if (name === 'My Projects') {
       setTimeout(() => {
-        setCurrentFolder('Project')
+        setCurrentFolder('My Projects')
       }, 100);
-      setSelectedFolder({label: 'Project', img: imageMapping(name)})
-      setUndo(prev => [...prev, 'Project'])
+      setSelectedFolder({label: 'My Projects', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'My Projects'])
       return;
     }
 
@@ -1044,6 +1052,8 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     deleteTap,
     shutdownWindow, setShutdownWindow,
     MineSweeperExpand, setMineSweeperExpand,
+    FlappyBirdExpand, setFlappyBirdExpand,
+    DTtSExpand, setDTtSExpand,
     MSNExpand, setMSNExpand,
     chatData, setChatData,
     chatValue, setChatValue,
@@ -1204,6 +1214,8 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <ResumeFile/>
         <WebampPlayer/>
         <MineSweeper/>
+        <FlappyBird/>
+        <DTtS/>
         <OpenProject/>
         <BgSetting/>
         <Run/>
@@ -1498,13 +1510,16 @@ function ObjectState() {
 
     { name: 'Resume',      setter: setResumeExpand,     usestate: ResumeExpand,     color: 'rgba(65, 138, 68, 0.85)', size: 'small' },
     { name: 'About',       setter: setMybioExpand,      usestate: MybioExpand,      color: 'rgba(46, 108, 176, 0.85)', size: 'small' },
-    { name: 'Project',     setter: setProjectExpand,    usestate: ProjectExpand,    color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
+    { name: 'My Projects', setter: setProjectExpand,    usestate: ProjectExpand,    color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
     { name: 'Picture',     setter: setPictureExpand,    usestate: pictureExpand,    color: 'rgba(85, 50, 148, 0.85)', size: 'large' },
     { name: 'Note',        setter: setNoteExpand,       usestate: NoteExpand,       color: 'rgba(114, 81, 54, 0.85)', size: 'small' },
     { name: 'IE',          setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Winamp',      setter: setWinampExpand,     usestate: WinampExpand,     color: 'rgba(105, 136, 145, 0.85)', size: 'small' },
     { name: 'ResumeFile',  setter: setResumeFileExpand, usestate: ResumeFileExpand, color: 'rgba(133, 165, 67, 0.85)', size: 'small' },
     { name: 'MineSweeper', setter: setMineSweeperExpand,usestate: MineSweeperExpand,color: 'rgba(187, 51, 48, 0.85)', size: 'small' },
+    { name: 'FlappyBird',  setter: setFlappyBirdExpand, usestate: FlappyBirdExpand, color: 'rgba(0, 180, 255, 0.85)', size: 'small' },
+    { name: 'DTtS', setter: setDTtSExpand, usestate: DTtSExpand, color: 'rgba(255, 80, 80, 0.85)', size: 'small' },
+    { name: 'Todos', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Internet',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Settings',    setter: setBgSettingExpand,  usestate: BgSettingExpand,  color: 'rgba(140, 140, 140, 0.85)', size: 'small' },
     { name: 'Run',         setter: setRunExpand,        usestate: RunExpand,        color: 'rgba(86, 114, 122, 0.85)', size: 'small' },
@@ -1566,6 +1581,13 @@ function handleShow(name) {
   setRightClickDefault(false);
 
   if(name === '' || !name) return;
+  if(name === 'Todos') {
+    setProjectUrl('https://todo.ignamosconi.com.ar');
+  }
+
+  if(name === 'IE') {
+    setProjectUrl('https://www.google.com/search?igu=1');
+  }
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
   const allSetItems = ObjectState();
@@ -1587,7 +1609,7 @@ function handleShow(name) {
   }
 
   allSetItems.forEach((item) => {
-    const itemName = item.name.toLowerCase().trim();
+    const itemName = item.name.toLowerCase().split(' ').join(''); // agregar split y join
 
     if(itemName === lowerCaseName) {
       setTimeout(() => {
@@ -1625,13 +1647,14 @@ function handleShow(name) {
   });
 
   
-  if(tap.includes(name)) return;
-  setStartActive(false);
-
-  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic','IE'];
+  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic'];
   if (notToOpenList.includes(name)) return;
 
-  setTap(prevTap => [...prevTap, name]);
+  const tapName = (name === 'Todos' || name === 'IE') ? 'Internet' : name;
+  if (tap.includes(tapName)) return;
+
+  setStartActive(false);
+  setTap(prevTap => [...prevTap, tapName]);
   setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
 }
 
@@ -1666,8 +1689,8 @@ function handleShowMobile(name) {
   }
   
     allSetItems.forEach((item) => {
-  
-      const itemName = item.name.toLowerCase().trim();
+      
+      const itemName = item.name.toLowerCase().split(' ').join(''); // agregar split y join
   
       if(itemName === lowerCaseName) {
         setTimeout(() => {
@@ -1708,14 +1731,14 @@ function handleShowMobile(name) {
       }
     });
 
-    if(tap.includes(name)) return;
     setStartActive(false)
   
-    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic','IE'];
+    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic'];
     if (notToOpenList.includes(name)) return;
-  
-    setTap(prevTap => [...prevTap, name]);
-    setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
+
+    const tapName = (name === 'Todos' || name === 'IE') ? 'Internet' : name;
+    if (tap.includes(tapName)) return;
+    setTap(prevTap => [...prevTap, tapName]);
   
   }
   setLastTapTime(now)
@@ -1755,13 +1778,13 @@ function handleShowMobile(name) {
   }
 
   function handleSetFocusItemTrue(name) {
-    const LowerCaseName = name.toLowerCase().split(' ').join('');
+    const LowerCaseName = name.toLowerCase().split(' ').join(''); // fix: definir correctamente
     const setState = ObjectState();
-
+  
     const newZIndex = (maxZindexRef.current || 0) + 1;
 
     setState.forEach((item) => {
-      const itemName = item.name.toLowerCase();
+      const itemName = item.name.toLowerCase().split(' ').join(''); // fix: eliminar espacios
 
       if (itemName === LowerCaseName) {
         if (item.type === 'userCreatedFolder') {

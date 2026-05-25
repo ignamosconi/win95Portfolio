@@ -207,7 +207,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: '40px',
           backgroundRepeat: 'no-repeat',
         };
-      case 'Project':
+      case 'My Projects':
         return {
           backgroundImage: `url(${projecttile})`,
           backgroundPosition: '50% 57%',
