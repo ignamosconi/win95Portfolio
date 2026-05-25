@@ -282,11 +282,12 @@ function CreateFolder() {
       {popUpCreateFolderName && (
         <div className="pop_up_create">
           <p>Enter folder name: </p>
-          <input type="text" 
-          value={newFolderNameVal} 
-          onChange={(e) => setNewFolderNameVal(e.target.value)} 
-          maxLength={10} 
-          onKeyDown={(e) => e.key === 'Enter' ? CreateFolder() : null}
+          <input 
+            type="text" 
+            value={newFolderNameVal} 
+            onChange={(e) => setNewFolderNameVal(e.target.value)} 
+            maxLength={10} 
+            onKeyDown={(e) => e.key === 'Enter' ? CreateFolder() : null}
           />
           <div className="ok_cancel_btn">
             <button

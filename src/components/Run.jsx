@@ -1,6 +1,6 @@
 import ErrorBtn from './ErrorBtn';
 import UseContext from '../Context'
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import Draggable from 'react-draggable'
 import RunIcon from '../assets/run.png'
 import '../css/Run.css'
@@ -127,11 +127,13 @@ function Run() {
     setLastTapTime(now);
 }
 
-
-    useEffect(() => { 
-      remountRunPosition()
-      
-    },[RunExpand.show])
+  const inputRef = useRef(null);
+  useEffect(() => { 
+    if (RunExpand.show && inputRef.current) {
+      inputRef.current.focus();
+    }
+    remountRunPosition()
+  },[RunExpand.show])
 
   return (
     <>
@@ -167,7 +169,6 @@ function Run() {
             }}
             style={ RunExpand.expand ? inlineStyleExpand('Run') : inlineStyle('Run')}>
           <div className="folder_dragbar_run"
-              onDoubleClick={handleExpandStateToggle}
               onTouchStart={handleExpandStateToggleMobile}
              style={{ background: RunExpand.focusItem? themeDragBar : '#757579'}}
           >
@@ -202,7 +203,9 @@ function Run() {
           </div>
           <div className="run_middle_container">
             <p>Open:</p>
-            <input maxLength={35} 
+            <input 
+                ref={inputRef}
+                maxLength={35} 
                 onChange={(e) => setRunInputVal(e.target.value)}
                 value={RunInputVal}
                 onKeyDown={(e) => {
