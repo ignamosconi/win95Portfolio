@@ -36,7 +36,9 @@ import { StyleHide, imageMapping,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
   iconContainerSize, iconImgSize, iconTextSize,
   handleDoubleClickPhotoOpen,
- } from './components/function/AppFunctions';
+} from './components/function/AppFunctions';
+import Wordle from './components/Wordle';
+
 
 
 function App() {
@@ -83,6 +85,19 @@ function App() {
     localStorage.setItem('isWallpaperOn', JSON.stringify({ bgRotation: true }));
     return true;
   });
+
+  //WORDLE
+  const [WordleExpand, setWordleExpand] = useState(
+    {
+      expand: false, 
+      show: false, 
+      hide: false, 
+      focusItem: true, 
+      x: 0, 
+      y: 0, 
+      zIndex: 1
+    }
+  )
 
   const [backgroundImageUrl, setBackgroundImageUrl] = useState('');
   const [tileBG, setTileBG] = useState('#098684')
@@ -953,6 +968,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     chatBotActive, setChatBotActive,
     runCatVideo, setRunCatVideo,
     newsPopup, setNewsPopup,
+    WordleExpand, setWordleExpand,
     onlineUser,
     UtilityRef,
     PaintExpand, setPaintExpand,
@@ -1216,6 +1232,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <MineSweeper/>
         <FlappyBird/>
         <DTtS/>
+        <Wordle/>
         <OpenProject/>
         <BgSetting/>
         <Run/>
@@ -1520,6 +1537,7 @@ function ObjectState() {
     { name: 'FlappyBird',  setter: setFlappyBirdExpand, usestate: FlappyBirdExpand, color: 'rgba(0, 180, 255, 0.85)', size: 'small' },
     { name: 'DTtS', setter: setDTtSExpand, usestate: DTtSExpand, color: 'rgba(255, 80, 80, 0.85)', size: 'small' },
     { name: 'Todos', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
+    { name: 'Wordle', setter: setWordleExpand, usestate: WordleExpand, color: 'rgba(0, 255, 65, 0.3)', size: 'small' },
     { name: 'Internet',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Settings',    setter: setBgSettingExpand,  usestate: BgSettingExpand,  color: 'rgba(140, 140, 140, 0.85)', size: 'small' },
     { name: 'Run',         setter: setRunExpand,        usestate: RunExpand,        color: 'rgba(86, 114, 122, 0.85)', size: 'small' },
