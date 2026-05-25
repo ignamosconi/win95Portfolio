@@ -12,6 +12,7 @@ function RightClickWindows() {
   const [restoreIcon, setRestoreIcon] = useState(0)
   const [popUpCreateFolderName, setPopUpCreateFolderName] = useState(false);
   const [newFolderNameVal, setNewFolderNameVal] = useState('');
+  const [folderError, setFolderError] = useState('');
 
   const {
     regErrorPopUpVal,
@@ -178,7 +179,10 @@ function CreateFolder() {
 
   const checkIfFolderExist = allState.some(item => item.name === newFolderNameVal.trim());
 
-  if (checkIfFolderExist) return;
+  if (checkIfFolderExist) {
+    setFolderError("Folder name already in use");
+    return;
+  }
 
   const checkedNameNoSpace = newFolderNameVal.trim().replace(/\s+/g, '');
 
@@ -221,6 +225,7 @@ function CreateFolder() {
   });
   setPopUpCreateFolderName(false)
   setNewFolderNameVal('')
+  setFolderError('');
 }
   console.log(iconBeingRightClicked.name, regErrorPopUpVal)
 
@@ -284,10 +289,23 @@ function CreateFolder() {
             ref={inputRef}
             type="text" 
             value={newFolderNameVal} 
-            onChange={(e) => setNewFolderNameVal(e.target.value)} 
+            onChange={(e) => {
+                setNewFolderNameVal(e.target.value);
+                setFolderError('');
+              }
+            } 
             maxLength={10} 
             onKeyDown={(e) => e.key === 'Enter' ? CreateFolder() : null}
           />
+
+          {folderError && (
+            <p style={{ color: 'red', fontSize: '12px', marginTop: '4px' }}>
+              {folderError}
+            </p>
+          )}
+
+
+
           <div className="ok_cancel_btn">
             <button
               onClick={CreateFolder}
