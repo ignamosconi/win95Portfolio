@@ -250,13 +250,22 @@
         "y": 24
     },
     {
+        "name": "010",
+        "pic": "Jpeg",
+        "folderId": "Picture",
+        "size": 50,
+        "type": ".jpeg",
+        "x": 25,
+        "y": 25
+    },
+    {
         "name": "011",
         "pic": "Jpeg",
         "folderId": "Picture",
         "size": 50,
         "type": ".jpeg",
-        "x": 26,
-        "y": 26
+        "x": 30,
+        "y": 30
     },
     {
         "name": "Github",
