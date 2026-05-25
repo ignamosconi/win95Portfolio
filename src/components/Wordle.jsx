@@ -3,6 +3,7 @@ import Draggable from 'react-draggable';
 import UseContext from '../Context';
 import { DICT_ENG } from '../wordleDicts';
 import '../css/Wordle.css';
+import wordle_icon from '../assets/wordle_icon.png'
 
 function getRandomWord(dict) {
   return dict[Math.floor(Math.random() * dict.length)];
@@ -190,6 +191,7 @@ function Wordle() {
           style={{ background: WordleExpand?.focusItem ? themeDragBar : '#808080' }}
         >
           <div className="folder_barname">
+            <img src={wordle_icon} alt="Wordle" />
             <span>Wordle by Igna :)</span>
           </div>
           <div className="folder_barbtn">
