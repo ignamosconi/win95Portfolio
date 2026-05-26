@@ -308,7 +308,7 @@ function BgSetting() {
             <span style={{
               border: bgTap? '1px dotted black' :''
             }}>
-              Background
+              Backgrounds
             </span>
             
           </p>
@@ -326,7 +326,7 @@ function BgSetting() {
             <span style={{
                     border: effectTap? '1px dotted black' :''
                   }}>
-            Effect
+            Effects
             </span>
           </p>
 
@@ -365,7 +365,7 @@ function BgSetting() {
               <div className="bgsettingtext_container">
                 <div className="wallpaper">
                   <p>Wallpaper</p>
-                  <p>Select an HTML Element or Picture</p>
+                  <p>Select an Image :)</p>
                   <div className="wallpaper_container">
                     {colorOptions.map((option) => (
                       <ul
