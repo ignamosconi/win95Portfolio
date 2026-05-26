@@ -70,7 +70,7 @@ function MyBioFolder() {
         new facts about astronomy...
         <br></br>
         <br></br>
-        I love to run (like, a lot), play fútbol, connect with
+        I love to run and hike (like, a lot), play fútbol, connect with
         people and work with my hands: I will take any chance I 
         get to use a lathe, do carpentry, tinker with electronics 
         or even build PCs (check the pictures on the C drive haha). 
