@@ -1,4 +1,5 @@
 # Windows 95 Portfolio
+![alt text](image.png)
 
 This React front-end is a fork of the brilliant open-source portfolio made by Yute S. Lilitprapun.
 
