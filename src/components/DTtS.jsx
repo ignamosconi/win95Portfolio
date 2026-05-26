@@ -34,7 +34,7 @@ function DTtS() {
 
           <div className="folder_barname">
             <img src={dtts_icon} alt="DTtS" />
-            <span>Don't touch the spikes by Igna :)</span>
+            <span>Don't touch the spikes by Igna :) - ↑ to flap</span>
           </div>
 
           <div className="folder_barbtn">
