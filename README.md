@@ -1,192 +1,58 @@
-Windows 95 Portfolio
+#Windows 95 Portfolio
 
-OPEN SOURCE (IF YOU FORK MY REPO, PLEASE GIVE CREDIT, I NEED THAT TO LAND A JOB LOL)
+This React front-end is a fork of the brilliant open-source portfolio made by Yute S. Lilitprapun.
 
-Live Demo: https://yuteoctober.github.io/wins95Portfolio/
-
-![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/markdown.png?raw=true)
-
-React Project:
-  - Inspired by actual windows 95 and some other idea from windows 95's portfolios
-  - Everything built by me from scratch (No style component!)
+You can check the original repository here: 
+https://github.com/Yuteoctober/wins95Portfolio
 
 
-Featured Functionality
+##¿What changed? 
+I did a fork of Yute's repo in May 2026 and adapted it into my own personal portfolio.
 
-- Log in
-  
-![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/login.gif?raw=true)
+Here's what changed:
 
-- Drag and Drop
-  
-![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/dragDrop.gif?raw=true)
+- Removed all of the original desktop apps (except Minesweeper: too good to leave out).
 
-- Change icon size
-  
-![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/iconSize.gif?raw=true)
+- Created a **My Projects** folder featuring four of my own projects:
 
-- Change background
-  
-![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/bg.gif?raw=true)
+    - **Flappy Bird**: 
+      A flappy bird clone, made in pico-8. 
+      Learn more here: https://www.lexaloffle.com/bbs/?tid=146821.
+      Use the up arrow key to fly.
 
-- Run command
-  
-![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/run.gif?raw=true)
+    - **Don't Touch the Spikes (DTtS)**: 
+      A Pico-8 remake inspired by *Don't Touch the Spikes*. 
+      Learn more here: https://www.lexaloffle.com/bbs/?tid=150239. 
+      Can you guess which key is used to fly? 
 
-- Live Chat
-  
-![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/msn.gif?raw=true)
+    - **Todos**: 
+      A todo app where every list generates its own unique link. 
+      By sharing this link, you can access the list from any device, no login required!.
+      Learn more here: https://github.com/ignamosconi/todo-uiineed-frontend
 
-- Notification
-  
-![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/Noti.gif?raw=true)
+    - **Wordle**: 
+      I originally built a Wordle clone in python, then re-wrote it in JavaScript. 
+      It turned into a fun side project while building the site.
 
-- Calendar
-  
-![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/calendar.gif?raw=true)
+- Updated the **Internet Explorer** app to showcase my todo app.  
+  If you want the unique link generated for your list, you can click the link at the bottom of the browser window.
 
-- Mine Sweeper
-  
-![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/game.gif?raw=true)
+- Replaced **ResumeFile** with my own résumé. Check it out!
 
-- Shutting Down
-  
-![alt text](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/shutdown.gif?raw=true)
+- Updated the **About** section with my own interests and goals.
+
+- Replaced the photo carousel with my own pictures.  
+  You can find them in the C: drive, if you want to take a look c:
+
+- Fixed various typos and bugs, including:
+  - Disabled right-click menu options that didn't do anything.
+  - Added an error message when trying to create a folder with a name that already exists.
+  - Fixed an edge case where Clippy could repeat the same phrase twice in a row.
+  - Freed up some space by removing unused assets from `src/assets`.
 
 
-All the functionalities
+## Open source
 
-  - Drag and Drop
-  - Shrink and Expand window
-  - Start Menu
-  - Resize window
-  - Hide and unhide
-  - One click to highlight
-  - Double Click to open (also works on mobile using usestate to capture the first touch and counting time within 3ms)
-  - Introduce Clippy assistant, who always gives you inspiration speeches
-  - now Clippy has function to show up and give you advices, when you click on certain thing
-  - Added Shutdown Button
-    - Shutdown
-    - Restart
-    - log out
+Of course this new version is open source aswell! 
 
-  - Added animation on Shutdown
-  - Added Log in page 
-    - Added mario animation running
-    - Click on ? button can increase mario's size
-
-  - Added MSN
-    - Live chat app connected to backend Node, Express and Mongodb    (free server is slow sometimes)
-    - Chat is live and has expiration key each session to prevent spam
-    - Added filter words
-    - Added auto delete for spams on the server side
-
-  - Added MineSweeper
-    - flag can now be placed on desktop
-
-  - Added Settings
-    - Wallpaper can now be changed
-    - Theme will also be changed along with wallpapaer
-
-  - Added Run command 
-    - Created Run command windows 10/04/2024
-    - Now Run command is fully functioned
-    - Added Error handling when type in the wrong file name
-
-  - Added new drag and drop feature
-    - now every icon can be drag and drop to any folder
-    - fixed bug where dragging out of fold cause other icon to flow in different direction by adding key to its container to rearrange(re-mount) the container
-    - icons will now be saved in user localstroage
-
-  - Added notification when page loaded
-    - display message and running animation
-
-  - Added MSN notification
-    - Notification will pops up when there is a new message when MSN is hidden or closed
-
-  - Now MSN live chat is using websocket instead of API for better performance
-    - Added Reconnecting websocket, reconnect chat after user nevigate away and come back
-
-  - Added Icon size adjustable on the icon next to the clock on footer
-
-  - Added Calender by clicking the time on the footer 10/30/2024
-
-  - Added sub folder on start menu imitating real windows 95 functionality 11/06/2024
-
-  - Added BitCoin price real-time tracking display and icon celebrating BTC hits $100k 12/5/2024
-    - User can hide / unhide in tap bar 
-    - Using Coinbase websocket to display
-
-  - Added Effect pattern in settings 1/19/2025
-  - Added My Computer and working on file system 1/26/2025
-
-  - Added Right Click and still working on more functions 2/13/2025
-    - on Desktop uses right click
-    - on mobile uses long press 
-    - Right click can be done on icon now
-
-  - Added Right click on each icon and icon in bin 2/16/2025
-    - right clicking on icon now able to open and delete
-    - after icon being deleted, it will move to RecycleBin
-    - right click on icon in RecycleBin will show option to restore
-    - clicking on restore will store the icon to its previous position
-  
-  - Added Paint using Library [Paint](https://github.com/1j01/jspaint)
-  - Added AiAgent project 3/1/2025
-
-  - Added News icon on task bar
-    - can display tatest news by clicking on the article
-    - connected to back-end
-
-  - Added Tempature on news App 18/06/2025
-    - can detect user's location
-    - able to switch between Celcius and Farenheit 21/06/2025
-
-  - Added Patch App 21/06/2025
-  - Now weather prediction can track user's local time 22/6/2025
-  - Added Weather 🌙 sticker when its night time 22/6/2025
-
-  - Added color picker to Settings for background customization. 26/06/2025
-
-  - Added 3D Object in Project folder. 10/07/2025
-  - Added AI Chat Bot to MSN app. 18/07/2025
-  - Chat Bot is able to be switched on/off
-  - Added Weekly Fortune Teller in Project folder. 21/07/2025
-  - Added Tile grid App **Inspired from Windows 10 and windows phone  10/27/2025
-  - Added fetching background from tile screen mode with toggle on/off 30/07/2025
-  - Added Icons on Tile screen 31/07/2025
-  - Added Added Reconnect to MSN chat 03/08/2025
-  - Added Task Manager APP 14/08/2025
-  - Add bitcoin chart 30/08/2025
-  - Re-design BTC widget 30/08/2025
-  - Add MSN nudge sound effect 20/09/2025
-    - Send nudge to server and broadcast to all clients
-    - Nudge shakes the chat window
-  - Added sorting icon right click 10/02/2025
-    - Each folder's icons can be sorted by name
-  - Added togglable Google Search bar 10/03/2025
-  - Added confirmation before permanently delete file 10/29/2025
-  - Added Store icon 10/30/2025
-  - All the apps in Store are now free to install 11/02/2025
-  - All the apps that being installed or uninstalled are now being add or remove on Tile as well 11/02/2025
-  - All apps are now able to install and uninstall in the store 11/02/2025
-  - Now icon will be added and delete dynamically, and width will be adjusted automatically
-  - New icon will be able to be added on the footer bottom right corner 11/05/2025
-  - Added new project, pixel pic 1/04/2026
-  - Added IE project, a web browser that can browse the internet 02/08/2026
-    - Intregated Back and Forward button to IE project
-    - Added Stop and Refresh button to IE project
-    - Added Home button to IE project
-  - Added Tile windows 95 version 02/23/2026
-  - Added Time stamp for each chat messages in MSN 02/28/2026
-
-Library used:
-  - React Draggable => drag and drop functionality
-  - Framer-motion => for some animation
-  - Webamp => Winamp music player (for music app)
-  - npm i react-calendar => for calender
-
-All the windows 95 icons and others can be found here
-special thanks to whoever own this web
-site: https://oldwindowsicons.tumblr.com/tagged/windows%2095
-
+Feel free to use it as a starting point to show your Resume and projects to anybody in a fun way!
