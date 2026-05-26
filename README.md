@@ -1,10 +1,12 @@
 # Windows 95 Portfolio
-![alt text](image.png)
-
 This React front-end is a fork of the brilliant open-source portfolio made by Yute S. Lilitprapun.
 
 You can check the original repository here: 
 https://github.com/Yuteoctober/wins95Portfolio
+
+![My portfolio!](image.png)
+
+
 
 
 ## ¿What changed? 
