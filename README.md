@@ -1,10 +1,11 @@
 # Windows 95 Portfolio
 This React front-end is a fork of the brilliant open-source portfolio made by Yute S. Lilitprapun.
 
-You can check the original repository here: 
+You can check the original repository here:  
 https://github.com/Yuteoctober/wins95Portfolio
 
-My own version is hosted on:
+## Link
+My version of the portfolio is live at:  
 https://ignamosconi.com.ar
 
 ![My portfolio!](image.png)
@@ -21,22 +22,22 @@ Here's what changed:
 
 - Created a **My Projects** folder featuring four of my own projects:
 
-    - **Flappy Bird**: 
+    - **Flappy Bird**:  
       A flappy bird clone, made in pico-8.  
       Learn more here: https://www.lexaloffle.com/bbs/?tid=146821.  
       Use the up arrow key to fly.  
 
-    - **Don't Touch the Spikes (DTtS)**: 
+    - **DTtS**:  
       A Pico-8 remake inspired by *Don't Touch the Spikes*.  
       Learn more here: https://www.lexaloffle.com/bbs/?tid=150239.  
       Can you guess which key is used to fly?  
 
-    - **Todos**: 
+    - **Todos**:  
       A todo app where every list generates its own unique link.  
       By sharing this link, you can access the list from any device, no login required!.  
       Learn more here: https://github.com/ignamosconi/todo-uiineed-frontend  
 
-    - **Wordle**: 
+    - **Wordle**:  
       I originally built a Wordle clone in python, then re-wrote it in JavaScript.  
       It turned into a fun side project while building the site.  
 
