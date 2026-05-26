@@ -91,11 +91,11 @@ function BgSetting() {
       
       const effectOptions = [
         { value: 1, label: '(None)', image: 'none'},
-        { value: 2, label: 'Noise', image: eff1},
-        { value: 3, label: 'Glitch 1', image: eff2},
-        { value: 4, label: 'Glitch 2', image: eff6},
-        { value: 5, label: 'Broken TV', image: eff3},
-        { value: 6, label: 'Noise 2', image: eff4},
+        { value: 2, label: 'Noise 1', image: eff1},
+        { value: 3, label: 'Noise 2', image: eff4},
+        { value: 4, label: 'Glitch 1', image: eff2},
+        { value: 5, label: 'Glitch 2', image: eff6},
+        { value: 6, label: 'Broken TV', image: eff3},
       ];
 
       useEffect(() => { // force set background and effect when app opened for color picker
@@ -330,7 +330,7 @@ function BgSetting() {
             </span>
           </p>
 
-                  
+
           
           </div>
           <div className="folder_content">
