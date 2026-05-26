@@ -290,7 +290,7 @@ function OpenProject() {
           </div>
           <div className='ifram_text_container'>
             <p>
-                If page does not load, please click <a href={projectUrl.length < 1 ? '#' : projectUrl} target="_blank" rel="noopener noreferrer">here</a> to view directly.
+                <a href={projectUrl.length < 1 ? '#' : projectUrl} target="_blank" rel="noopener noreferrer">Click here</a> to open the original page in your real browser!
             </p>
           </div>
         </div>
