@@ -34,6 +34,7 @@ export default function Footer() {
     const [calValue, calOnChange] = useState(new Date());
     const [width, setWidth] = useState(0);
     const [reRenderFooter, setRerenderFooter] = useState(0)
+    const lastClippyIndex = useRef(null);
 
     const {
         classicTileMode, setClassicTileMode,
@@ -373,9 +374,14 @@ export default function Footer() {
         clearTimeout(ClearTOSongfunction.current)
 
         RandomTimeoutShowClippy.current = setTimeout(() => { // random clippy index from length
-        const randomIndex = Math.floor(Math.random() * clippyPhrase.inspiration.length)
-                setClippyIndex(randomIndex);
-                setShowClippy(true);
+        let randomIndex = Math.floor(Math.random() * clippyPhrase.inspiration.length)
+        // si coincide con el anterior, generá uno nuevo
+        while (randomIndex === lastClippyIndex.current) {
+            randomIndex = Math.floor(Math.random() * clippyPhrase.inspiration.length);
+        }
+        lastClippyIndex.current = randomIndex;
+        setClippyIndex(randomIndex);
+        setShowClippy(true);
         SecondRandomTimeoutShowClippy.current = setTimeout(() => {
                 setShowClippy(false);
                 setRandomClippyPopup(prev => !prev);

@@ -526,7 +526,6 @@ useEffect(() => {
         socket.current = new WebSocket('wss://notebackend-wrqt.onrender.com');
 
         socket.current.onopen = () => {
-          console.log('WebSocket connected');
           getChat()
           setWebsocketConnection(true);
           setLoading(false);
@@ -563,7 +562,6 @@ useEffect(() => {
         };
 
         socket.current.onclose = () => {
-          console.log('🔌 WebSocket closed');
           setWebsocketConnection(false);
         };
 
@@ -599,7 +597,6 @@ useEffect(() => {
           // Start a 30s countdown to close socket
           invisibilityTimeout = setTimeout(() => {
             if (socket.current && socket.current.readyState === WebSocket.OPEN) {
-              console.log('User was invisible for 10s. Closing WebSocket.');
               socket.current.close();
               setWebsocketConnection(false);
             }
@@ -1283,7 +1280,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
   function deletepermanently(deleteName) { // delete from desktopIcon
     
     setItemIsBeingDeleted(deleteName)
-    console.log(deleteName)
     deleteTap(deleteName)
     const droppedIcon = desktopIcon.find(icon => icon.name === deleteName);
     if (droppedIcon) { 
@@ -1486,7 +1482,6 @@ function handleDrop(e, name, target, oldFolderID) {
       // Send the payload via WebSocket
       if (socket.current) { // Check if socket is initialized
           socket.current.send(JSON.stringify(payload));
-          console.log(payload)
       } else {
           console.error('WebSocket is not initialized.');
       }
@@ -1494,7 +1489,6 @@ function handleDrop(e, name, target, oldFolderID) {
       // Clear the chat input field and reset sendDisable
       setChatValue('');
       setSendDisable(false);
-      console.log('Chat message sent:', payload);
   }
 
 
