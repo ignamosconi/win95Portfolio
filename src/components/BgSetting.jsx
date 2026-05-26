@@ -330,23 +330,7 @@ function BgSetting() {
             </span>
           </p>
 
-          <p
-            style={{ 
-              borderBottomColor: tileTap ? '' : '#f0efef',
-              bottom: tileTap? '2px' : '',
-            }}
-            onClick={() => {
-              setBgTap(false)
-              setTileTap(true)
-              setEffectTap(false)
-            }}
-          >
-            <span style={{
-                    border: tileTap? '1px dotted black' :''
-                  }}>
-            Tile
-            </span>
-          </p>
+                  
           
           </div>
           <div className="folder_content">
