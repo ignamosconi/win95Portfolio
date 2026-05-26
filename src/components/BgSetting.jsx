@@ -6,7 +6,6 @@ import { SketchPicker } from 'react-color';
 import settingIcon from '../assets/setting.png'
 import bgPic from '../assets/bgpc.png'
 import bg0 from '../assets/bg0.png'
-import bg1 from '../assets/bg1.png'
 import bg2 from '../assets/bg2.jpg'
 import bg3 from '../assets/bg3.jpg'
 import bg5 from '../assets/bg5.png'
@@ -14,14 +13,11 @@ import bg6 from '../assets/bg6.jpg'
 import bg7 from '../assets/bg7.png'
 import bg8 from '../assets/bg8.png'
 import bg9 from '../assets/bg9.jpg'
-import bg10 from '../assets/live_grey.gif'
-import bg11 from '../assets/live_light_grey.gif'
 import bg12 from '../assets/Computer_bg.png'
 import eff1 from '../assets/noise.png'
 import eff2 from '../assets/glitch2.jpg'
 import eff3 from '../assets/brokenTV.jpg'
 import eff4 from '../assets/DarkTV.jpg'
-import eff5 from '../assets/glitch.gif'
 import eff6 from '../assets/glitch2.gif'
 import '../css/BgSetting.css'
 
@@ -82,29 +78,24 @@ function BgSetting() {
 
       const colorOptions = [
         { value: 1, label: '(None)', color: '#098684', image: bg0, barColor: '#14045c'},
-        { value: 13, label: 'Choose your favorite color', color: userPickedColor, image: userPickedColor, barColor: userPickedColor},
-        { value: 2, label: 'Purple Summer', color: '#3F4565', image: bg1, barColor: '#3F4565'},
-        { value: 3, label: 'Matt Blue', color: '#456EA6', image: bg2, barColor: '#456EA6'},
-        { value: 4, label: 'Matt Green', color: '#008081', image: bg3, barColor: '#008081'},
-        { value: 6, label: 'Blue Sky', color: '#4B6894', image: bg5, barColor: '#4B6894'},
-        { value: 7, label: 'Dark Tone', color: '#313439', image: bg6, barColor: '#313439'},
-        { value: 8, label: 'Light Pink', color: '#f3aac0', image: bg7, barColor: '#1c1719'},
-        { value: 9, label: 'Deep Ocean', color: '#3F4565', image: bg8, barColor: '#3F4565'},
-        { value: 10, label: 'Purple Blue', color: '#354092', image: bg9, barColor: '#354092'},
-        { value: 11, label: 'Live Wavy Grey', color: '#3C3C3C', image: bg10, barColor: '#3C3C3C'},
-        { value: 12, label: 'Live Wavy Light Grey', color: '#828890', image: bg11, barColor: '#4a4a4a'},
-        { value: 14, label: 'Computer Disk', color: '#098684', image: bg12, barColor: '#14045c'},
+        { value: 2, label: 'Matt Blue', color: '#456EA6', image: bg2, barColor: '#456EA6'},
+        { value: 3, label: 'Matt Green', color: '#008081', image: bg3, barColor: '#008081'},
+        { value: 4, label: 'Blue Sky', color: '#4B6894', image: bg5, barColor: '#4B6894'},
+        { value: 5, label: 'Dark Tone', color: '#313439', image: bg6, barColor: '#313439'},
+        { value: 6, label: 'Light Pink', color: '#f3aac0', image: bg7, barColor: '#1c1719'},
+        { value: 7, label: 'Deep Ocean', color: '#3F4565', image: bg8, barColor: '#3F4565'},
+        { value: 8, label: 'Purple Blue', color: '#354092', image: bg9, barColor: '#354092'},
+        { value: 9, label: 'Computer Disk', color: '#098684', image: bg12, barColor: '#14045c'},
       ];
       
       
       const effectOptions = [
         { value: 1, label: '(None)', image: 'none'},
         { value: 2, label: 'Noise', image: eff1},
-        { value: 3, label: 'Glitch noise', image: eff2},
-        { value: 4, label: 'Broken TV', image: eff3},
-        { value: 5, label: 'Noise 2', image: eff4},
-        { value: 6, label: 'Glitch', image: eff5},
-        { value: 7, label: 'Glitch Two', image: eff6},
+        { value: 3, label: 'Glitch 1', image: eff2},
+        { value: 4, label: 'Glitch 2', image: eff6},
+        { value: 5, label: 'Broken TV', image: eff3},
+        { value: 6, label: 'Noise 2', image: eff4},
       ];
 
       useEffect(() => { // force set background and effect when app opened for color picker
