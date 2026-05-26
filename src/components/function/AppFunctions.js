@@ -278,33 +278,33 @@ export function handleDoubleClickiframe(name, setOpenProjectExpand, setProjectUr
 
   switch(name) {
     case 'Nft': 
-      setProjectUrl('https://opennft.netlify.app/');
-      setBackTrackIe(prev => [...prev, 'https://opennft.netlify.app/']);
+      setProjectUrl('');
+      setBackTrackIe(prev => [...prev, '']);
     break;
 
     case 'Note': 
-      setProjectUrl('https://fullstack-stickynotes.netlify.app/'); 
-        setBackTrackIe(prev => [...prev, 'https://fullstack-stickynotes.netlify.app/']);
+      setProjectUrl(''); 
+        setBackTrackIe(prev => [...prev, '']);
     break;
 
     case 'AiAgent': 
-        setProjectUrl('https://yuteoctober.github.io/AI_chatbot/'); 
-        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/AI_chatbot/']);
+        setProjectUrl(''); 
+        setBackTrackIe(prev => [...prev, '']);
     break;
 
     case '3dObject': 
-        setProjectUrl('https://yuteoctober.github.io/3d_book/'); 
-        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/3d_book/']);
+        setProjectUrl(''); 
+        setBackTrackIe(prev => [...prev, '']);
     break;
 
     case 'Fortune': 
-        setProjectUrl('https://yuteoctober.github.io/week_fortune/'); 
-        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/week_fortune/']);
+        setProjectUrl(''); 
+        setBackTrackIe(prev => [...prev, '']);
     break;
 
     case 'PixelPic': 
-        setProjectUrl('https://yuteoctober.github.io/Pixel_pic/'); 
-        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/Pixel_pic/']);
+        setProjectUrl(''); 
+        setBackTrackIe(prev => [...prev, '']);
     break;
 
     case 'IE': 
@@ -331,23 +331,23 @@ export function handleDoubleTapiframeMobile(name, lastTapTime, setLastTapTime, s
         break;
   
         case 'AiAgent': 
-        setProjectUrl('https://yuteoctober.github.io/AI_chatbot/'); 
-        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/AI_chatbot/']);
+        setProjectUrl(''); 
+        setBackTrackIe(prev => [...prev, '']);
         break;
 
         case '3dObject': 
-        setProjectUrl('https://yuteoctober.github.io/3d_book/'); 
-        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/3d_book/']);
+        setProjectUrl(''); 
+        setBackTrackIe(prev => [...prev, '']);
         break;
 
         case 'Fortune': 
-        setProjectUrl('https://yuteoctober.github.io/week_fortune/'); 
-        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/week_fortune/']);
+        setProjectUrl(''); 
+        setBackTrackIe(prev => [...prev, '']);
         break;
 
         case 'PixelPic': 
-        setProjectUrl('https://yuteoctober.github.io/Pixel_pic/'); 
-        setBackTrackIe(prev => [...prev, 'https://yuteoctober.github.io/Pixel_pic/']);
+        setProjectUrl(''); 
+        setBackTrackIe(prev => [...prev, '']);
         break;
 
         case 'IE': 
