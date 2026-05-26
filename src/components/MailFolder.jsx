@@ -44,7 +44,6 @@ const form = useRef();
           form.current.reset();
         },
         (error) => {
-          console.log('FAILED...', error.text);
         },
       );
   };

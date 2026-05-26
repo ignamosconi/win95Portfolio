@@ -329,7 +329,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
 
       case 'Random BG':
         if (tileCooldown.current) {
-          console.log('Wait before clicking again.');
           return;
         }
 

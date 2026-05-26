@@ -10,21 +10,21 @@ import clippyNo from '../../assets/clippyNo.gif';
 export const clippyPhrase = {
     inspiration: [
         { phrase: "I’m Clippy, your personal assistant – I’m here to help!", animation: clippy1 },
-        { phrase: "Sometimes I just popup for no particular reason, like now.", animation: clippy7 },
+        { phrase: "Try a new background! Right click → Properties → Background.", animation: clippy7 },
         { phrase: "You’re doing great! Keep up the good work.", animation: clippy3 },
-        { phrase: "Everyone makes mistakes – it’s how we learn and grow.", animation: clippy1 },
+        { phrase: "Try a new effect! Right click → Properties → Effects.", animation: clippy1 },
         { phrase: "Believe in yourself – you’re capable of amazing things.", animation: clippy2 },
-        { phrase: "Hard work pays off – keep pushing towards your goals!", animation: clippy3 },
-        { phrase: "Success is not about being the best, but being your best self.", animation: clippy4 },
+        { phrase: "Have you tried creating a new folder? Do so with right-click!", animation: clippy3 },
+        { phrase: "Did you check Igna's resume? It's in the 'Resume' folder!", animation: clippy4 },
         { phrase: "Stay positive – your attitude can change everything.", animation: clippy5 },
-        { phrase: "Even on the darkest days, there’s always a glimmer of hope.", animation: clippy6 },
+        { phrase: "TIP: You can't delete 'RecycleBin' or 'My Computer'", animation: clippy6 },
         { phrase: "Never give up – your persistence will pay off in the end.", animation: clippy7 },
         { phrase: "The only limit is your imagination – let it soar!", animation: clippy2 },
-        { phrase: "Your words have power – use them wisely and with kindness.", animation: clippy7 },
-        { phrase: "Trust your instincts – they’re often wiser than you think.", animation: clippy4 },
-        { phrase: "Embrace the challenges, they’ll make you stronger in the end.", animation: clippy6 },
+        { phrase: "Surf the web! It's where all the cool stuff is :)", animation: clippy7 },
+        { phrase: "I love Flappy Bird. Check it out in the 'My Projects' folder!", animation: clippy4 },
+        { phrase: "I can't solve a single Wordle. I'm not good with english.", animation: clippy6 },
         { phrase: "Sometimes, a simple ‘thank you’ can make a big difference.", animation: clippy5 },
-        { phrase: "Success is not about the destination, it’s about the journey.", animation: clippy1 }
+        { phrase: "Did you check Igna's resume? It's in the 'Resume' folder!", animation: clippy1 }
     ],
     interruption: [{ phrase: "Please, do not interrupt me!", animation: clippyNo }]
 };
