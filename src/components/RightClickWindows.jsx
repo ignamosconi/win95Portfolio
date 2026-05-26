@@ -356,8 +356,8 @@ function CreateFolder() {
               }}
             >Task Manager</p>
             <h5></h5>
-            <p style={{color: '#8a8989'}}>Paste</p>
-            <p style={{color: '#8a8989'}}>Paste Shortcut</p>
+            <p style={{color: '#8a8989', pointerEvents: 'none'}}>Paste</p>
+            <p style={{color: '#8a8989', pointerEvents: 'none'}}>Paste Shortcut</p>
             <p 
               onClick={() => {
                 refreshed()
@@ -407,20 +407,27 @@ function CreateFolder() {
           >
             Open
           </p>
-          <p style={{paddingLeft: '25px'}}>Edit</p>
           <h5></h5>
-          <p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>
             Send To
             <span>
                 <BsFillCaretRightFill/>
             </span>
           </p>
           <h5></h5>
-          <p style={{color: '#8a8989'}}>Cut</p>
-          <p style={{color: '#8a8989'}}>Copy</p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>Cut</p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>Copy</p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>Rename</p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>Edit</p>
           <h5></h5>
           <p
+            style={
+              ['RecycleBin', 'My Computer'].includes(iconBeingRightClicked.name) 
+                ? { color: '#8a8989', pointerEvents: 'none' } 
+                : {}
+            }
             onClick={() => {
+              if(['RecycleBin', 'My Computer'].includes(iconBeingRightClicked.name)) return;
               handleDeleteIcon();
               iconFocusIcon('')
               setRightClickIcon(false);
@@ -430,9 +437,9 @@ function CreateFolder() {
           >
             Delete
           </p>
-          <p>Rename</p>
+          
           <h5></h5>
-          <p>Properties</p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>Properties</p>
       </div> 
       )}
       {(rightClickDefault && !rightClickIcon && rightClickBin) && (
@@ -455,7 +462,7 @@ function CreateFolder() {
             Restore
           </p>
           <h5></h5>
-          <p >Cut</p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>Cut</p>
           <h5></h5>
           <p
             onClick={() => {
@@ -465,9 +472,9 @@ function CreateFolder() {
               askBeforeDelete();
               // deletepermanently()
             }}
-          >Delete</p>
+          >Delete forever</p>
           <h5></h5>
-          <p>Properties</p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>Properties</p>
       </div> 
       )}
        
