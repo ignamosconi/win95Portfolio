@@ -70,7 +70,7 @@ function RightClickWindows() {
   
   function handleDeleteIcon() {
 
-    const IconCannotBeDeleted = ['MyComputer', 'RecycleBin', "Hard Disk (C:)", "Hard Disk (D:)", "CD-ROM", 'Store' ]
+    const IconCannotBeDeleted = ['My Computer', 'RecycleBin', "Hard Disk (C:)", "Hard Disk (D:)", "CD-ROM", 'Store' ]
 
     if(IconCannotBeDeleted.includes(iconBeingRightClicked.name)) return;
     // Add icon to binRestoreArr
@@ -236,7 +236,7 @@ function CreateFolder() {
 
 
   function arrangeIcons() {
-    if(currentRightClickFolder === 'MyComputer') return;
+    if(currentRightClickFolder === 'My Computer') return;
 
     const iconsOnFolder = desktopIcon.filter(icon => icon.folderId === currentRightClickFolder);
     const newArrangedIcons = iconsOnFolder.sort((a, b) => a.name.localeCompare(b.name));
@@ -252,7 +252,7 @@ function CreateFolder() {
   }
   
   function arrangeIconsByType() {
-    if(currentRightClickFolder === 'MyComputer') return;
+    if(currentRightClickFolder === 'My Computer') return;
 
     const iconsOnFolder = desktopIcon.filter(icon => icon.folderId === currentRightClickFolder);
     const newArrangedIcons = [...iconsOnFolder].sort((a, b) => a.type.localeCompare(b.type));

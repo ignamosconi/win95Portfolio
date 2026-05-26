@@ -9,7 +9,7 @@
         "y": 1
     },
     {
-        "name": "MyComputer",
+        "name": "My Computer",
         "pic": "MyComputer",
         "folderId": "Desktop",
         "size": 4,
@@ -144,7 +144,7 @@
     {
         "name": "Hard Disk (C:)",
         "pic": "Hard Disk (C:)",
-        "folderId": "MyComputer",
+        "folderId": "My Computer",
         "size": 4000,
         "type": "Drive",
         "x": 11,
@@ -153,7 +153,7 @@
     {
         "name": "Hard Disk (D:)",
         "pic": "Hard Disk (D:)",
-        "folderId": "MyComputer",
+        "folderId": "My Computer",
         "size": 1000,
         "type": "Drive",
         "x": 12,

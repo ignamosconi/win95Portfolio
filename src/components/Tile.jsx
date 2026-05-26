@@ -179,7 +179,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: '64px',
           backgroundRepeat: 'no-repeat',
         };
-      case 'MyComputer':
+      case 'My Computer':
         return {
           backgroundImage: `url(${laptop})`,
           backgroundPosition: '50% 62%',

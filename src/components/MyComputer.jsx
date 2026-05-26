@@ -50,13 +50,13 @@ function MyComputer() {
 
    // popup select folder
    const popUpiconList = [ // important default folderand disks
-    {name: 'MyComputer', pic: imageMapping('MyComputer'), at: 'MyComputer'},
+    {name: 'My Computer', pic: imageMapping('My Computer'), at: 'My Computer'},
     {name: 'Hard Disk (C:)', pic: imageMapping('Hard Disk (C:)'), at: 'DiskC'},
     {name: 'Hard Disk (D:)', pic: imageMapping('Hard Disk (D:)'), at: 'DiskD'},
   ]
 
   const folderMap = [ // important all the folder name
-    {folder: 'MyComputer', label: 'MyComputer', img: imageMapping('MyComputer')},
+    {folder: 'My Computer', label: 'My Computer', img: imageMapping('My Computer')},
     {folder: 'DiskC',label: 'Hard Disk (C:)', img: imageMapping('Hard Disk (C:)')},
     {folder: 'DiskD',label: 'Hard Disk (D:)', img: imageMapping('Hard Disk (D:)')},
     {folder: 'CD-ROM',label: 'CD-ROM', img: imageMapping('CD-ROM')},
@@ -133,17 +133,17 @@ function MyComputer() {
 
   useEffect(() => {
     // defaulting to Mycomputer
-      setSelectedFolder({label: 'MyComputer', img: imageMapping('MyComputer')})
-      setCurrentFolder('MyComputer')
+      setSelectedFolder({label: 'My Computer', img: imageMapping('My Computer')})
+      setCurrentFolder('My Computer')
       setPopUpFolder(false)
-      setUndo(['MyComputer'])
+      setUndo(['My Computer'])
     
   },[MyComputerExpand.show])
   
 
   // margin to popup select folder
   function MarginOnSelectedIcon(name, sub) {
-    if(name === 'MyComputer') return '0.2rem';
+    if(name === 'My Computer') return '0.2rem';
     if(name.includes('Disk') || name.includes('CD-ROM')) return '1.1rem'
     if(sub === 'sub1') return '2rem'
     if(sub === 'sub2') return '2.9rem'
@@ -159,7 +159,7 @@ function MyComputer() {
   
     // Update the undo stack and set the current folder
     setUndo(updatedUndo);
-    setCurrentFolder(updatedUndo[updatedUndo.length - 1] || 'MyComputer');
+    setCurrentFolder(updatedUndo[updatedUndo.length - 1] || 'My Computer');
     
 
     const selectedFolder = folderMap.find(item => item.folder === updatedUndo[updatedUndo.length - 1]);
@@ -168,7 +168,7 @@ function MyComputer() {
     if (selectedFolder) {
       setSelectedFolder({ label: selectedFolder.label, img: selectedFolder.img });
     } else {
-      setSelectedFolder({ label: 'MyComputer', img: imageMapping('MyComputer') }); 
+      setSelectedFolder({ label: 'My Computer', img: imageMapping('My Computer') }); 
     }
   }
 
@@ -186,7 +186,7 @@ function MyComputer() {
         y: window.innerWidth <= 500 ? 30 : 80,
       }}
       onStop={(event, data) => {handleDragStop(event, data)}}
-      onStart={() => {handleSetFocusItemTrue('MyComputer')}}
+      onStart={() => {handleSetFocusItemTrue('My Computer')}}
     >
         <motion.div 
         onContextMenu={() => setCurrentRightClickFolder(currentFolder)}
@@ -195,13 +195,13 @@ function MyComputer() {
           className='folder_folder'
           onClick={(e) => {
             e.stopPropagation();
-            handleSetFocusItemTrue('MyComputer');
+            handleSetFocusItemTrue('My Computer');
           }}
           style={{
             ...(
                 MyComputerExpand.expand
-                    ? inlineStyleExpand('MyComputer')
-                    : inlineStyle('MyComputer')
+                    ? inlineStyleExpand('My Computer')
+                    : inlineStyle('My Computer')
             ),
             overflow: dragging ? '' : 'hidden'
         }}
@@ -219,12 +219,12 @@ function MyComputer() {
             <div onClick={ !isTouchDevice ? (e) => {
               e.stopPropagation();
               setMyComputerExpand(prev => ({ ...prev, hide: true, focusItem: false }));
-              StyleHide('MyComputer'); 
+              StyleHide('My Computer'); 
             } : undefined}
             onTouchEnd={(e) => {
               e.stopPropagation()
               setMyComputerExpand(prev => ({...prev, hide: true, focusItem: false}))
-              StyleHide('MyComputer')
+              StyleHide('My Computer')
             }}
             onTouchStart={(e) => e.stopPropagation()}
             >
@@ -239,8 +239,8 @@ function MyComputer() {
             </div>
             <div>
               <p className='x'
-                onClick={!isTouchDevice ? () => deleteTap('MyComputer') : undefined}
-                onTouchEnd={() => deleteTap('MyComputer')}
+                onClick={!isTouchDevice ? () => deleteTap('My Computer') : undefined}
+                onTouchEnd={() => deleteTap('My Computer')}
               >×</p>
             </div>
           </div>
@@ -344,7 +344,7 @@ function MyComputer() {
           }}
         >
           <div className='parent_item_container' key={key}
-            onClick={() => handleSetFocusItemTrue('MyComputer')}
+            onClick={() => handleSetFocusItemTrue('My Computer')}
           >
 
             <div className="item_container" 
@@ -352,7 +352,7 @@ function MyComputer() {
               e.stopPropagation();
               setPopUpFolder(false)
               iconFocusIcon('');
-              handleSetFocusItemTrue('MyComputer');
+              handleSetFocusItemTrue('My Computer');
             }}
               style={{
                 position: dragging? 'absolute' : '',
@@ -361,14 +361,14 @@ function MyComputer() {
               {desktopIcon.filter(icon => icon.folderId === currentFolder).map(icon => (
                 <Fragment key={icon.name}>
                   <Draggable
-                  axis={currentFolder === 'MyComputer' ? 'none' : 'both'}
+                  axis={currentFolder === 'My Computer' ? 'none' : 'both'}
                   handle={'.icon'}
                   grid={[10, 10]}
                   scale={1}
                   bounds={false}
                   onStart={() => {
                     setDropTargetFolder('')
-                    handleSetFocusItemTrue('MyComputer')
+                    handleSetFocusItemTrue('My Computer')
                   }}
                   onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name], icon.type)}
                   onStop={(e) => {
