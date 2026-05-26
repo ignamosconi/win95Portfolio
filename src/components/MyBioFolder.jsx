@@ -67,8 +67,14 @@ function MyBioFolder() {
         I can't stop learning. In my free time I learn new 
         songs in my guitar, new chess oppenings, new 
         skateboarding tricks, new tactics for Counter-Strike,
-        new facts about astronomy... I love to run (like, a 
-        lot), play fútbol, and connect with people. 
+        new facts about astronomy...
+        <br></br>
+        <br></br>
+        I love to run and hike (like, a lot), play fútbol, connect with
+        people and work with my hands: I will take any chance I 
+        get to use a lathe, do carpentry, tinker with electronics 
+        or even build PCs (check the pictures on the C drive haha). 
+        <br></br>
         <br></br>
         When a project picks my interest, I put 110% of my energy
         onto it, and can't stop thinking about it utill it's done.

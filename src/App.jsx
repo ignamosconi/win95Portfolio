@@ -129,9 +129,9 @@ function App() {
   const [regErrorPopUpVal, setRegErrorPopUpVal] = useState('')
   const [runItemBox, setRunItemBox] = useState(false)
   const [RunInputVal, setRunInputVal] = useState('')
-  const [undo, setUndo] = useState(['MyComputer'])
-  const [selectedFolder, setSelectedFolder] = useState({label: 'MyComputer', img: imageMapping('MyComputer')})
-  const [currentFolder, setCurrentFolder] = useState('MyComputer')
+  const [undo, setUndo] = useState(['My Computer'])
+  const [selectedFolder, setSelectedFolder] = useState({label: 'My Computer', img: imageMapping('MyComputer')})
+  const [currentFolder, setCurrentFolder] = useState('My Computer')
   const [loading, setLoading] = useState(true)
   const [resumeStartBar, setResumejectStartBar] = useState(false)
   const [projectStartBar, setProjectStartBar] = useState(false)
@@ -688,7 +688,7 @@ const handleOnDrag = (name, ref, type) => () => {
 
     const offset = 55;
 
-    if(name === 'MyComputer' || name === 'RecycleBin') return; // prevent MyComputer from being dragged into folder
+    if(name === 'My Computer' || name === 'RecycleBin') return; // prevent MyComputer from being dragged into folder
 
     // Check for intersection with UserCreated folders
     for (let i = 0; i < UserCreatedFolderRef.current.length; i++) {
@@ -768,7 +768,7 @@ const handleOnDrag = (name, ref, type) => () => {
       iconRect.bottom > diskRect.top + offset
     ) { 
       // check within MyComputer
-      if (name === 'MyComputer') return;
+      if (name === 'My Computer') return;
       // add new folder in this array
       const validFolders = ['DiskC', 'DiskD', 'Resume', 'My Projects', 'Picture', 'RecycleBin', 'Utility', ...UserCreatedFolder.map(item => item.name)];
       if (validFolders.includes(currentFolder)) {
@@ -1541,7 +1541,7 @@ function ObjectState() {
     { name: 'Internet',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Settings',    setter: setBgSettingExpand,  usestate: BgSettingExpand,  color: 'rgba(140, 140, 140, 0.85)', size: 'small' },
     { name: 'Run',         setter: setRunExpand,        usestate: RunExpand,        color: 'rgba(86, 114, 122, 0.85)', size: 'small' },
-    { name: 'MyComputer',  setter: setMyComputerExpand, usestate: MyComputerExpand, color: 'rgba(31, 122, 206, 0.85)', size: 'small' },
+    { name: 'My Computer',  setter: setMyComputerExpand, usestate: MyComputerExpand, color: 'rgba(31, 122, 206, 0.85)', size: 'small' },
     { name: 'Photo',       setter: setPhotoOpenExpand,  usestate: photoOpenExpand,  color: 'rgba(0, 120, 93, 0.85)', size: 'small' },
     { name: 'RecycleBin',  setter: setBinExpand,        usestate: BinExpand,        color: 'rgba(64, 135, 66, 0.85)', size: 'small' },
     { name: 'Paint',       setter: setPaintExpand,      usestate: PaintExpand,      color: 'rgba(193, 178, 46, 0.85)', size: 'small' },
