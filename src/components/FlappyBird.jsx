@@ -33,7 +33,7 @@ function FlappyBird() {
 
           <div className="folder_barname">
             <img src={flappyBirdIcon} alt="FlappyBird" />
-            <span>Flappy Bird by Igna :)</span>
+            <span>Flappy Bird by Igna :) - ↑ to flap</span>
           </div>
 
           <div className="folder_barbtn">
