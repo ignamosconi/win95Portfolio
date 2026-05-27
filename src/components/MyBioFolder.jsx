@@ -28,12 +28,12 @@ function MyBioFolder() {
 
    const technologyText = ( // don't have to use DangerousHTML
     <>
-        I mainly use <span>JavaScript</span> and <span>React</span> 
-        to create user-friendly interfaces, often incorporating <span>Tailwind</span> CSS for styling. 
-        I've also developed full-stack projects with <span>Node.js</span>, 
-        <span>Express</span>, <span>MongoDB</span> and 
-        <span>MySQL</span> by bringing together the front end and back end 
-        for seamless applications.
+      I mainly use <span>TypeScript</span>, <span>Python</span>, <span>Java</span>, <span>JavaScript</span> and <span>Lua</span> to
+      build full-stack apps with <span>Angular</span>, <span>Next.js</span>, <span>Vite</span>, <span>NestJS</span>, <span>Node.js</span>, <span>PostgreSQL</span> and <span>MongoDB</span>.
+
+      I work as an educator and mentor in programming, while also developing creative projects like <span>PICO-8</span> video games, board-games and competitive programming challenges.
+
+      I’m passionate about designing games and creating better user experiences through clean, intuitive and engaging apps.
     </>
   );
 
@@ -41,37 +41,43 @@ function MyBioFolder() {
     <>
         <strong>Objective:</strong>
         <br />
-        <span>Building pixel perfect web </span>
-        <span>application.</span>
-        <br />
+        <span style={{ display: "block" }}>Learning while</span>
+        <span style={{ display: "block" }}>having fun :)</span>
         <br />
         <strong>Information:</strong>
         <br />
-        <span>Yute S. Lilitprapun</span>
+        <span style={{ display: "block" }}>Ignacio M. Mosconi.</span>
+        <span>Full-stack developer.</span>
         <br />
-        <span>Front-end developer</span>
-        <br />
-        <span>929-235-5371</span>
+        <span>ignamosconi@gmail.com</span>
         <br />
         <br />
         <strong>Location: </strong>
         <br />
-        <span>New York City, Queens</span>
+        <span>Villa María, Córdoba.</span>
         <br />
-        <span>Open to work</span>
+        <span>Open to work.</span>
         <br />
-        <span>On Site / Remote</span>
+        <span>On Site / Remote.</span>
     </>
   );
 
   const hobbyText = ( // don't have to use DangerousHTML
     <>
-        In my free time, I love gaming with friends. 
-        When I'm not at my computer, I make an effort 
-        to hit the gym, discover new restaurants, 
-        and go on adventures like hiking. 
-        I played basketball in high school and would love to 
-        get back into it!
+        I can't stop learning. In my free time I learn new 
+        songs in my guitar, new chess oppenings, new 
+        skateboarding tricks, new tactics for Counter-Strike,
+        new facts about astronomy...
+        <br></br>
+        <br></br>
+        I love to run and hike (like, a lot), play fútbol, connect with
+        people and work with my hands: I will take any chance I 
+        get to use a lathe, do carpentry, tinker with electronics 
+        or even build PCs (check the pictures on the C drive haha). 
+        <br></br>
+        <br></br>
+        When a project picks my interest, I put 110% of my energy
+        onto it, and can't stop thinking about it utill it's done.
     </>
   );
 
@@ -170,11 +176,11 @@ function MyBioFolder() {
           </p>
           <p onClick={() => handleBiotap('technology')}
               style={technologyTap ? activeBtnStyle : {}}
-          >Technology
+          >Technologies
           </p>
           <p onClick={() => handleBiotap('hobby')}
                   style={hobbTap ? activeBtnStyle : {}}
-          >Hobby
+          >Me
           </p>
           </div>
           <div className="folder_content">

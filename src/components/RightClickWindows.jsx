@@ -12,6 +12,7 @@ function RightClickWindows() {
   const [restoreIcon, setRestoreIcon] = useState(0)
   const [popUpCreateFolderName, setPopUpCreateFolderName] = useState(false);
   const [newFolderNameVal, setNewFolderNameVal] = useState('');
+  const [folderError, setFolderError] = useState('');
 
   const {
     regErrorPopUpVal,
@@ -41,22 +42,20 @@ function RightClickWindows() {
     setSortExpand(false);
   }, [rightClickDefault]);
 
+  const inputRef = useRef(null);
+  useEffect(() => {
+    if (popUpCreateFolderName && inputRef.current) {
+      setTimeout(() => {
+        inputRef.current.focus();
+      }, 0);
+    }
+  }, [popUpCreateFolderName]);
+
   function refreshed() {
     setRightClickDefault(false);
     setRefresh(prev => prev + 1);
     // setSortIconTrigger(prev => prev + 1)
   }
-
-
-  // useEffect(() =>{
-  //   if(sortIconTrigger > 0){
-  //     const updatedSortedIcon = sortedIcon.length > 1 ? sortedIcon : desktopIcon
-  //     setDesktopIcon(updatedSortedIcon)
-  //     setRefresh(prev => prev + 1);
-  //   }
-
-  // },[sortIconTrigger])
-
 
   function handleSwitchOpenFolder() { // decide which folder function to call
 
@@ -71,7 +70,7 @@ function RightClickWindows() {
   
   function handleDeleteIcon() {
 
-    const IconCannotBeDeleted = ['MyComputer', 'RecycleBin', "Hard Disk (C:)", "Hard Disk (D:)", "CD-ROM", 'Store' ]
+    const IconCannotBeDeleted = ['My Computer', 'RecycleBin', "Hard Disk (C:)", "Hard Disk (D:)", "CD-ROM", 'Store' ]
 
     if(IconCannotBeDeleted.includes(iconBeingRightClicked.name)) return;
     // Add icon to binRestoreArr
@@ -129,7 +128,6 @@ function RightClickWindows() {
         const findIconToRestore = prevIcons.find(icon => icon.name === droppedIcon.name)
         const updatedIcons = prevIcons.filter(icon => icon.name !== droppedIcon.name);
         const restoredIcon = { ...findIconToRestore, folderId: droppedIcon.OldFolder };
-        console.log(restoredIcon)
 
         setKey(prev => prev + 1); // make folder icon by re-mount
 
@@ -180,7 +178,10 @@ function CreateFolder() {
 
   const checkIfFolderExist = allState.some(item => item.name === newFolderNameVal.trim());
 
-  if (checkIfFolderExist) return;
+  if (checkIfFolderExist) {
+    setFolderError("Folder name already in use");
+    return;
+  }
 
   const checkedNameNoSpace = newFolderNameVal.trim().replace(/\s+/g, '');
 
@@ -188,7 +189,7 @@ function CreateFolder() {
 
   const newFolder = {
     id,
-    pic: "Project",
+    pic: "My Projects",
     name: checkedNameNoSpace,
     type: "folder",
     folderId: "Desktop",
@@ -223,8 +224,8 @@ function CreateFolder() {
   });
   setPopUpCreateFolderName(false)
   setNewFolderNameVal('')
+  setFolderError('');
 }
-  console.log(iconBeingRightClicked.name, regErrorPopUpVal)
 
   function askBeforeDelete() {
     setRegErrorPopUpVal(iconBeingRightClicked.name)
@@ -233,7 +234,7 @@ function CreateFolder() {
 
 
   function arrangeIcons() {
-    if(currentRightClickFolder === 'MyComputer') return;
+    if(currentRightClickFolder === 'My Computer') return;
 
     const iconsOnFolder = desktopIcon.filter(icon => icon.folderId === currentRightClickFolder);
     const newArrangedIcons = iconsOnFolder.sort((a, b) => a.name.localeCompare(b.name));
@@ -249,7 +250,7 @@ function CreateFolder() {
   }
   
   function arrangeIconsByType() {
-    if(currentRightClickFolder === 'MyComputer') return;
+    if(currentRightClickFolder === 'My Computer') return;
 
     const iconsOnFolder = desktopIcon.filter(icon => icon.folderId === currentRightClickFolder);
     const newArrangedIcons = [...iconsOnFolder].sort((a, b) => a.type.localeCompare(b.type));
@@ -276,18 +277,33 @@ function CreateFolder() {
       }
     }, 350);
 }
-  
+
   return (
     <>
       {popUpCreateFolderName && (
         <div className="pop_up_create">
           <p>Enter folder name: </p>
-          <input type="text" 
-          value={newFolderNameVal} 
-          onChange={(e) => setNewFolderNameVal(e.target.value)} 
-          maxLength={10} 
-          onKeyDown={(e) => e.key === 'Enter' ? CreateFolder() : null}
+          <input 
+            ref={inputRef}
+            type="text" 
+            value={newFolderNameVal} 
+            onChange={(e) => {
+                setNewFolderNameVal(e.target.value);
+                setFolderError('');
+              }
+            } 
+            maxLength={10} 
+            onKeyDown={(e) => e.key === 'Enter' ? CreateFolder() : null}
           />
+
+          {folderError && (
+            <p style={{ color: 'red', fontSize: '12px', marginTop: '4px' }}>
+              {folderError}
+            </p>
+          )}
+
+
+
           <div className="ok_cancel_btn">
             <button
               onClick={CreateFolder}
@@ -338,8 +354,8 @@ function CreateFolder() {
               }}
             >Task Manager</p>
             <h5></h5>
-            <p style={{color: '#8a8989'}}>Paste</p>
-            <p style={{color: '#8a8989'}}>Paste Shortcut</p>
+            <p style={{color: '#8a8989', pointerEvents: 'none'}}>Paste</p>
+            <p style={{color: '#8a8989', pointerEvents: 'none'}}>Paste Shortcut</p>
             <p 
               onClick={() => {
                 refreshed()
@@ -389,20 +405,27 @@ function CreateFolder() {
           >
             Open
           </p>
-          <p style={{paddingLeft: '25px'}}>Edit</p>
           <h5></h5>
-          <p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>
             Send To
             <span>
                 <BsFillCaretRightFill/>
             </span>
           </p>
           <h5></h5>
-          <p style={{color: '#8a8989'}}>Cut</p>
-          <p style={{color: '#8a8989'}}>Copy</p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>Cut</p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>Copy</p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>Rename</p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>Edit</p>
           <h5></h5>
           <p
+            style={
+              ['RecycleBin', 'My Computer'].includes(iconBeingRightClicked.name) 
+                ? { color: '#8a8989', pointerEvents: 'none' } 
+                : {}
+            }
             onClick={() => {
+              if(['RecycleBin', 'My Computer'].includes(iconBeingRightClicked.name)) return;
               handleDeleteIcon();
               iconFocusIcon('')
               setRightClickIcon(false);
@@ -412,9 +435,9 @@ function CreateFolder() {
           >
             Delete
           </p>
-          <p>Rename</p>
+          
           <h5></h5>
-          <p>Properties</p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>Properties</p>
       </div> 
       )}
       {(rightClickDefault && !rightClickIcon && rightClickBin) && (
@@ -437,7 +460,7 @@ function CreateFolder() {
             Restore
           </p>
           <h5></h5>
-          <p >Cut</p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>Cut</p>
           <h5></h5>
           <p
             onClick={() => {
@@ -447,9 +470,9 @@ function CreateFolder() {
               askBeforeDelete();
               // deletepermanently()
             }}
-          >Delete</p>
+          >Delete forever</p>
           <h5></h5>
-          <p>Properties</p>
+          <p style={{color: '#8a8989', pointerEvents: 'none'}}>Properties</p>
       </div> 
       )}
        

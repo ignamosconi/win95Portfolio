@@ -101,6 +101,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
 
   const recycleBin = desktopIcon.filter(icon => icon.folderId === 'RecycleBin');
   const recycleBinLength = recycleBin.length;
+  const [photoDimensions, setPhotoDimensions] = useState({ width: null, height: null });
 
   useEffect(() => { // force re-render, ref can be tracked
     setKeyRef(prev => prev + 1)
@@ -136,13 +137,13 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
           handleSetFocusItemTrue(folderName);
           }}
           style={{
-            ...(
-                state.expand
-                    ? inlineStyleExpand(folderName, userCreatedFolderMode)
-                    : inlineStyle(folderName, userCreatedFolderMode)
-            ),
+            ...(state.expand ? inlineStyleExpand(folderName) : inlineStyle(folderName)),
             overflow: dragging ? '' : 'hidden',
-        }}
+            ...(photoMode && photoDimensions.width ? {
+              width: photoDimensions.width,
+              height: photoDimensions.height + 52, // 52px para el dragbar y menu
+            } : {}),
+          }}
         
         >
         <div className="folder_dragbar"
@@ -252,7 +253,18 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
                   width: '100%',
                   height: '100%',
                   margin: '0 auto',
-                }}/>
+                }}
+                  onLoad={(e) => {
+                    const { naturalWidth, naturalHeight } = e.target;
+                    const maxW = window.innerWidth * 0.9;
+                    const maxH = window.innerHeight * 0.85;
+                    const scale = Math.min(1, maxW / naturalWidth, maxH / naturalHeight);
+                    setPhotoDimensions({
+                      width: Math.round(naturalWidth * scale),
+                      height: Math.round(naturalHeight * scale),
+                    });
+                  }}
+                />
               )}
                 {desktopIcon.filter(icon => icon.folderId === folderName).map(icon => (
                 <Fragment key={icon.name}>

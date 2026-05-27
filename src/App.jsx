@@ -14,7 +14,8 @@ import WebampPlayer from './components/WinampPlayer';
 import ResumeFile from './components/ResumeFile';
 import Shutdown from './components/Shutdown';
 import MineSweeper from './components/MineSweeper'
-import MsnFolder from './components/MsnFolder';
+import FlappyBird from './components/FlappyBird'
+import DTtS from './components/DTtS';
 import iconInfo from './icon.json'
 import Login from './components/Login';
 import OpenProject from './components/OpenProject';
@@ -22,15 +23,11 @@ import WindowsShutdown from './components/WindowsShutdown';
 import BgSetting from './components/BgSetting';
 import Run from './components/Run';
 import Notification from './components/Notification';
-import BTC from './components/BTC';
 import EmptyFolder from './components/EmptyFolder';
 import ErrorBtn from './components/ErrorBtn';
 import RightClickWindows from './components/RightClickWindows';
 import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
-import NewsApp from './components/NewsApp'
-import SpinningCat from './components/SpinningCat';
-import Patch from './components/Patch';
 import WindowsDragLogin from './components/WindowsDragLogin';
 import TaskManager from './components/TaskManager';
 import AppIcons from './components/AppIcons';
@@ -39,7 +36,9 @@ import { StyleHide, imageMapping,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
   iconContainerSize, iconImgSize, iconTextSize,
   handleDoubleClickPhotoOpen,
- } from './components/function/AppFunctions';
+} from './components/function/AppFunctions';
+import Wordle from './components/Wordle';
+
 
 
 function App() {
@@ -87,6 +86,19 @@ function App() {
     return true;
   });
 
+  //WORDLE
+  const [WordleExpand, setWordleExpand] = useState(
+    {
+      expand: false, 
+      show: false, 
+      hide: false, 
+      focusItem: true, 
+      x: 0, 
+      y: 0, 
+      zIndex: 1
+    }
+  )
+
   const [backgroundImageUrl, setBackgroundImageUrl] = useState('');
   const [tileBG, setTileBG] = useState('#098684')
   const [tileScreen, setTileScreen] = useState(false)
@@ -117,9 +129,9 @@ function App() {
   const [regErrorPopUpVal, setRegErrorPopUpVal] = useState('')
   const [runItemBox, setRunItemBox] = useState(false)
   const [RunInputVal, setRunInputVal] = useState('')
-  const [undo, setUndo] = useState(['MyComputer'])
-  const [selectedFolder, setSelectedFolder] = useState({label: 'MyComputer', img: imageMapping('MyComputer')})
-  const [currentFolder, setCurrentFolder] = useState('MyComputer')
+  const [undo, setUndo] = useState(['My Computer'])
+  const [selectedFolder, setSelectedFolder] = useState({label: 'My Computer', img: imageMapping('MyComputer')})
+  const [currentFolder, setCurrentFolder] = useState('My Computer')
   const [loading, setLoading] = useState(true)
   const [resumeStartBar, setResumejectStartBar] = useState(false)
   const [projectStartBar, setProjectStartBar] = useState(false)
@@ -182,7 +194,7 @@ function App() {
   const [time, setTime] = useState('');
   const [tap, setTap] = useState([])
   const [lastTapTime, setLastTapTime] = useState(0)
-  const [projectUrl, setProjectUrl] = useState('')
+  const [projectUrl, setProjectUrl] = useState('https://www.google.com/search?igu=1')
   const [MybioExpand, setMybioExpand] = useState(
   {
     expand: false, // fullscreen
@@ -230,20 +242,40 @@ function App() {
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [desktopIcon, setDesktopIcon] = useState(() => {
-  const localItems = localStorage.getItem('icons');
+    const localItems = localStorage.getItem('icons');
 
-  const deleteIcon = ['Cat', 'AiAgent','Winamp','Paint','3dObject'];
+    const deleteIcon = [
+      'Cat',
+      'AiAgent',
+      'Winamp',
+      'Paint',
+      '3dObject',
+      'Mail',
+      'MSN',
+      'Store'
+    ];
 
-  const filteredItems = iconInfo.filter(item => !deleteIcon.includes(item.name));
+    const filteredItems = iconInfo.filter(
+      item => !deleteIcon.includes(item.name)
+    );
 
-  const parsedItems = localItems ? JSON.parse(localItems) : filteredItems;
+    const parsedItems = localItems
+      ? JSON.parse(localItems).filter(
+          item => !deleteIcon.includes(item.name)
+        )
+      : filteredItems;
 
- 
-  return parsedItems;
-});
+    return parsedItems;
+  });
 
   const [MineSweeperExpand, setMineSweeperExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+
+  const [FlappyBirdExpand, setFlappyBirdExpand] = useState(
+  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+
+  const [DTtSExpand, setDTtSExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [MSNExpand, setMSNExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
@@ -261,9 +293,6 @@ function App() {
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
   
   const [UtilityExpand, setUtilityExpand] = useState(
-    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
-  
-  const [PatchExpand, setPatchExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
   
   const [TaskManagerExpand, setTaskManagerExpand] = useState(
@@ -312,28 +341,34 @@ function App() {
       </>
   ) 
   
-  function projectname() { // project name 
-      if(projectUrl.length < 1) return;
+  function projectname() {
 
-      const projectlinkletter = projectUrl.slice(8).split('.')[0];
+    if (!projectUrl || projectUrl.trim().length === 0) {
+      return 'Internet Explorer';
+    }
 
-      return projectlinkletter[0].toUpperCase() + projectlinkletter.slice(1);
+    try {
+
+      const cleanUrl = projectUrl
+        .replace('https://', '')
+        .replace('http://', '');
+
+      const domain = cleanUrl.split('.')[0];
+
+      if (!domain) {
+        return 'Internet Explorer';
+      }
+
+      return domain.charAt(0).toUpperCase() + domain.slice(1);
+
+    } catch {
+      return 'Internet Explorer';
+    }
   }
 
   // Define all state setter functions and corresponding clear functions in an array
   const allSetters = [setClippyThanks, setClippySendemail, setClippySong, setClippyUsername];
   const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction, ClearTOclippyUsernameFunction];
-
-  useEffect(() => { // force user to update version by clearing their local storage!
-    setTimeout(() => {
-      handleShow('Patch');
-    }, 2500);
-    
-    if(!desktopIcon.find(icon => icon.name === 'IE')) {
-      localStorage.clear();
-      location.reload();
-    }
-  },[])
 
 
 useEffect(() => {
@@ -491,7 +526,6 @@ useEffect(() => {
         socket.current = new WebSocket('wss://notebackend-wrqt.onrender.com');
 
         socket.current.onopen = () => {
-          console.log('WebSocket connected');
           getChat()
           setWebsocketConnection(true);
           setLoading(false);
@@ -528,7 +562,6 @@ useEffect(() => {
         };
 
         socket.current.onclose = () => {
-          console.log('🔌 WebSocket closed');
           setWebsocketConnection(false);
         };
 
@@ -564,7 +597,6 @@ useEffect(() => {
           // Start a 30s countdown to close socket
           invisibilityTimeout = setTimeout(() => {
             if (socket.current && socket.current.readyState === WebSocket.OPEN) {
-              console.log('User was invisible for 10s. Closing WebSocket.');
               socket.current.close();
               setWebsocketConnection(false);
             }
@@ -653,7 +685,7 @@ const handleOnDrag = (name, ref, type) => () => {
 
     const offset = 55;
 
-    if(name === 'MyComputer' || name === 'RecycleBin') return; // prevent MyComputer from being dragged into folder
+    if(name === 'My Computer' || name === 'RecycleBin') return; // prevent MyComputer from being dragged into folder
 
     // Check for intersection with UserCreated folders
     for (let i = 0; i < UserCreatedFolderRef.current.length; i++) {
@@ -722,8 +754,8 @@ const handleOnDrag = (name, ref, type) => () => {
       iconRect.top < projectFolderRect.bottom - offset &&
       iconRect.bottom > projectFolderRect.top + offset
     ) {
-      if(name === 'Project') return;
-      setDropTargetFolder('Project');
+      if(name === 'My Projects') return;
+      setDropTargetFolder('My Projects');
     }
     // Check for intersection with the Disk 
     else if (
@@ -733,9 +765,9 @@ const handleOnDrag = (name, ref, type) => () => {
       iconRect.bottom > diskRect.top + offset
     ) { 
       // check within MyComputer
-      if (name === 'MyComputer') return;
+      if (name === 'My Computer') return;
       // add new folder in this array
-      const validFolders = ['DiskC', 'DiskD', 'Resume', 'Project', 'Picture', 'RecycleBin', 'Utility', ...UserCreatedFolder.map(item => item.name)];
+      const validFolders = ['DiskC', 'DiskD', 'Resume', 'My Projects', 'Picture', 'RecycleBin', 'Utility', ...UserCreatedFolder.map(item => item.name)];
       if (validFolders.includes(currentFolder)) {
         setDropTargetFolder(currentFolder);
       }
@@ -782,10 +814,10 @@ function handleShowInfolder(name, type) { //important handleshow for in folder
       return;
     }
 
-    if (name === 'Project') {
-      setCurrentFolder('Project')
-      setSelectedFolder({label: 'Project', img: imageMapping(name)})
-      setUndo(prev => [...prev, 'Project'])
+    if (name === 'My Projects') {
+      setCurrentFolder('My Projects')
+      setSelectedFolder({label: 'My Projects', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'My Projects'])
       return;
     }
 
@@ -859,12 +891,12 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
       return;
     }
 
-    if (name === 'Project') {
+    if (name === 'My Projects') {
       setTimeout(() => {
-        setCurrentFolder('Project')
+        setCurrentFolder('My Projects')
       }, 100);
-      setSelectedFolder({label: 'Project', img: imageMapping(name)})
-      setUndo(prev => [...prev, 'Project'])
+      setSelectedFolder({label: 'My Projects', img: imageMapping(name)})
+      setUndo(prev => [...prev, 'My Projects'])
       return;
     }
 
@@ -931,9 +963,9 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     tileBG, setTileBG,
     tileScreen, setTileScreen,
     chatBotActive, setChatBotActive,
-    PatchExpand, setPatchExpand,
     runCatVideo, setRunCatVideo,
     newsPopup, setNewsPopup,
+    WordleExpand, setWordleExpand,
     onlineUser,
     UtilityRef,
     PaintExpand, setPaintExpand,
@@ -1015,7 +1047,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     clippyThanks, setClippyThanks,
     clippySendemail, setClippySendemail,
     clippyThanksYouFunction,
-    clippySendemailfunction,
     RandomTimeoutShowClippy,
     firstTimoutShowclippy,
     SecondRandomTimeoutShowClippy,
@@ -1034,6 +1065,8 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     deleteTap,
     shutdownWindow, setShutdownWindow,
     MineSweeperExpand, setMineSweeperExpand,
+    FlappyBirdExpand, setFlappyBirdExpand,
+    DTtSExpand, setDTtSExpand,
     MSNExpand, setMSNExpand,
     chatData, setChatData,
     chatValue, setChatValue,
@@ -1183,11 +1216,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
           photoMode={true}
         />
         <AppIcons/>
-        <Store/>
         <TaskManager/>
-        <Patch/>
-        <SpinningCat/>
-        <NewsApp/>
         <RightClickWindows/>
         <Notification/>
         <Shutdown/>
@@ -1195,15 +1224,15 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <MyBioFolder/>
         <ResumeFolder/>
         <ProjectFolder/>
-        <MailFolder/>
         <ResumeFile/>
         <WebampPlayer/>
         <MineSweeper/>
-        <MsnFolder/>
+        <FlappyBird/>
+        <DTtS/>
+        <Wordle/>
         <OpenProject/>
         <BgSetting/>
         <Run/>
-        <BTC/>
         <Dragdrop/>
         <Footer/>
       </UserContext.Provider>
@@ -1249,10 +1278,8 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 // }
 
   function deletepermanently(deleteName) { // delete from desktopIcon
-    if(deleteName === 'Store') return;
     
     setItemIsBeingDeleted(deleteName)
-    console.log(deleteName)
     deleteTap(deleteName)
     const droppedIcon = desktopIcon.find(icon => icon.name === deleteName);
     if (droppedIcon) { 
@@ -1455,7 +1482,6 @@ function handleDrop(e, name, target, oldFolderID) {
       // Send the payload via WebSocket
       if (socket.current) { // Check if socket is initialized
           socket.current.send(JSON.stringify(payload));
-          console.log(payload)
       } else {
           console.error('WebSocket is not initialized.');
       }
@@ -1463,7 +1489,6 @@ function handleDrop(e, name, target, oldFolderID) {
       // Clear the chat input field and reset sendDisable
       setChatValue('');
       setSendDisable(false);
-      console.log('Chat message sent:', payload);
   }
 
 
@@ -1493,35 +1518,29 @@ async function getChat() {
 
 function ObjectState() {
   return [
-   
-    { name: 'About',       setter: setMybioExpand,      usestate: MybioExpand,      color: 'rgba(46, 108, 176, 0.85)', size: 'small' },
+
     { name: 'Resume',      setter: setResumeExpand,     usestate: ResumeExpand,     color: 'rgba(65, 138, 68, 0.85)', size: 'small' },
-    { name: 'Project',     setter: setProjectExpand,    usestate: ProjectExpand,    color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
+    { name: 'About',       setter: setMybioExpand,      usestate: MybioExpand,      color: 'rgba(46, 108, 176, 0.85)', size: 'small' },
+    { name: 'My Projects', setter: setProjectExpand,    usestate: ProjectExpand,    color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
     { name: 'Picture',     setter: setPictureExpand,    usestate: pictureExpand,    color: 'rgba(85, 50, 148, 0.85)', size: 'large' },
-    { name: 'Mail',        setter: setMailExpand,       usestate: MailExpand,       color: 'rgba(178, 26, 77, 0.85)', size: 'small' },
-    { name: 'Nft',         setter: setNftExpand,        usestate: NftExpand,        color: 'rgba(142, 29, 126, 0.85)', size: 'small' },
     { name: 'Note',        setter: setNoteExpand,       usestate: NoteExpand,       color: 'rgba(114, 81, 54, 0.85)', size: 'small' },
-    { name: 'AiAgent',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(82, 117, 132, 0.85)', size: 'small' },
-    { name: '3dObject',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
-    { name: 'PixelPic',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'IE',          setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
-    { name: 'Fortune',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(224, 88, 43, 0.85)', size: 'small' },
     { name: 'Winamp',      setter: setWinampExpand,     usestate: WinampExpand,     color: 'rgba(105, 136, 145, 0.85)', size: 'small' },
     { name: 'ResumeFile',  setter: setResumeFileExpand, usestate: ResumeFileExpand, color: 'rgba(133, 165, 67, 0.85)', size: 'small' },
     { name: 'MineSweeper', setter: setMineSweeperExpand,usestate: MineSweeperExpand,color: 'rgba(187, 51, 48, 0.85)', size: 'small' },
-    { name: 'MSN',         setter: setMSNExpand,        usestate: MSNExpand,        color: 'rgba(52, 70, 143, 0.85)', size: 'small' },
+    { name: 'FlappyBird',  setter: setFlappyBirdExpand, usestate: FlappyBirdExpand, color: 'rgba(0, 180, 255, 0.85)', size: 'small' },
+    { name: 'DTtS', setter: setDTtSExpand, usestate: DTtSExpand, color: 'rgba(255, 80, 80, 0.85)', size: 'small' },
+    { name: 'Todos', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
+    { name: 'Wordle', setter: setWordleExpand, usestate: WordleExpand, color: 'rgba(0, 255, 65, 0.3)', size: 'small' },
     { name: 'Internet',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Settings',    setter: setBgSettingExpand,  usestate: BgSettingExpand,  color: 'rgba(140, 140, 140, 0.85)', size: 'small' },
     { name: 'Run',         setter: setRunExpand,        usestate: RunExpand,        color: 'rgba(86, 114, 122, 0.85)', size: 'small' },
-    { name: 'MyComputer',  setter: setMyComputerExpand, usestate: MyComputerExpand, color: 'rgba(31, 122, 206, 0.85)', size: 'small' },
-    { name: 'Patch',       setter: setPatchExpand,      usestate: PatchExpand,      color: 'rgba(86, 114, 122, 0.85)', size: 'small' },
+    { name: 'My Computer',  setter: setMyComputerExpand, usestate: MyComputerExpand, color: 'rgba(31, 122, 206, 0.85)', size: 'small' },
     { name: 'Photo',       setter: setPhotoOpenExpand,  usestate: photoOpenExpand,  color: 'rgba(0, 120, 93, 0.85)', size: 'small' },
     { name: 'RecycleBin',  setter: setBinExpand,        usestate: BinExpand,        color: 'rgba(64, 135, 66, 0.85)', size: 'small' },
     { name: 'Paint',       setter: setPaintExpand,      usestate: PaintExpand,      color: 'rgba(193, 178, 46, 0.85)', size: 'small' },
     { name: 'Utility',     setter: setUtilityExpand,    usestate: UtilityExpand,    color: 'rgba(116, 85, 54, 0.85)', size: 'small' },
     { name: 'TaskManager', setter: setTaskManagerExpand,usestate: TaskManagerExpand,color: 'rgba(218, 160, 109, 0.85)', size: 'small' },
-    { name: 'Store',       setter: setStoreExpand,      usestate: StoreExpand,      color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
-    { name: 'Bitcoin',     setter: setBtcShow,          usestate: btcShow,          color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
     
     // Add user folders dynamically with individual state management
     ...UserCreatedFolder.map(folder => ({
@@ -1573,7 +1592,19 @@ function iconFocusIcon(name) { // if focus on one, the rest goes unfocus
 function handleShow(name) {
   setRightClickDefault(false);
 
+  if(name === 'Github') {
+    window.open('https://github.com/ignamosconi', '_blank');
+    return;
+  }
+
   if(name === '' || !name) return;
+  if(name === 'Todos') {
+    setProjectUrl('https://todo.ignamosconi.com.ar');
+  }
+
+  if(name === 'IE') {
+    setProjectUrl('https://www.google.com/search?igu=1');
+  }
 
   const lowerCaseName = name.toLowerCase().split(' ').join('');
   const allSetItems = ObjectState();
@@ -1595,7 +1626,7 @@ function handleShow(name) {
   }
 
   allSetItems.forEach((item) => {
-    const itemName = item.name.toLowerCase().trim();
+    const itemName = item.name.toLowerCase().split(' ').join(''); // agregar split y join
 
     if(itemName === lowerCaseName) {
       setTimeout(() => {
@@ -1621,40 +1652,7 @@ function handleShow(name) {
       }, 100);
       
       // Your existing special cases...
-      if(lowerCaseName === 'mail') clippySendemailfunction();
       if(lowerCaseName === 'winamp') clippySongFunction();
-      if(lowerCaseName === 'msn') clippyUsernameFunction();
-      if(lowerCaseName === 'mail') clippySendemailfunction();
-        if(lowerCaseName === 'winamp') clippySongFunction();
-        if(lowerCaseName === 'msn') clippyUsernameFunction();
-        if(lowerCaseName === 'nft') {
-          handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-          handleShow('Internet');
-        }
-        if(lowerCaseName === 'note') {
-          handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-          handleShow('Internet');
-        }
-        if(lowerCaseName === 'aiagent') {
-          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe   )
-          handleShow('Internet');
-        }
-        if(lowerCaseName === '3dobject') {
-        handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl , setBackTrackIe, setForwardTrackIe)
-        handleShow('Internet');
-        }
-        if(lowerCaseName === 'fortune') {
-        handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-        handleShow('Internet');
-        }
-        if(lowerCaseName === 'pixelpic') {
-        handleDoubleClickiframe('PixelPic', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-        handleShow('Internet');
-        }
-        if(lowerCaseName === 'ie') {
-        handleDoubleClickiframe('IE', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-        handleShow('Internet');
-      }
     } else {
       // Set other items to not focused
       if(item.type === 'userCreatedFolder') {
@@ -1665,15 +1663,15 @@ function handleShow(name) {
     }
   });
 
-  PatchExpand ? null : setTileScreen(false);
   
-  if(tap.includes(name)) return;
-  setStartActive(false);
-
-  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic','IE'];
+  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic'];
   if (notToOpenList.includes(name)) return;
 
-  setTap(prevTap => [...prevTap, name]);
+  const tapName = (name === 'Todos' || name === 'IE') ? 'Internet' : name;
+  if (tap.includes(tapName)) return;
+
+  setStartActive(false);
+  setTap(prevTap => [...prevTap, tapName]);
   setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
 }
 
@@ -1708,8 +1706,8 @@ function handleShowMobile(name) {
   }
   
     allSetItems.forEach((item) => {
-  
-      const itemName = item.name.toLowerCase().trim();
+      
+      const itemName = item.name.toLowerCase().split(' ').join(''); // agregar split y join
   
       if(itemName === lowerCaseName) {
         setTimeout(() => {
@@ -1733,32 +1731,10 @@ function handleShowMobile(name) {
         }
         maxZindexRef.current += 1;
       }, 100);
-        if(lowerCaseName === 'mail') clippySendemailfunction();
         if(lowerCaseName === 'winamp') clippySongFunction();
-        if(lowerCaseName === 'msn') clippyUsernameFunction();
-        if(lowerCaseName === 'nft') {
-          handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-          handleShow('Internet');
-        }
         if(lowerCaseName === 'note') {
           handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
           handleShow('Internet');
-        }
-        if(lowerCaseName === 'aiagent') {
-          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-          handleShow('Internet');
-        }
-        if(lowerCaseName === '3dobject') {
-        handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
-        handleShow('Internet');
-        }
-        if(lowerCaseName === 'fortune') {
-        handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-        handleShow('Internet');
-        }
-        if(lowerCaseName === 'pixelpic') {
-        handleDoubleClickiframe('PixelPic', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
-        handleShow('Internet');
         }
         if(lowerCaseName === 'ie') {
           handleDoubleClickiframe('IE', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
@@ -1771,16 +1747,15 @@ function handleShowMobile(name) {
         item.setter(prev => ({ ...prev, focusItem: false }));
       }
     });
-    PatchExpand ? null : setTileScreen(false)
 
-    if(tap.includes(name)) return;
     setStartActive(false)
   
-    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic','IE'];
+    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic'];
     if (notToOpenList.includes(name)) return;
-  
-    setTap(prevTap => [...prevTap, name]);
-    setDesktopIcon(prevIcons => prevIcons.map(icon => ({...icon, focus: false})));
+
+    const tapName = (name === 'Todos' || name === 'IE') ? 'Internet' : name;
+    if (tap.includes(tapName)) return;
+    setTap(prevTap => [...prevTap, tapName]);
   
   }
   setLastTapTime(now)
@@ -1815,26 +1790,18 @@ function handleShowMobile(name) {
     handleClippyFunction(setClippyThanks, ClearTOclippyThanksYouFunction, allSetters);
   }
 
-  function clippySendemailfunction() {
-    handleClippyFunction(setClippySendemail, ClearTOclippySendemailfunction, allSetters);
-  }
-
   function clippySongFunction() {
     handleClippyFunction(setClippySong, ClearTOSongfunction, allSetters);
   }
 
-  function clippyUsernameFunction() {
-    handleClippyFunction(setClippyUsername, ClearTOclippyUsernameFunction, allSetters);
-  }
-
   function handleSetFocusItemTrue(name) {
-    const LowerCaseName = name.toLowerCase().split(' ').join('');
+    const LowerCaseName = name.toLowerCase().split(' ').join(''); // fix: definir correctamente
     const setState = ObjectState();
-
+  
     const newZIndex = (maxZindexRef.current || 0) + 1;
 
     setState.forEach((item) => {
-      const itemName = item.name.toLowerCase();
+      const itemName = item.name.toLowerCase().split(' ').join(''); // fix: eliminar espacios
 
       if (itemName === LowerCaseName) {
         if (item.type === 'userCreatedFolder') {

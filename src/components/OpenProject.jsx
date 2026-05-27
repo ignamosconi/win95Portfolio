@@ -16,7 +16,7 @@ function OpenProject() {
 
   const [iframeKey, setIframeKey] = useState(0);
   const [expandAddy, setExpandAddy] = useState(false);
-  const allIEPRojects = ['Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'PixelPic']
+  const allIEPRojects = ['Google', 'Todos', ]
 
   const { 
     handleShow,
@@ -93,33 +93,25 @@ function OpenProject() {
 
   function handleFetchLinkDes(projectName) {
     switch(projectName) {
-    case 'Nft': 
-      return 'https://opennft.netlify.app/'
-      
-    case 'Note': 
-      return'https://fullstack-stickynotes.netlify.app/'
-        
 
-    case 'AiAgent': 
-        return 'https://yuteoctober.github.io/AI_chatbot/';
+      case 'Google':
+        return 'https://www.google.com/search?igu=1';
 
-    case '3dObject': 
-        return 'https://yuteoctober.github.io/3d_book/'; 
-        
+      case 'Todos':
+        return 'https://todo.ignamosconi.com.ar';
 
-    case 'Fortune': 
-        return 'https://yuteoctober.github.io/week_fortune/';
-
-
-    case 'PixelPic': 
-        return 'https://yuteoctober.github.io/Pixel_pic/'; 
-
-    case 'IE': 
-        return'https://www.google.com/search?igu=1';
-       
-    default: return;
+      default:
+        return '';
     }
   }
+
+  const safeUrl =
+  projectUrl &&
+  (projectUrl.startsWith('https://') ||
+   projectUrl.startsWith('http://'))
+    ? projectUrl
+    : 'about:blank';
+
   return (
     <>
       <Draggable
@@ -231,8 +223,8 @@ function OpenProject() {
             </div>
             <div className="btn_addy"
               onClick={() => {
+                setProjectUrl('https://www.google.com/search?igu=1');
                 setIframeKey(prevKey => prevKey + 1);
-                handleShow('IE')
               }}
             >
               <img src={home} alt="" style={{top: '-1px'}} />
@@ -243,7 +235,7 @@ function OpenProject() {
           <div className="address_container">
             <p className='address'>Address:</p>
             <div className="address_box">
-                <p>{projectUrl.length > 1 ? projectUrl : 'Type your URL here'}</p>
+                <p>{projectUrl.length > 1 ? projectUrl : 'Select your URL'}</p>
                 <div 
                   onClick={() => setExpandAddy(prev => !prev)}
                 >
@@ -255,8 +247,12 @@ function OpenProject() {
                 {allIEPRojects.map((project) => (
                   <div key={project}
                     onClick={() => {
-                      handleShow(project)
-                      setExpandAddy(false)
+                      const url = handleFetchLinkDes(project);
+
+                      setProjectUrl(url);
+                      setIframeKey(prev => prev + 1);
+
+                      setExpandAddy(false);
                     }}
                   >
                     <p>
@@ -281,7 +277,7 @@ function OpenProject() {
         {openProjectExpand.show && (
           <iframe
           key={iframeKey}
-          src={projectUrl}
+          src={safeUrl}
           width="100%"
           height="100%"
           frameBorder="0"
@@ -294,7 +290,7 @@ function OpenProject() {
           </div>
           <div className='ifram_text_container'>
             <p>
-                If page does not load, please click <a href={projectUrl.length < 1 ? '#' : projectUrl} target="_blank" rel="noopener noreferrer">here</a> to view directly.
+                <a href={projectUrl.length < 1 ? '#' : projectUrl} target="_blank" rel="noopener noreferrer">Click here</a> to open the original page in your real browser!
             </p>
           </div>
         </div>

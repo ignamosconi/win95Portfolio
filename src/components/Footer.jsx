@@ -34,6 +34,7 @@ export default function Footer() {
     const [calValue, calOnChange] = useState(new Date());
     const [width, setWidth] = useState(0);
     const [reRenderFooter, setRerenderFooter] = useState(0)
+    const lastClippyIndex = useRef(null);
 
     const {
         classicTileMode, setClassicTileMode,
@@ -87,7 +88,7 @@ export default function Footer() {
             className: "project",
             imgSrc: project,
             imgAlt: "project",
-            spanText: "Project",
+            spanText: "My Projects",
             arrow: true,
             onClick: () => {
                 setProjectStartBar(!projectStartBar)
@@ -127,24 +128,9 @@ export default function Footer() {
             imgSrc: github,
             imgAlt: "github",
             style: { borderRadius: '5px' },
-            spanText: "Github",
+            spanText: "This Repo",
             onClick: () => {
-                handleDoubleClickEnterLink('Github', handleShow)
-                setStartActive(false)
-            },
-            onmouseenter: () => {
-                setResumejectStartBar(false);
-                setProjectStartBar(false);
-            },
-        },
-        {
-            className: "linked",
-            imgSrc: tile,
-            imgAlt: "Tile",
-            style: { borderRadius: '5px' },
-            spanText: "Tile Screen",
-            onClick: () => {
-                classicTileMode ? setAppIconToggle(true) : setTileScreen(true),
+                window.open('https://github.com/ignamosconi/win95Portfolio', '_blank')
                 setStartActive(false)
             },
             onmouseenter: () => {
@@ -171,6 +157,7 @@ export default function Footer() {
             onClick: () => {
                 handleShow('Run')
                 remountRunPosition()
+                setStartActive(false)
             },
             onmouseenter: () => {
                 setResumejectStartBar(false);
@@ -317,43 +304,47 @@ export default function Footer() {
         setTime(currentTime12Hour);
     };
 
-    function handleHideFolder(index) { // unhide icon from tap
-
+    function handleHideFolder(index) {
         const lowerCaseName = tap[index].toLowerCase().split(' ').join('');
-
-        const allSetItems =  ObjectState() // all the usestate name to toggle
-
+        const allSetItems = ObjectState();
 
         allSetItems.forEach((item) => {
+            const itemName = item.name.toLowerCase().split(' ').join('');
+            
+            if(item.type === 'userCreatedFolder') {
+                item.setter({
+                    focusItem: tap[index] === item.name,
+                    hide: tap[index] === item.name ? false : item.usestate.hide,
+                });
+            }
 
-          const itemName = item.name.toLowerCase().trim();
-          if(item.type === 'userCreatedFolder') { // for user created folder
-          item.setter({
-            focusItem: tap[index] === item.name,
-            hide: tap[index] === item.name ? false : item.usestate.hide,
-          });
-        }
-          if(itemName === lowerCaseName) {
-            item.setter(prev => ({...prev, focusItem: true}));
-            if(item.usestate.hide) {
-                item.setter(prev => ({...prev, hide: false}));
-                if(lowerCaseName === 'winamp') {
-                    const webampElement = document.querySelector('#webamp');
-                    if (webampElement) {
-                        webampElement.style.opacity = 1;
-                        webampElement.style.pointerEvents = 'auto';
-                        webampElement.style.touchAction = 'auto'
-                        setWinampExpand(prev => ({...prev, hide: false}));
+            if(itemName === lowerCaseName) {
+                if(!item.usestate.hide && item.usestate.focusItem) {
+                    // está visible y en foco → minimizar
+                    item.setter(prev => ({...prev, hide: true, focusItem: false}));
+                } else if(!item.usestate.hide && !item.usestate.focusItem) {
+                    // está visible pero sin foco → traer al frente
+                    item.setter(prev => ({...prev, focusItem: true}));
+                } else {
+                    // está oculta → mostrar
+                    item.setter(prev => ({...prev, hide: false, focusItem: true}));
+                    if(lowerCaseName === 'winamp') {
+                        const webampElement = document.querySelector('#webamp');
+                        if (webampElement) {
+                            webampElement.style.opacity = 1;
+                            webampElement.style.pointerEvents = 'auto';
+                            webampElement.style.touchAction = 'auto';
+                            setWinampExpand(prev => ({...prev, hide: false}));
+                        }
                     }
                 }
             }
-          }
 
-          if(itemName !== lowerCaseName) {
-            item.setter(prev => ({...prev, focusItem: false}));
-          }
+            if(itemName !== lowerCaseName) {
+                item.setter(prev => ({...prev, focusItem: false}));
+            }
         });
-      }
+    }
 
 
     useEffect(() => { // display clippy when windows start
@@ -383,9 +374,14 @@ export default function Footer() {
         clearTimeout(ClearTOSongfunction.current)
 
         RandomTimeoutShowClippy.current = setTimeout(() => { // random clippy index from length
-        const randomIndex = Math.floor(Math.random() * clippyPhrase.inspiration.length)
-                setClippyIndex(randomIndex);
-                setShowClippy(true);
+        let randomIndex = Math.floor(Math.random() * clippyPhrase.inspiration.length)
+        // si coincide con el anterior, generá uno nuevo
+        while (randomIndex === lastClippyIndex.current) {
+            randomIndex = Math.floor(Math.random() * clippyPhrase.inspiration.length);
+        }
+        lastClippyIndex.current = randomIndex;
+        setClippyIndex(randomIndex);
+        setShowClippy(true);
         SecondRandomTimeoutShowClippy.current = setTimeout(() => {
                 setShowClippy(false);
                 setRandomClippyPopup(prev => !prev);
@@ -444,7 +440,7 @@ export default function Footer() {
         { label: '3480x2160', value: 5 }
     ];
 
-    const projectFolderItem = desktopIcon.filter(icon => icon.folderId === 'Project').length
+    const projectFolderItem = desktopIcon.filter(icon => icon.folderId === 'My Projects').length
     const resumeFolderItem = desktopIcon.filter(icon => icon.folderId === 'Resume').length
 
     const recycleBin = desktopIcon.filter(icon => icon.folderId === 'RecycleBin');
@@ -498,18 +494,6 @@ export default function Footer() {
                     ref={timeBarRef}
                 >
                     <div className="icon_time_container">
-                        <img src={news} alt="news"
-                                onClick={(e) => {
-                                    e.stopPropagation()
-                                    setNewsPopup(!newsPopup)
-                                }}
-                        />
-                        {isBitcoinInstalled && (
-                            <img src={btc_icon} alt="btc_icon"
-    
-                                onClick={() => btcShow.show ? deleteTap('Bitcoin') : handleShow('Bitcoin')}
-                            />
-                        )}
                         <img src={display} alt="display"
                             style={{width: '20px'}}
                             onClick={(e) => {
@@ -565,7 +549,7 @@ export default function Footer() {
                                 ref={projectRef}
                                 style={{display: projectFolderItem === 0 ? 'none' : ''}}
                             >
-                            {desktopIcon.filter(icon => icon.folderId === 'Project').map(icon => (
+                            {desktopIcon.filter(icon => icon.folderId === 'My Projects').map(icon => (
                                 <div className="icon_sub_start" key={icon.name}
                                     onClick={() => handleShow(icon.name)}
                                 >

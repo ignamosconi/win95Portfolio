@@ -249,7 +249,7 @@ function MineSweeper() {
           >
             <div className="folder_barname-MineSweeper">
               <img src={MineSweeperPic} alt="MineSweeper" />
-              <span>Mine Sweeper</span>
+              <span>Mine Sweeper by Yute (original repo)</span>
             </div>
             <div className="folder_barbtn-MineSweeper">
               <div onClick={ !isTouchDevice? (e) => {

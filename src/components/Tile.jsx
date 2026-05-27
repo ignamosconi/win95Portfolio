@@ -19,7 +19,6 @@ import p10 from '../assets/010.jpg';
 import p11 from '../assets/011.jpg';
 import chat from '../assets/chat.gif';
 import settings from '../assets/settings.png';
-import fortune from '../assets/fortune.gif';
 import pudgy from '../assets/pudgy.gif';
 import cube from '../assets/cube.gif';
 import agent from '../assets/bot.gif';
@@ -130,13 +129,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundPosition: 'center',
           pointerEvents: disable ? 'none' : 'auto',
         };
-      case 'MSN':
-        return {
-          backgroundImage: `url(${chat})`,
-          backgroundPosition: '50% 13px',
-          backgroundSize: '85px',
-          backgroundRepeat: 'no-repeat',
-        };
       case 'Settings':
         return {
           backgroundImage: `url(${settings})`,
@@ -144,42 +136,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: '40px',
           backgroundRepeat: 'no-repeat',
         };
-      case 'Fortune':
-        return {
-          backgroundImage: `url(${fortune})`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-        };
-      case 'Nft':
-        return {
-          backgroundImage: `url(${pudgy})`,
-          backgroundPosition: '50% 0.5rem',
-          backgroundSize: '105px',
-          backgroundRepeat: 'no-repeat',
-        };
-      case '3dObject':
-        return {
-          backgroundImage: `url(${cube})`,
-          backgroundPosition: '50% 10%',
-          backgroundSize: '110px',
-          backgroundRepeat: 'no-repeat',
-        };
-      case 'AiAgent':
-        return {
-          backgroundImage: `url(${agent})`,
-          backgroundPosition: '50% 100%',
-          backgroundSize: '85px',
-          backgroundRepeat: 'no-repeat',
-        };
-      case 'Winamp':
-        return {
-          backgroundImage: `url(${music})`,
-          backgroundPosition: 'center',
-          backgroundSize: '64px',
-          backgroundRepeat: 'no-repeat',
-        };
-      case 'MyComputer':
+      case 'My Computer':
         return {
           backgroundImage: `url(${laptop})`,
           backgroundPosition: '50% 62%',
@@ -207,7 +164,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: '40px',
           backgroundRepeat: 'no-repeat',
         };
-      case 'Project':
+      case 'My Projects':
         return {
           backgroundImage: `url(${projecttile})`,
           backgroundPosition: '50% 57%',
@@ -372,7 +329,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
 
       case 'Random BG':
         if (tileCooldown.current) {
-          console.log('Wait before clicking again.');
           return;
         }
 

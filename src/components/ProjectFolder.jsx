@@ -84,22 +84,22 @@ function ProjectFolder() {
         y: window.innerWidth <= 500 ? 40 : 160,
       }}
       onStop={handleDragStop}
-      onStart={() => handleSetFocusItemTrue('Project')}
+      onStart={() => handleSetFocusItemTrue('My Projects')}
     >
       <div
-        onContextMenu={() => setCurrentRightClickFolder('Project')}
-        onTouchStart={() => setCurrentRightClickFolder('Project')}
+        onContextMenu={() => setCurrentRightClickFolder('My Projects')}
+        onTouchStart={() => setCurrentRightClickFolder('My Projects')}
         className="folder_folder-project"
         ref={ProjectFolderRef}
         onClick={(e) => {
           e.stopPropagation();
-          handleSetFocusItemTrue('Project');
+          handleSetFocusItemTrue('My Projects');
         }}
         style={{
           ...(
             ProjectExpand.expand
-              ? inlineStyleExpand('Project')
-              : inlineStyle('Project')
+              ? inlineStyleExpand('My Projects')
+              : inlineStyle('My Projects')
           ),
           overflow: dragging ? '' : 'hidden',
         }}
@@ -112,19 +112,19 @@ function ProjectFolder() {
         >
           <div className="folder_barname-project">
             <img src={Project} alt="Project" />
-            <span>Project</span>
+            <span>My Projects</span>
           </div>
           <div className="folder_barbtn-project">
             <div
               onClick={!isTouchDevice ? (e) => {
                 e.stopPropagation();
                 setProjectExpand((prev) => ({ ...prev, hide: true, focusItem: false }));
-                StyleHide('Project');
+                StyleHide('My Projects');
               } : undefined}
               onTouchEnd={(e) => {
                 e.stopPropagation();
                 setProjectExpand((prev) => ({ ...prev, hide: true, focusItem: false }));
-                StyleHide('Project');
+                StyleHide('My Projects');
               }}
               onTouchStart={(e) => e.stopPropagation()}
             >
@@ -140,8 +140,8 @@ function ProjectFolder() {
             <div>
               <p
                 className="x-project"
-                onClick={!isTouchDevice ? () => deleteTap('Project') : undefined}
-                onTouchEnd={() => deleteTap('Project')}
+                onClick={!isTouchDevice ? () => deleteTap('My Projects') : undefined}
+                onTouchEnd={() => deleteTap('My Projects')}
               >
                 ×
               </p>
@@ -171,10 +171,10 @@ function ProjectFolder() {
               onClick={(e) => {
                 e.stopPropagation() 
                 iconFocusIcon('');
-                handleSetFocusItemTrue('Project');
+                handleSetFocusItemTrue('My Projects');
               }}
             >
-              {desktopIcon.filter((icon) => icon.folderId === 'Project').map((icon) => (
+              {desktopIcon.filter((icon) => icon.folderId === 'My Projects').map((icon) => (
                 <Draggable
                   axis="both"
                   handle=".icon"
@@ -183,7 +183,7 @@ function ProjectFolder() {
                   bounds={false}
                   onStart={() => {
                     setDropTargetFolder('');
-                    handleSetFocusItemTrue('Project');
+                    handleSetFocusItemTrue('My Projects');
                   }}
                   onDrag={handleOnDrag(icon.name, iconRefs.current[icon.name])}
                   onStop={(e) => {

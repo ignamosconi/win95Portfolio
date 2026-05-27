@@ -1,21 +1,30 @@
 [
     {
+        "name": "RecycleBin",
+        "pic": "RecycleBin",
+        "folderId": "Desktop",
+        "size": 4,
+        "type": "folder",
+        "x": 1,
+        "y": 1
+    },
+    {
+        "name": "My Computer",
+        "pic": "MyComputer",
+        "folderId": "Desktop",
+        "size": 4,
+        "type": "Drive",
+        "x": 1,
+        "y": 2
+    },
+    {
         "name": "About",
         "pic": "About",
         "folderId": "Desktop",
         "size": 4,
         "type": ".exe",
         "x": 1,
-        "y": 1
-    },
-    {
-        "name": "MyComputer",
-        "pic": "MyComputer",
-        "folderId": "Desktop",
-        "size": 4,
-        "type": "Drive",
-        "x": 1.5,
-        "y": 1.5
+        "y": 3
     },
     {
         "name": "Resume",
@@ -23,18 +32,29 @@
         "folderId": "Desktop",
         "size": 30,
         "type": "folder",
-        "x": 2,
-        "y": 2
+        "x": 1,
+        "y": 4
     },
     {
-        "name": "Project",
+        "name": "My Projects",
         "pic": "Project",
         "folderId": "Desktop",
-        "size": 2000,
+        "size": 30,
         "type": "folder",
-        "x": 3,
-        "y": 3
+        "x": 1,
+        "y": 5
     },
+    {
+        "name": "IE",
+        "pic": "IE",
+        "folderId": "Desktop",
+        "size": 4,
+        "type": ".exe",
+        "x": 1,
+        "y": 6
+    },
+
+
     {
         "name": "Mail",
         "pic": "Mail",
@@ -50,7 +70,7 @@
     {
         "name": "MineSweeper",
         "pic": "MineSweeper",
-        "folderId": "Project",
+        "folderId": "My Projects",
         "size": 250,
         "type": ".exe",
         "x": 5,
@@ -58,6 +78,47 @@
         "category": "Games",
         "description": "Classic puzzle game where you clear mines without detonating them."
     },
+    {
+        "name": "FlappyBird",
+        "pic": "FlappyBird",
+        "folderId": "My Projects",
+        "size": 10,
+        "type": ".exe",
+        "x": 1,
+        "y": 1
+    },
+    {
+        "name": "DTtS",
+        "pic": "DTtS",
+        "folderId": "My Projects",
+        "size": 10,
+        "type": ".exe",
+        "x": 2,
+        "y": 1
+    },
+    {
+        "name": "Todos",
+        "pic": "Todos",
+        "folderId": "My Projects",
+        "size": 10,
+        "type": ".exe",
+        "x": 3,
+        "y": 1
+    },
+    {
+        "name": "Wordle",
+        "pic": "Wordle",
+        "folderId": "My Projects",
+        "size": 50,
+        "type": ".exe",
+        "x": 4,
+        "y": 1
+    },
+
+
+
+
+
     {
         "name": "MSN",
         "pic": "MSN",
@@ -68,17 +129,6 @@
         "y": 6,
         "category": "Utilities",
         "description": "Instant messaging application for chatting with friends."
-    },
-    {
-        "name": "Winamp",
-        "pic": "Winamp",
-        "folderId": "Utility",
-        "size": 4300,
-        "type": ".exe",
-        "x": 7,
-        "y": 7,
-        "category": "Utilities",
-        "description": "Media player for playing music and audio files."
     },
     {
         "name": "ResumeFile",
@@ -92,31 +142,9 @@
         "description": "Digital resume file containing work experience and skills."
     },
     {
-        "name": "Nft",
-        "pic": "Nft",
-        "folderId": "Project",
-        "size": 15,
-        "type": ".exe",
-        "x": 9,
-        "y": 9,
-        "category": "Productivity",
-        "description": "Tool for creating and managing digital art assets as NFTs."
-    },
-    {
-        "name": "Note",
-        "pic": "Note",
-        "folderId": "Project",
-        "size": 10,
-        "type": ".exe",
-        "x": 10,
-        "y": 10,
-        "category": "Productivity",
-        "description": "Simple note-taking program for writing text or ideas."
-    },
-    {
         "name": "Hard Disk (C:)",
         "pic": "Hard Disk (C:)",
-        "folderId": "MyComputer",
+        "folderId": "My Computer",
         "size": 4000,
         "type": "Drive",
         "x": 11,
@@ -125,20 +153,11 @@
     {
         "name": "Hard Disk (D:)",
         "pic": "Hard Disk (D:)",
-        "folderId": "MyComputer",
+        "folderId": "My Computer",
         "size": 1000,
         "type": "Drive",
         "x": 12,
         "y": 12
-    },
-    {
-        "name": "CD-ROM",
-        "pic": "CD-ROM",
-        "folderId": "MyComputer",
-        "size": 500,
-        "type": "Drive",
-        "x": 13,
-        "y": 13
     },
     {
         "name": "Picture",
@@ -148,17 +167,6 @@
         "type": "folder",
         "x": 14,
         "y": 14
-    },
-    {
-        "name": "Bitcoin",
-        "pic": "Bitcoin",
-        "folderId": "Utility",
-        "size": 500,
-        "type": ".exe",
-        "x": 15,
-        "y": 15,
-        "category": "Utilities",
-        "description": "Crypto tracking and wallet utility tool."
     },
     {
         "name": "001",
@@ -244,7 +252,7 @@
     {
         "name": "010",
         "pic": "Jpeg",
-        "folderId": "RecycleBin",
+        "folderId": "Picture",
         "size": 50,
         "type": ".jpeg",
         "x": 25,
@@ -256,8 +264,8 @@
         "folderId": "Picture",
         "size": 50,
         "type": ".jpeg",
-        "x": 26,
-        "y": 26
+        "x": 30,
+        "y": 30
     },
     {
         "name": "Github",
@@ -270,17 +278,7 @@
         "category": "Productivity",
         "description": "Tool for accessing and managing code repositories online."
     },
-    {
-        "name": "WebResume",
-        "pic": "WebResume",
-        "folderId": "Resume",
-        "size": 2100,
-        "type": ".exe",
-        "x": 28,
-        "y": 28,
-        "category": "Productivity",
-        "description": "Interactive web-based resume showcasing personal work and experience."
-    },
+
     {
         "name": "AiAgent",
         "pic": "AiAgent",
@@ -304,15 +302,6 @@
         "description": "Virtual pet simulation game featuring a cute cat spinning."
     },
     {
-        "name": "RecycleBin",
-        "pic": "RecycleBin",
-        "folderId": "Desktop",
-        "size": 250,
-        "type": "ReCycleBin",
-        "x": 31,
-        "y": 31
-    },
-    {
         "name": "ResetStorage",
         "pic": "ResetStorage",
         "folderId": "Utility",
@@ -324,17 +313,6 @@
         "description": "Clears or resets storage data to free up system space."
     },
     {
-        "name": "Paint",
-        "pic": "Paint",
-        "folderId": "Utility",
-        "size": 200,
-        "type": ".exe",
-        "x": 33,
-        "y": 33,
-        "category": "Utilities",
-        "description": "Basic drawing program for creating and editing images."
-    },
-    {
         "name": "Utility",
         "pic": "Utility",
         "folderId": "DiskD",
@@ -342,39 +320,6 @@
         "type": "folder",
         "x": 34,
         "y": 34
-    },
-    {
-        "name": "Patch",
-        "pic": "Patch",
-        "folderId": "Utility",
-        "size": 500,
-        "type": ".exe",
-        "x": 35,
-        "y": 35,
-        "category": "Utilities",
-        "description": "Software patch used to fix bugs or apply updates."
-    },
-    {
-        "name": "3dObject",
-        "pic": "3dObject",
-        "folderId": "Project",
-        "size": 1000,
-        "type": ".exe",
-        "x": 36,
-        "y": 36,
-        "category": "Productivity",
-        "description": "3D Interactive modeling, three-dimensional objects."
-    },
-    {
-        "name": "Fortune",
-        "pic": "Fortune",
-        "folderId": "Project",
-        "size": 1900,
-        "type": ".exe",
-        "x": 37,
-        "y": 37,
-        "category": "Games",
-        "description": "Random fortune or quote generator for entertainment."
     },
     {
         "name": "TaskManager",
@@ -395,25 +340,5 @@
         "type": ".exe",
         "x": 39,
         "y": 39
-    },
-    {
-        "name": "PixelPic",
-        "pic": "PixelPic",
-        "folderId": "Project",
-        "size": 3000,
-        "type": ".exe",
-        "x": 40,
-        "y": 40,
-        "category": "Productivity",
-        "description": "Pixel art creation and editing tool for designing pixel-based images."
-    },{
-        "name": "IE",
-        "pic": "IE",
-        "folderId": "Desktop",
-        "size": 3000,
-        "type": ".exe",
-        "x": 41,
-        "y": 41
     }
-
 ]
