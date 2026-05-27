@@ -42,7 +42,8 @@ Here's what changed:
       It turned into a fun side project while building the site.  
 
 - Updated the **Internet Explorer** app to showcase my todo app.  
-  If you want the unique link generated for your list, you can click the link at the bottom of the browser window.  
+  If you want to generate a unique link for your list, you can click the link at
+  the bottom of the browser window.  
 
 - Replaced **ResumeFile** with my own résumé. Check it out!
 
