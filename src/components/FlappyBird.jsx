@@ -50,8 +50,7 @@ function FlappyBird() {
         </div>
 
         <div
-          className="openproject_content"
-          style={{ height: '513px' }}
+          className="game_content"
         >
           <iframe
             src="https://www.lexaloffle.com/bbs/widget.php?pid=flappico_bird"

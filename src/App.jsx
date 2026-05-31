@@ -1709,6 +1709,10 @@ function handleShowMobile(name) {
       setRegErrorPopUpVal(name);
       return;
   }
+
+    if(name === 'Todos') {
+      setProjectUrl('https://todo.ignamosconi.com.ar');
+    }
   
     allSetItems.forEach((item) => {
       
