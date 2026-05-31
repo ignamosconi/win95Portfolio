@@ -41,12 +41,9 @@ function FlappyBird() {
             <div>
               <p
                 className='x'
-                onClick={!isTouchDevice ? () => {
-                  deleteTap('FlappyBird')
-                } : undefined}
-              >
-                ×
-              </p>
+                onClick={!isTouchDevice ? () => deleteTap('FlappyBird') : undefined}
+                onTouchEnd={() => deleteTap('FlappyBird')}
+              >×</p>
             </div>
 
           </div>

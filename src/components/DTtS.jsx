@@ -42,12 +42,9 @@ function DTtS() {
             <div>
               <p
                 className='x'
-                onClick={!isTouchDevice ? () => {
-                  deleteTap('DTtS')
-                } : undefined}
-              >
-                ×
-              </p>
+                onClick={!isTouchDevice ? () => deleteTap('DTtS') : undefined}
+                onTouchEnd={() => deleteTap('DTtS')}
+              >×</p>
             </div>
 
           </div>
