@@ -23,7 +23,11 @@ function FlappyBird() {
       <div
         className="folder_folder-open-project"
         onClick={() => handleSetFocusItemTrue('FlappyBird')}
-        style={inlineStyle('FlappyBird')}
+        style={{
+          ...inlineStyle('FlappyBird'), 
+          width: window.innerWidth <= 450 ? '95%' : '525px', 
+          height: window.innerWidth <= 450 ? '400px' : '512px'
+        }}
       >
 
         <div
@@ -57,10 +61,7 @@ function FlappyBird() {
             allowFullScreen
             width="100%"
             height="100%"
-            style={{
-              border: 'none',
-              overflow: 'hidden'
-            }}
+            style={{ display: 'block' }}
           />
         </div>
 

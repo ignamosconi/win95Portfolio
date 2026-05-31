@@ -88,13 +88,11 @@
 
 .game_content {
     position: relative;
-    width: calc(100% - 18px);
-    height: calc(100% - 40px);
-    margin: 0 auto;
-    top: 10px;
-    border: 1px solid black;
-    border-bottom-color: white;
-    border-right-color: white;
+    width: 100%;
+    height: calc(100% - 26px);
+    margin: 0;
+    top: 0;
+    border: none;
     background: white;
 }
 

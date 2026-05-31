@@ -24,7 +24,11 @@ function DTtS() {
       <div
         className="folder_folder-open-project"
         onClick={() => handleSetFocusItemTrue('DTtS')}
-        style={inlineStyle('DTtS')}
+        style={{
+          ...inlineStyle('DTts'), 
+          width: window.innerWidth <= 450 ? '95%' : '525px', 
+          height: window.innerWidth <= 450 ? '400px' : '512px'
+        }}
       >
 
         <div
@@ -58,10 +62,7 @@ function DTtS() {
             allowFullScreen
             width="100%"
             height="100%"
-            style={{
-              border: 'none',
-              overflow: 'hidden'
-            }}
+            style={{ display: 'block' }}
           />
         </div>
 
