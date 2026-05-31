@@ -447,7 +447,7 @@ useEffect(() => {
       setIconBeingRightClicked(icon);
       setRightClickDefault(true);
       
-    }, 800)
+    }, 500)
   }
 
   function handleMobileLongPressBin(e, icon) { // long press icon on mobile
@@ -1664,7 +1664,7 @@ function handleShow(name) {
   });
 
   
-  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic'];
+  const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic', ];
   if (notToOpenList.includes(name)) return;
 
   const tapName = (name === 'Todos' || name === 'IE') ? 'Internet' : name;
@@ -1678,6 +1678,11 @@ function handleShow(name) {
 function handleShowMobile(name) {
 
   setRightClickDefault(false);
+
+  if(name === 'Github') {
+    window.open('https://github.com/ignamosconi', '_blank');
+    return;
+  }
 
   const now = Date.now()
 
@@ -1704,6 +1709,10 @@ function handleShowMobile(name) {
       setRegErrorPopUpVal(name);
       return;
   }
+
+    if(name === 'Todos') {
+      setProjectUrl('https://todo.ignamosconi.com.ar');
+    }
   
     allSetItems.forEach((item) => {
       
@@ -1750,7 +1759,7 @@ function handleShowMobile(name) {
 
     setStartActive(false)
   
-    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic'];
+    const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic', 'IE'];
     if (notToOpenList.includes(name)) return;
 
     const tapName = (name === 'Todos' || name === 'IE') ? 'Internet' : name;
