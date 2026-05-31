@@ -447,7 +447,7 @@ useEffect(() => {
       setIconBeingRightClicked(icon);
       setRightClickDefault(true);
       
-    }, 800)
+    }, 500)
   }
 
   function handleMobileLongPressBin(e, icon) { // long press icon on mobile
