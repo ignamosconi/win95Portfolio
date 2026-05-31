@@ -197,11 +197,10 @@ function Wordle() {
           <div className="folder_barbtn">
             <div>
               <p
-                className="x"
+                className='x'
                 onClick={!isTouchDevice ? () => deleteTap('Wordle') : undefined}
-              >
-                ×
-              </p>
+                onTouchEnd={() => deleteTap('Wordle')}
+              >×</p>
             </div>
           </div>
         </div>

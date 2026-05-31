@@ -86,6 +86,16 @@
     background: white;
 }
 
+.game_content {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 26px);
+    margin: 0;
+    top: 0;
+    border: none;
+    background: white;
+}
+
 .address_container {
     display: flex;
     position: relative;
