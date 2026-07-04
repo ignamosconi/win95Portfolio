@@ -16,7 +16,7 @@ function OpenProject() {
 
   const [iframeKey, setIframeKey] = useState(0);
   const [expandAddy, setExpandAddy] = useState(false);
-  const allIEPRojects = ['Google', 'Todos', ]
+  const allIEPRojects = ['Google', 'Todos', 'Ascend']
 
   const { 
     handleShow,
@@ -100,6 +100,9 @@ function OpenProject() {
       case 'Todos':
         return 'https://todo.ignamosconi.com.ar';
 
+      case 'Ascend':
+        return 'https://ascend.ignamosconi.com.ar';
+        
       default:
         return '';
     }
