@@ -37,6 +37,10 @@ Here's what changed:
       By sharing this link, you can access the list from any device, no login required!.  
       Learn more here: https://github.com/ignamosconi/todo-uiineed-frontend  
 
+    - **Ascend**:  
+      A fun silly game, where you have to order random numbers.  
+      Learn more here: https://github.com/ignamosconi/ascend
+
     - **Wordle**:  
       I originally built a Wordle clone in python, then re-wrote it in JavaScript.  
       It turned into a fun side project while building the site.  
