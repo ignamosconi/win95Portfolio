@@ -5,7 +5,6 @@ import Mail from '../../assets/mail.png'
 import Project from '../../assets/regFolder.png'
 import Winamp from '../../assets/winampIcon.png'
 import resumefile from '../../assets/resume.png'
-import MineSweeper from '../../assets/minesweepericon.png'
 import MSN from '../../assets/msn.png'
 import ie from '../../assets/ie.png'
 import settings from '../../assets/setting.png'
@@ -39,7 +38,6 @@ import backarrow from '../../assets/backarrow.png'
 import tile from '../../assets/tile.png'
 import taskmanager from '../../assets/taskmanager.png'
 import notepad from '../../assets/notepad.png'
-import store from '../../assets/store.png'
 import layer from '../../assets/layer.png'
 import flappyBird from '../../assets/flappy_bird_icon.png'
 import dtts from '../../assets/dtts_icon.png'
@@ -111,10 +109,6 @@ export function imageMapping (name, type) {
 
     case 'ResumeFile':
       return resumefile;
-
-    case 'MineSweeper':
-    case 'Mine Sweeper':
-      return MineSweeper;
 
     case 'MSN':
       return MSN;
@@ -197,10 +191,6 @@ export function imageMapping (name, type) {
     case "NotePad":
     case "notepad":
       return notepad
-
-    case "Store":
-    case "store":
-      return store
 
     case "PixelPic":
     case "pixelpic":

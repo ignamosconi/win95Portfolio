@@ -3,7 +3,6 @@ import UserContext from './Context'
 import { Filter } from 'bad-words';
 import badword from './badword'
 import Footer from './components/Footer';
-import Store from './components/Store';
 import Dragdrop from './components/Dragdrop';
 import MyBioFolder from './components/MyBioFolder';
 import MyComputer from './components/MyComputer';
@@ -13,7 +12,6 @@ import MailFolder from './components/MailFolder';
 import WebampPlayer from './components/WinampPlayer';
 import ResumeFile from './components/ResumeFile';
 import Shutdown from './components/Shutdown';
-import MineSweeper from './components/MineSweeper'
 import FlappyBird from './components/FlappyBird'
 import DTtS from './components/DTtS';
 import iconInfo from './icon.json'
@@ -22,7 +20,6 @@ import OpenProject from './components/OpenProject';
 import WindowsShutdown from './components/WindowsShutdown';
 import BgSetting from './components/BgSetting';
 import Run from './components/Run';
-import Notification from './components/Notification';
 import EmptyFolder from './components/EmptyFolder';
 import ErrorBtn from './components/ErrorBtn';
 import RightClickWindows from './components/RightClickWindows';
@@ -141,11 +138,8 @@ function App() {
     return savedIconSize ? Number(savedIconSize) : 0
   });
   const [iconSize, setIconSize] = useState(false)
-  const [allowNoti, setAllowNoti] = useState(false)
   const socket = useRef(null);
-  const [clearNotiTimeOut, setClearNotiTimeOut] = useState(null)
   const [newMessage, setNewMessage] = useState('');
-  const [notiOn, setNotiOn] = useState(false);
   const [chatDown, setChatDown] = useState(false)
   const [key, setKey] = useState(0)
   const [dragging, setDragging] = useState(false)
@@ -252,7 +246,6 @@ function App() {
       '3dObject',
       'Mail',
       'MSN',
-      'Store'
     ];
 
     const filteredItems = iconInfo.filter(
@@ -268,8 +261,6 @@ function App() {
     return parsedItems;
   });
 
-  const [MineSweeperExpand, setMineSweeperExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [FlappyBirdExpand, setFlappyBirdExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
@@ -547,7 +538,6 @@ useEffect(() => {
           else if (data.name && data.chat) {
             setChatData(prevData => [...prevData, data]);
             setLoadedMessages(prev => [...prev, data]);
-            setAllowNoti(true);
 
             setTimeout(() => {
               endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -617,29 +607,6 @@ useEffect(() => {
         if (invisibilityTimeout) clearTimeout(invisibilityTimeout);
       };
     }, []);
-
-
-
-
-
-  useEffect(() => { // noti
-    if(allowNoti){
-
-      if (chatData.length) {
-        endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-      }
-
-      if(!MSNExpand.show || MSNExpand.hide) {
-        setNotiOn(false);
-        setTimeout(() => {
-            clearTimeout(clearNotiTimeOut)
-            setNotiOn(true);
-            setNewMessage({ type: 'msn'});  // Notification message
-        }, 100);
-      }
-    }
-      
-  },[chatData])
 
 
 useEffect(() => { // touch support device === true
@@ -1004,9 +971,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     iconContainerSize, iconImgSize, iconTextSize,
     iconScreenSize, setIconScreenSize,
     iconSize, setIconSize,
-    clearNotiTimeOut, setClearNotiTimeOut,
     newMessage, setNewMessage,
-    notiOn, setNotiOn,
     chatDown,
     handleDragStop,
     key, setKey,
@@ -1064,7 +1029,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     iconFocusIcon,
     deleteTap,
     shutdownWindow, setShutdownWindow,
-    MineSweeperExpand, setMineSweeperExpand,
     FlappyBirdExpand, setFlappyBirdExpand,
     DTtSExpand, setDTtSExpand,
     MSNExpand, setMSNExpand,
@@ -1218,7 +1182,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <AppIcons/>
         <TaskManager/>
         <RightClickWindows/>
-        <Notification/>
         <Shutdown/>
         <MyComputer/>
         <MyBioFolder/>
@@ -1226,7 +1189,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <ProjectFolder/>
         <ResumeFile/>
         <WebampPlayer/>
-        <MineSweeper/>
         <FlappyBird/>
         <DTtS/>
         <Wordle/>
@@ -1527,7 +1489,6 @@ function ObjectState() {
     { name: 'IE',          setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Winamp',      setter: setWinampExpand,     usestate: WinampExpand,     color: 'rgba(105, 136, 145, 0.85)', size: 'small' },
     { name: 'ResumeFile',  setter: setResumeFileExpand, usestate: ResumeFileExpand, color: 'rgba(133, 165, 67, 0.85)', size: 'small' },
-    { name: 'MineSweeper', setter: setMineSweeperExpand,usestate: MineSweeperExpand,color: 'rgba(187, 51, 48, 0.85)', size: 'small' },
     { name: 'FlappyBird',  setter: setFlappyBirdExpand, usestate: FlappyBirdExpand, color: 'rgba(0, 180, 255, 0.85)', size: 'small' },
     { name: 'DTtS', setter: setDTtSExpand, usestate: DTtSExpand, color: 'rgba(255, 80, 80, 0.85)', size: 'small' },
     { name: 'Todos', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
