@@ -18,7 +18,7 @@ I did a fork of Yute's repo in May 2026 and adapted it into my own personal port
 
 Here's what changed:
 
-- Removed all of the original desktop apps (except Minesweeper: too good to leave out).
+- Removed all of the original desktop apps.
 
 - Created a **My Projects** folder featuring four of my own projects:
 
@@ -60,8 +60,17 @@ Here's what changed:
   - Disabled right-click menu options that didn't do anything.  
   - Added an error message when trying to create a folder with a name that already exists.  
   - Fixed an edge case where Clippy could repeat the same phrase twice in a row.  
+  - Added HMAC-signed custom greeting links for Clippy, so the assistant can display a personalized message for a specific recipient. The URL cleans itself after the first visit, so it looks like a regular link while browsing.
   - Freed up some space by removing unused assets from `src/assets`.  
 
+
+## Custom greeting links
+
+If you want to share the portfolio with a personal touch, you can generate a signed link that makes Clippy greet a specific person by name.
+
+The link is valid only if it carries a cryptographic signature — so the message can't be tampered with. Once visited, the URL cleans itself and Clippy keeps the greeting for future visits.
+
+To generate a link, contact me directly.
 
 ## Open source
 

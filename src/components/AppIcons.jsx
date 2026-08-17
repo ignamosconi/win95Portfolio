@@ -32,7 +32,6 @@ const bannedApp = [
   'Hard Disk (D:)',
   'Mail',
   'MSN',
-  'Store'
 ];
 
 // ── persist helpers ────────────────────────────────────────────────────────────

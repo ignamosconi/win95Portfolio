@@ -68,17 +68,6 @@
 
     },
     {
-        "name": "MineSweeper",
-        "pic": "MineSweeper",
-        "folderId": "My Projects",
-        "size": 250,
-        "type": ".exe",
-        "x": 5,
-        "y": 5,
-        "category": "Games",
-        "description": "Classic puzzle game where you clear mines without detonating them."
-    },
-    {
         "name": "FlappyBird",
         "pic": "FlappyBird",
         "folderId": "My Projects",
@@ -340,14 +329,5 @@
         "y": 38,
         "category": "Utilities",
         "description": "System tool to monitor active processes and performance."
-    },
-    {
-        "name": "Store",
-        "pic": "Store",
-        "folderId": "Desktop",
-        "size": 5500,
-        "type": ".exe",
-        "x": 39,
-        "y": 39
     }
 ]
