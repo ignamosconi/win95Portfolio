@@ -15,6 +15,7 @@ import Shutdown from './components/Shutdown';
 import FlappyBird from './components/FlappyBird'
 import DTtS from './components/DTtS';
 import iconInfo from './icon.json'
+import { ICONS_VERSION } from './versions/version';
 import Login from './components/Login';
 import OpenProject from './components/OpenProject';
 import WindowsShutdown from './components/WindowsShutdown';
@@ -36,7 +37,70 @@ import { StyleHide, imageMapping,
 } from './components/function/AppFunctions';
 import Wordle from './components/Wordle';
 
+const DELETE_ICON = [
+  'Cat',
+  'AiAgent',
+  'Winamp',
+  'Paint',
+  '3dObject',
+  'Mail',
+  'MSN',
+];
 
+/**
+ * Carga los íconos del desktop aplicando merge inteligente:
+ *  - Si la versión guardada coincide con ICONS_VERSION → merge:
+ *      preserva posiciones del usuario para íconos existentes,
+ *      agrega nuevos íconos del JSON al final, elimina los que ya no existen.
+ *  - Si la versión es distinta (o no hay nada guardado) → usa el JSON limpio
+ *      y guarda la versión nueva.
+ */
+function loadDesktopIcons() {
+  const fresh = iconInfo.filter(item => !DELETE_ICON.includes(item.name));
+
+  try {
+    const savedVersion = localStorage.getItem('icons_version');
+    const raw          = localStorage.getItem('icons');
+
+    // Sin datos previos → primera visita
+    if (!raw) {
+      localStorage.setItem('icons_version', ICONS_VERSION);
+      return fresh;
+    }
+
+    const saved = JSON.parse(raw).filter(item => !DELETE_ICON.includes(item.name));
+
+    // Versión vieja → reset suave (solo posiciones, no otras prefs)
+    if (savedVersion !== ICONS_VERSION) {
+      localStorage.setItem('icons', JSON.stringify(fresh));
+      localStorage.setItem('icons_version', ICONS_VERSION);
+      // También limpiamos el orden del app drawer para que sea consistente
+      localStorage.removeItem('appicons_order');
+      return fresh;
+    }
+
+    // Misma versión → merge inteligente
+    const freshNames = new Set(fresh.map(i => i.name));
+    const savedMap   = new Map(saved.map(i => [i.name, i]));
+
+    const merged = fresh.map(freshIcon => {
+      const userIcon = savedMap.get(freshIcon.name);
+      // Si el usuario movió el ícono, respetamos su posición (x, y)
+      // pero actualizamos cualquier otra prop que haya cambiado en el JSON
+      return userIcon
+        ? { ...freshIcon, x: userIcon.x, y: userIcon.y, folderId: userIcon.folderId }
+        : freshIcon;
+    });
+
+    localStorage.setItem('icons', JSON.stringify(merged));
+    localStorage.setItem('icons_version', ICONS_VERSION);
+    return merged;
+
+  } catch {
+    localStorage.setItem('icons_version', ICONS_VERSION);
+    return fresh;
+  }
+}
 
 function App() {
   const [ classicTileMode, setClassicTileMode ] = useState(() => {
@@ -235,31 +299,7 @@ function App() {
   const [photoOpenExpand, setPhotoOpenExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
-  const [desktopIcon, setDesktopIcon] = useState(() => {
-    const localItems = localStorage.getItem('icons');
-
-    const deleteIcon = [
-      'Cat',
-      'AiAgent',
-      'Winamp',
-      'Paint',
-      '3dObject',
-      'Mail',
-      'MSN',
-    ];
-
-    const filteredItems = iconInfo.filter(
-      item => !deleteIcon.includes(item.name)
-    );
-
-    const parsedItems = localItems
-      ? JSON.parse(localItems).filter(
-          item => !deleteIcon.includes(item.name)
-        )
-      : filteredItems;
-
-    return parsedItems;
-  });
+  const [desktopIcon, setDesktopIcon] = useState(() => loadDesktopIcons());
 
 
   const [FlappyBirdExpand, setFlappyBirdExpand] = useState(
