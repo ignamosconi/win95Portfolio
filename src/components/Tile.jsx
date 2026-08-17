@@ -43,7 +43,6 @@ import weatherImg from '../assets/weathertile.png';
 import githublogo from '../assets/github.gif';
 import newsicon from '../assets/newstile.png';
 import task from '../assets/task.png'
-import store from '../assets/store_tile.png'
 import layer from '../assets/layer_tile.png'
 import ie_tilt from '../assets/ie_tilt.png'
 
@@ -256,13 +255,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundImage: `url(${task})`,
           backgroundPosition: '50% 57%',
           backgroundSize: '42px',
-          backgroundRepeat: 'no-repeat',
-        };
-        case 'Store':
-        return {
-          backgroundImage: `url(${store})`,
-          backgroundPosition: '50% 57%',
-          backgroundSize: '64px',
           backgroundRepeat: 'no-repeat',
         };
         case 'PixelPic':

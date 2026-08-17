@@ -3,7 +3,6 @@ import UserContext from './Context'
 import { Filter } from 'bad-words';
 import badword from './badword'
 import Footer from './components/Footer';
-import Store from './components/Store';
 import Dragdrop from './components/Dragdrop';
 import MyBioFolder from './components/MyBioFolder';
 import MyComputer from './components/MyComputer';
@@ -21,7 +20,6 @@ import OpenProject from './components/OpenProject';
 import WindowsShutdown from './components/WindowsShutdown';
 import BgSetting from './components/BgSetting';
 import Run from './components/Run';
-import Notification from './components/Notification';
 import EmptyFolder from './components/EmptyFolder';
 import ErrorBtn from './components/ErrorBtn';
 import RightClickWindows from './components/RightClickWindows';
@@ -140,11 +138,8 @@ function App() {
     return savedIconSize ? Number(savedIconSize) : 0
   });
   const [iconSize, setIconSize] = useState(false)
-  const [allowNoti, setAllowNoti] = useState(false)
   const socket = useRef(null);
-  const [clearNotiTimeOut, setClearNotiTimeOut] = useState(null)
   const [newMessage, setNewMessage] = useState('');
-  const [notiOn, setNotiOn] = useState(false);
   const [chatDown, setChatDown] = useState(false)
   const [key, setKey] = useState(0)
   const [dragging, setDragging] = useState(false)
@@ -251,7 +246,6 @@ function App() {
       '3dObject',
       'Mail',
       'MSN',
-      'Store'
     ];
 
     const filteredItems = iconInfo.filter(
@@ -544,7 +538,6 @@ useEffect(() => {
           else if (data.name && data.chat) {
             setChatData(prevData => [...prevData, data]);
             setLoadedMessages(prev => [...prev, data]);
-            setAllowNoti(true);
 
             setTimeout(() => {
               endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -614,29 +607,6 @@ useEffect(() => {
         if (invisibilityTimeout) clearTimeout(invisibilityTimeout);
       };
     }, []);
-
-
-
-
-
-  useEffect(() => { // noti
-    if(allowNoti){
-
-      if (chatData.length) {
-        endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-      }
-
-      if(!MSNExpand.show || MSNExpand.hide) {
-        setNotiOn(false);
-        setTimeout(() => {
-            clearTimeout(clearNotiTimeOut)
-            setNotiOn(true);
-            setNewMessage({ type: 'msn'});  // Notification message
-        }, 100);
-      }
-    }
-      
-  },[chatData])
 
 
 useEffect(() => { // touch support device === true
@@ -1001,9 +971,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     iconContainerSize, iconImgSize, iconTextSize,
     iconScreenSize, setIconScreenSize,
     iconSize, setIconSize,
-    clearNotiTimeOut, setClearNotiTimeOut,
     newMessage, setNewMessage,
-    notiOn, setNotiOn,
     chatDown,
     handleDragStop,
     key, setKey,
@@ -1214,7 +1182,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <AppIcons/>
         <TaskManager/>
         <RightClickWindows/>
-        <Notification/>
         <Shutdown/>
         <MyComputer/>
         <MyBioFolder/>

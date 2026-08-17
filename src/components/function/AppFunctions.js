@@ -38,7 +38,6 @@ import backarrow from '../../assets/backarrow.png'
 import tile from '../../assets/tile.png'
 import taskmanager from '../../assets/taskmanager.png'
 import notepad from '../../assets/notepad.png'
-import store from '../../assets/store.png'
 import layer from '../../assets/layer.png'
 import flappyBird from '../../assets/flappy_bird_icon.png'
 import dtts from '../../assets/dtts_icon.png'
@@ -192,10 +191,6 @@ export function imageMapping (name, type) {
     case "NotePad":
     case "notepad":
       return notepad
-
-    case "Store":
-    case "store":
-      return store
 
     case "PixelPic":
     case "pixelpic":

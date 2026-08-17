@@ -329,14 +329,5 @@
         "y": 38,
         "category": "Utilities",
         "description": "System tool to monitor active processes and performance."
-    },
-    {
-        "name": "Store",
-        "pic": "Store",
-        "folderId": "Desktop",
-        "size": 5500,
-        "type": ".exe",
-        "x": 39,
-        "y": 39
     }
 ]
