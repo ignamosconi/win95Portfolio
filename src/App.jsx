@@ -13,7 +13,6 @@ import MailFolder from './components/MailFolder';
 import WebampPlayer from './components/WinampPlayer';
 import ResumeFile from './components/ResumeFile';
 import Shutdown from './components/Shutdown';
-import MineSweeper from './components/MineSweeper'
 import FlappyBird from './components/FlappyBird'
 import DTtS from './components/DTtS';
 import iconInfo from './icon.json'
@@ -268,8 +267,6 @@ function App() {
     return parsedItems;
   });
 
-  const [MineSweeperExpand, setMineSweeperExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [FlappyBirdExpand, setFlappyBirdExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
@@ -1064,7 +1061,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     iconFocusIcon,
     deleteTap,
     shutdownWindow, setShutdownWindow,
-    MineSweeperExpand, setMineSweeperExpand,
     FlappyBirdExpand, setFlappyBirdExpand,
     DTtSExpand, setDTtSExpand,
     MSNExpand, setMSNExpand,
@@ -1226,7 +1222,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <ProjectFolder/>
         <ResumeFile/>
         <WebampPlayer/>
-        <MineSweeper/>
         <FlappyBird/>
         <DTtS/>
         <Wordle/>
@@ -1527,7 +1522,6 @@ function ObjectState() {
     { name: 'IE',          setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Winamp',      setter: setWinampExpand,     usestate: WinampExpand,     color: 'rgba(105, 136, 145, 0.85)', size: 'small' },
     { name: 'ResumeFile',  setter: setResumeFileExpand, usestate: ResumeFileExpand, color: 'rgba(133, 165, 67, 0.85)', size: 'small' },
-    { name: 'MineSweeper', setter: setMineSweeperExpand,usestate: MineSweeperExpand,color: 'rgba(187, 51, 48, 0.85)', size: 'small' },
     { name: 'FlappyBird',  setter: setFlappyBirdExpand, usestate: FlappyBirdExpand, color: 'rgba(0, 180, 255, 0.85)', size: 'small' },
     { name: 'DTtS', setter: setDTtSExpand, usestate: DTtSExpand, color: 'rgba(255, 80, 80, 0.85)', size: 'small' },
     { name: 'Todos', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(0, 159, 186, 0.85)', size: 'small' },

@@ -206,13 +206,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: '36px',
           backgroundRepeat: 'no-repeat',
         };
-      case 'MineSweeper':
-        return {
-          backgroundImage: `url(${game})`,
-          backgroundPosition: '50% 59%',
-          backgroundSize: '46px',
-          backgroundRepeat: 'no-repeat',
-        };
       case 'Patch':
         return {
           backgroundImage: `url(${check})`,

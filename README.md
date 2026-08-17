@@ -18,7 +18,7 @@ I did a fork of Yute's repo in May 2026 and adapted it into my own personal port
 
 Here's what changed:
 
-- Removed all of the original desktop apps (except Minesweeper: too good to leave out).
+- Removed all of the original desktop apps.
 
 - Created a **My Projects** folder featuring four of my own projects:
 
