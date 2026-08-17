@@ -29,6 +29,23 @@ export const clippyPhrase = {
     interruption: [{ phrase: "Please, do not interrupt me!", animation: clippyNo }]
 };
 
+export function getGreeting() {
+  try {
+    const raw = localStorage.getItem('greeting');
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+export function buildGreetingMessage(greeting) {
+  const { lang, name, company, msg } = greeting;
+  const es = `¡Hola ${name}! Espero que disfrutes el portfolio de Igna. ¡Está super entusiasmado de trabajar en ${company}!${msg ? ' ' + msg : ''}`;
+  const en = `Hi ${name}! Hope you enjoy Igna's portfolio. He is super excited about working at ${company}!${msg ? ' ' + msg : ''}`;
+  return lang === 'ES' ? es : en;
+}
+
 export const clippySuggest = 
 [
     'Click => Send when you finished writing the email.',

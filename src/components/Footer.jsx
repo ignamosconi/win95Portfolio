@@ -12,7 +12,7 @@ import resume from '../assets/folder.png';
 import shutdownicon from '../assets/shutdownicon.png';
 import settings from '../assets/setting.png';
 import btc_icon from '../assets/btc_icon.webp'
-import { clippyPhrase, clippySuggest } from './function/ClippyFunction';
+import { clippyPhrase, clippySuggest, getGreeting, buildGreetingMessage } from './function/ClippyFunction';
 import { BsCheck  } from "react-icons/bs";
 import Calendar from 'react-calendar';
 import { BsFillCaretRightFill } from "react-icons/bs";
@@ -35,6 +35,8 @@ export default function Footer() {
     const [width, setWidth] = useState(0);
     const [reRenderFooter, setRerenderFooter] = useState(0)
     const lastClippyIndex = useRef(null);
+    const greeting = getGreeting();
+    const greetingMessage = greeting ? buildGreetingMessage(greeting) : null;
 
     const {
         classicTileMode, setClassicTileMode,
@@ -347,7 +349,14 @@ export default function Footer() {
     }
 
 
-    useEffect(() => { // display clippy when windows start
+    useEffect(() => {
+        // Si hay saludo personalizado, clippy aparece y no se va nunca
+        if (greetingMessage) {
+            setShowClippy(true);
+            return;
+        }
+
+        // Comportamiento original
         clearTimeout(firstTimoutShowclippy.current)
         clearTimeout(ClearTOclippySendemailfunction.current)
         clearTimeout(ClearTOclippyThanksYouFunction.curremt)
@@ -362,10 +371,11 @@ export default function Footer() {
         return () => {
             clearTimeout(firstTimoutShowclippy.current);
         };
-    },[])
+    }, [])
 
 
     useEffect(() => { //random clippy time
+        if (greetingMessage) return; // modo saludo: sin ciclo aleatorio
         clearTimeout(SecondRandomTimeoutShowClippy.current)
         const randomTime = Math.floor(Math.random() * (50000 - 30000 + 1)) + 30000;
 
@@ -408,13 +418,13 @@ export default function Footer() {
     }
 
     function handleClipperTalk() {
-        if(clippyThanks) return clippySuggest[1];
-        if(clippyTouched) return clippyPhrase.interruption[0].phrase;
-        if(clippySendemail) return clippySuggest[0]
-        if(clippySong) return clippySuggest[2]
-        if(clippyUsername) return chatDown? clippySuggest[4] : onlineUser < 2 ? clippySuggest[5] : clippySuggest[3]
-
-        return clippyPhrase.inspiration[clippyIndex].phrase // return default from phrase
+        if (greetingMessage) return greetingMessage;
+        if (clippyThanks) return clippySuggest[1];
+        if (clippyTouched) return clippyPhrase.interruption[0].phrase;
+        if (clippySendemail) return clippySuggest[0];
+        if (clippySong) return clippySuggest[2];
+        if (clippyUsername) return chatDown ? clippySuggest[4] : onlineUser < 2 ? clippySuggest[5] : clippySuggest[3];
+        return clippyPhrase.inspiration[clippyIndex].phrase;
     }
 
     useEffect(() => { /// need useeffect to update state before it returns on handleClipperTalk()
