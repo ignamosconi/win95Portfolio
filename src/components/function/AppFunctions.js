@@ -213,7 +213,7 @@ export function imageMapping (name, type) {
     case 'Ascend':
       return ascend;
     
-    case "adonde":
+    case 'adonde':
       return adonde
 
     case 'Wordle':
@@ -380,7 +380,7 @@ if (now - lastTapTime < 300) {
   switch(name) {
     case 'Todos': window.open('https://todo.ignamosconi.com.ar', '_blank'); break;
     case 'Ascend': window.open('https://ascend.ignamosconi.com.ar', '_blank'); break;
-    case "adonde": window.open('https://adonde.ignamosconi.com.ar', '_blank'); break;')
+    case 'adonde': window.open('https://adonde.ignamosconi.com.ar', '_blank'); break;
     default: break; 
   }
 }
