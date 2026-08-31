@@ -288,7 +288,7 @@ function App() {
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [openProjectExpand, setOpenProjectExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+  {expand: false, show: false, hide: false, focusItem: true, x: window.innerWidth <= 500 ? 5 : 80,  y: window.innerWidth <= 500 ? 100 : 90,  zIndex: 1});
 
   const [MyComputerExpand, setMyComputerExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
@@ -1609,8 +1609,14 @@ function handleShow(name) {
     setProjectUrl('https://ascend.ignamosconi.com.ar');
   }
 
-  if(name === 'adonde') {
+  if (name === 'adonde') {
     setProjectUrl('https://adonde.ignamosconi.com.ar');
+    setOpenProjectExpand(prev => ({ 
+      ...prev, 
+      expand: true,
+      x: prev.x === 0 ? (window.innerWidth <= 500 ? 5 : 80) : prev.x,
+      y: prev.y === 0 ? (window.innerWidth <= 500 ? 100 : 90) : prev.y
+    }));
   }
 
 
@@ -1735,9 +1741,15 @@ function handleShowMobile(name) {
       setProjectUrl('https://ascend.ignamosconi.com.ar');
     }
 
-    if(name === 'adonde') {
-      setProjectUrl('https://adonde.ignamosconi.com.ar');
-    }
+  if (name === 'adonde') {
+    setProjectUrl('https://adonde.ignamosconi.com.ar');
+    setOpenProjectExpand(prev => ({ 
+      ...prev, 
+      expand: true,
+      x: prev.x === 0 ? (window.innerWidth <= 500 ? 5 : 80) : prev.x,
+      y: prev.y === 0 ? (window.innerWidth <= 500 ? 100 : 90) : prev.y
+    }));
+  }
   
   
     allSetItems.forEach((item) => {

@@ -1,5 +1,5 @@
 import UseContext from '../Context'
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import ie from '../assets/ie.png'
@@ -38,18 +38,30 @@ function OpenProject() {
 
    } = useContext(UseContext);
 
+   // Al montar o cambiar de proyecto, si es 'adonde', gatillamos el maximizado limpio
+  useEffect(() => {
+    if (projectname().toLowerCase() === 'adonde') {
+      const timer = setTimeout(() => {
+        setOpenProjectExpand(prev => ({ 
+          ...prev, 
+          expand: true,
+          x: prev.x === 0 ? (window.innerWidth <= 500 ? 5 : 80) : prev.x,
+          y: prev.y === 0 ? (window.innerWidth <= 500 ? 100 : 90) : prev.y
+        }));
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [projectname()]);
 
-
-      function handleDragStop(event, data) {
-        const positionX = data.x 
-        const positionY = data.y
-        setOpenProjectExpand(prev => ({
-          ...prev,
-          x: positionX,
-          y: positionY
-        }))
-
-      }
+  function handleDragStop(event, data) {
+    const positionX = data.x 
+    const positionY = data.y
+    setOpenProjectExpand(prev => ({
+      ...prev,
+      x: positionX,
+      y: positionY
+    }))
+  }
 
    function handleExpandStateToggle() {
     setOpenProjectExpand(prevState => ({
