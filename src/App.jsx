@@ -1673,7 +1673,12 @@ function handleShow(name) {
   const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic', ];
   if (notToOpenList.includes(name)) return;
 
-  const tapName = (name === 'Todos' || name === 'IE' || name === 'Ascend') ? 'Internet' : name;
+  const tapName = (
+    name === 'Todos'
+    || name === 'IE'
+    || name === 'Ascend'
+    || name === 'adonde'  
+  ) ? 'Internet' : name;
   if (tap.includes(tapName)) return;
 
   setStartActive(false);
@@ -1723,6 +1728,11 @@ function handleShowMobile(name) {
     if(name === 'Ascend') {
       setProjectUrl('https://ascend.ignamosconi.com.ar');
     }
+
+    if(name === 'adonde') {
+      setProjectUrl('https://adonde.ignamosconi.com.ar');
+    }
+  
   
     allSetItems.forEach((item) => {
       
@@ -1772,7 +1782,12 @@ function handleShowMobile(name) {
     const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic', 'IE'];
     if (notToOpenList.includes(name)) return;
 
-    const tapName = (name === 'Todos' || name === 'IE' || name === 'Ascend') ? 'Internet' : name;
+    const tapName = (
+      name === 'Todos'
+      || name === 'IE' 
+      || name === 'Ascend'
+      || name === 'adonde'
+    ) ? 'Internet' : name;
     if (tap.includes(tapName)) return;
     setTap(prevTap => [...prevTap, tapName]);
   

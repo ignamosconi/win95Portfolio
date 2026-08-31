@@ -44,6 +44,7 @@ import dtts from '../../assets/dtts_icon.png'
 import todo from '../../assets/todo_icon.png'
 import wordle from '../../assets/wordle_icon.png'
 import ascend from '../../assets/ascend_favicon.svg'
+import adonde from '../../assets/adonde_favicon.svg'
 
 
 
@@ -212,8 +213,12 @@ export function imageMapping (name, type) {
     case 'Ascend':
       return ascend;
     
+    case "adonde":
+      return adonde
+
     case 'Wordle':
       return wordle;
+      
     
     
 
@@ -362,6 +367,7 @@ export function handleDoubleClickEnterLink(name, handleshow) {
   switch(name) {
     case 'Todos': window.open('https://todo.ignamosconi.com.ar', '_blank'); break;
     case 'Ascend': window.open('https://ascend.ignamosconi.com.ar', '_blank'); break;
+    case 'adonde': window.open('https://adonde.ignamosconi.com.ar', '_blank'); break;
     case 'Github': window.open('https://github.com/ignamosconi', '_blank');; break;
     default: break; 
   }
@@ -374,6 +380,7 @@ if (now - lastTapTime < 300) {
   switch(name) {
     case 'Todos': window.open('https://todo.ignamosconi.com.ar', '_blank'); break;
     case 'Ascend': window.open('https://ascend.ignamosconi.com.ar', '_blank'); break;
+    case "adonde": window.open('https://adonde.ignamosconi.com.ar', '_blank'); break;')
     default: break; 
   }
 }
