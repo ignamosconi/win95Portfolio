@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg id="svg2" viewBox="-5.714 0 525.714 525.715" xmlns="http://www.w3.org/2000/svg">
+  <desc>Source: openclipart.org/detail/209545</desc>
+  <g id="svg-1" transform="matrix(2.163793, 0, 0, 2.163793, -439.076385, -385.800476)" style="">
+    <desc>Source: openclipart.org/detail/209545</desc>
+    <g id="compass-elements" transform="matrix(1, 0, 0, 1, 21.428583, 1.428581)">
+      <g id="ticks" stroke="#555" stroke-width="2.5" opacity="0.3" stroke-linecap="round">
+        <line x1="300" y1="184" x2="300" y2="196"/>
+        <line x1="377.78" y1="222.22" x2="386.26" y2="213.74"/>
+        <line x1="416" y1="300" x2="404" y2="300"/>
+        <line x1="377.78" y1="377.78" x2="386.26" y2="386.26"/>
+        <line x1="300" y1="416" x2="300" y2="404"/>
+        <line x1="222.22" y1="377.78" x2="213.74" y2="386.26"/>
+        <line x1="184" y1="300" x2="196" y2="300"/>
+        <line x1="222.22" y1="222.22" x2="213.74" y2="213.74"/>
+      </g>
+      <circle cx="300" cy="300" r="110" fill="#FFFDF8" stroke="#1A1A1A" stroke-width="2.5"/>
+      <g fill="#555" font-family="Nunito, Segoe UI, sans-serif" font-size="10" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="0.45">
+        <text x="299.886" y="210" style="white-space: pre;">N</text>
+        <text x="363.64" y="236.36" style="white-space: pre;">NE</text>
+        <text x="390" y="300" style="white-space: pre;">E</text>
+        <text x="363.64" y="363.64" style="white-space: pre;">SE</text>
+        <text x="300" y="390" style="white-space: pre;">S</text>
+        <text x="236.36" y="363.64" style="white-space: pre;">SW</text>
+        <text x="210" y="300" style="white-space: pre;">W</text>
+        <text x="236.36" y="236.36" style="white-space: pre;">NW</text>
+      </g>
+      <circle cx="300" cy="300" r="18" fill="#FFB3C6" stroke="#1A1A1A" stroke-width="2.5"/>
+      <g fill="none" stroke="white" stroke-linecap="round">
+        <circle cx="300" cy="300" r="10" stroke-width="1.8"/>
+        <path d="M 300 290 Q 309 300 300 310 M 300 290 Q 291 300 300 310" stroke-width="1.5"/>
+        <line x1="290" y1="300" x2="310" y2="300" stroke-width="1.5"/>
+      </g>
+    </g>
+  </g>
+</svg>

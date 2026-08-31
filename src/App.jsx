@@ -288,7 +288,7 @@ function App() {
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [openProjectExpand, setOpenProjectExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+  {expand: false, show: false, hide: false, focusItem: true, x: window.innerWidth <= 500 ? 5 : 80,  y: window.innerWidth <= 500 ? 100 : 90,  zIndex: 1});
 
   const [MyComputerExpand, setMyComputerExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
@@ -1533,6 +1533,7 @@ function ObjectState() {
     { name: 'DTtS', setter: setDTtSExpand, usestate: DTtSExpand, color: 'rgba(255, 80, 80, 0.85)', size: 'small' },
     { name: 'Todos', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Ascend', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
+    { name: 'adonde', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Wordle', setter: setWordleExpand, usestate: WordleExpand, color: 'rgba(0, 255, 65, 0.3)', size: 'small' },
     { name: 'Internet',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Settings',    setter: setBgSettingExpand,  usestate: BgSettingExpand,  color: 'rgba(140, 140, 140, 0.85)', size: 'small' },
@@ -1608,6 +1609,17 @@ function handleShow(name) {
     setProjectUrl('https://ascend.ignamosconi.com.ar');
   }
 
+  if (name === 'adonde') {
+    setProjectUrl('https://adonde.ignamosconi.com.ar');
+    setOpenProjectExpand(prev => ({ 
+      ...prev, 
+      expand: true,
+      x: prev.x === 0 ? (window.innerWidth <= 500 ? 5 : 80) : prev.x,
+      y: prev.y === 0 ? (window.innerWidth <= 500 ? 100 : 90) : prev.y
+    }));
+  }
+
+
   if(name === 'IE') {
     setProjectUrl('https://www.google.com/search?igu=1');
   }
@@ -1673,7 +1685,12 @@ function handleShow(name) {
   const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic', ];
   if (notToOpenList.includes(name)) return;
 
-  const tapName = (name === 'Todos' || name === 'IE' || name === 'Ascend') ? 'Internet' : name;
+  const tapName = (
+    name === 'Todos'
+    || name === 'IE'
+    || name === 'Ascend'
+    || name === 'adonde'  
+  ) ? 'Internet' : name;
   if (tap.includes(tapName)) return;
 
   setStartActive(false);
@@ -1723,6 +1740,17 @@ function handleShowMobile(name) {
     if(name === 'Ascend') {
       setProjectUrl('https://ascend.ignamosconi.com.ar');
     }
+
+  if (name === 'adonde') {
+    setProjectUrl('https://adonde.ignamosconi.com.ar');
+    setOpenProjectExpand(prev => ({ 
+      ...prev, 
+      expand: true,
+      x: prev.x === 0 ? (window.innerWidth <= 500 ? 5 : 80) : prev.x,
+      y: prev.y === 0 ? (window.innerWidth <= 500 ? 100 : 90) : prev.y
+    }));
+  }
+  
   
     allSetItems.forEach((item) => {
       
@@ -1772,7 +1800,12 @@ function handleShowMobile(name) {
     const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin', 'PixelPic', 'IE'];
     if (notToOpenList.includes(name)) return;
 
-    const tapName = (name === 'Todos' || name === 'IE' || name === 'Ascend') ? 'Internet' : name;
+    const tapName = (
+      name === 'Todos'
+      || name === 'IE' 
+      || name === 'Ascend'
+      || name === 'adonde'
+    ) ? 'Internet' : name;
     if (tap.includes(tapName)) return;
     setTap(prevTap => [...prevTap, tapName]);
   
