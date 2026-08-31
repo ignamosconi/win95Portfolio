@@ -5,6 +5,4 @@
 3. Easter egg: Si creás una carpeta con el nombre del usuario que se pasó, que la carpeta tenga data extra (capaz mi nro 
    de teléfono? más fotos? cositas de la empresa?).
 
-4. Mover lo de guardar las settings de la url de localStorage a Cookies, así no las pueden modificar fácilmente. 
-
-5. Simplificar lo de power off, que esté solo lo de power off, el resto de settings sacarlas.
+4. Simplificar lo de power off, que esté solo lo de power off, el resto de settings sacarlas.
