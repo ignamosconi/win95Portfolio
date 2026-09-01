@@ -198,6 +198,7 @@ export default function App() {
   const [deleteIcon, setDeleteIcon] = useState(0)
   const refBeingClicked = useRef(null)
   const BinIconRef = useRef(null);
+  const folderIconRefsMap = useRef({});
   const maxZindexRef = useRef(2);
   const [inFolder, setInFolder] = useState('')
   const [refresh, setRefresh] = useState(0)
@@ -777,6 +778,21 @@ const handleOnDrag = (name, ref, type) => () => {
       }
     }
 
+    // Detectar íconos de carpeta en el escritorio
+    for (const [folderName, folderEl] of Object.entries(folderIconRefsMap.current)) {
+      if (!folderEl || folderName === name) continue;
+      const folderIconRect = folderEl.getBoundingClientRect();
+      if (
+        iconRect.left < folderIconRect.right - offset &&
+        iconRect.right > folderIconRect.left + offset &&
+        iconRect.top < folderIconRect.bottom - offset &&
+        iconRect.bottom > folderIconRect.top + offset
+      ) {
+        setDropTargetFolder(folderName);
+        return;
+      }
+    }
+
     const isOverBin =
       (iconRect.left < BinRect.right - offset &&
         iconRect.right > BinRect.left + offset &&
@@ -1142,7 +1158,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     reMountRun, setReMountRun,
     ErrorPopup, setErrorPopup,
     remountRunPosition,
-    BinIconRef,
+    BinIconRef, folderIconRefsMap,
   }
 
 

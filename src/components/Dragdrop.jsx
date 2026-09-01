@@ -11,7 +11,7 @@ function Dragdrop() {
   const [searchPopup, setSearchPopup] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const {
-    BinIconRef,
+    BinIconRef, folderIconRefsMap,
     setCurrentRightClickFolder,
     refBeingClicked,
     handleMobileLongPress,
@@ -175,7 +175,8 @@ function Dragdrop() {
               ref={(el) => {
                 iconRefs.current[icon.name] = el;
                 if (icon.name === 'RecycleBin') BinIconRef.current = el;
-              }} 
+                if (icon.type === 'folder') folderIconRefsMap.current[icon.name] = el;
+              }}
               onContextMenu={() => {
                 setRightClickIcon(true);
                 iconFocusIcon(icon.name);
