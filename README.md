@@ -22,15 +22,9 @@ Here's what changed:
 
 - Created a **My Projects** folder featuring four of my own projects:
 
-    - **Flappy Bird**:  
-      A flappy bird clone, made in pico-8.  
-      Learn more here: https://www.lexaloffle.com/bbs/?tid=146821.  
-      Use the up arrow key to fly.  
-
-    - **DTtS**:  
-      A Pico-8 remake inspired by *Don't Touch the Spikes*.  
-      Learn more here: https://www.lexaloffle.com/bbs/?tid=150239.  
-      Can you guess which key is used to fly?  
+    - **adonde**:  
+      An amazing geography game that tests your memory of flags and where they are!   
+      Try it here: https://adonde.ignamosconi.com.ar
 
     - **Todos**:  
       A todo app where every list generates its own unique link.  
@@ -41,20 +35,24 @@ Here's what changed:
       A fun silly game, where you have to order random numbers.  
       Learn more here: https://github.com/ignamosconi/ascend
 
-    - **adonde**:  
-      An amazing geography game that tests your memory of flags and where they are!   
-      Try it here: https://adonde.ignamosconi.com.ar
+    - **Flappy Bird**:  
+      A flappy bird clone, made in pico-8.  
+      Learn more here: https://www.lexaloffle.com/bbs/?tid=146821.  
+      Use the up arrow key to fly.  
+
+    - **DTtS**:  
+      A Pico-8 remake inspired by *Don't Touch the Spikes*.  
+      Learn more here: https://www.lexaloffle.com/bbs/?tid=150239.  
+      Can you guess which key is used to fly?  
 
     - **Wordle**:  
       I originally built a Wordle clone in python, then re-wrote it in JavaScript.  
       It turned into a fun side project while building the site.  
 
-- Updated the **Internet Explorer** app to showcase my todo app.  
-  If you want the unique link generated for your list, you can click the link at the bottom of the browser window.  
+- Updated the **Internet Explorer** app to showcase my deployed apps.
+  If you want to access a specific link, you can click the link at the bottom of the browser window.  
 
 - Replaced **ResumeFile** with my own résumé. Check it out!
-
-- Updated the **About** section with my own interests and goals.
 
 - Replaced the photo carousel with my own pictures.  
   You can find them in the C: drive, if you want to take a look c:  
@@ -67,16 +65,18 @@ Here's what changed:
   - Freed up some space by removing unused assets from `src/assets`.  
 
 
-## Custom greeting links
+## Customization
+
+### Greeting links
+Special thanks to Goncy Pozzo for the feedback on what to add to my porfolio :)  
+
 
 If you want to share the portfolio with a personal touch, you can generate a signed link that makes Clippy greet a specific person by name.
-
-The link is valid only if it carries a cryptographic signature — so the message can't be tampered with. Once visited, the URL cleans itself and Clippy keeps the greeting for future visits.
-
-To generate a link, use the file LINKS-GENERATOR.html
+- The link is valid only if it carries a cryptographic signature — so the message can't be tampered with. Once visited, the URL cleans itself and Clippy keeps the greeting for future visits.
+- To generate a link, use the file LINKS-GENERATOR.html
 
 
-## Easter eggs
+### Easter eggs
 Try to create a folder with my name ;)
 
 
