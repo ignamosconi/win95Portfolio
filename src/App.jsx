@@ -197,6 +197,7 @@ export default function App() {
   const [sortIconTrigger, setSortIconTrigger] = useState(0)
   const [deleteIcon, setDeleteIcon] = useState(0)
   const refBeingClicked = useRef(null)
+  const BinIconRef = useRef(null);
   const maxZindexRef = useRef(2);
   const [inFolder, setInFolder] = useState('')
   const [refresh, setRefresh] = useState(0)
@@ -740,118 +741,105 @@ useEffect(() => {
 
 
 const handleOnDrag = (name, ref, type) => () => {
-  setDragging(true)
-  const iconRef = ref
+  setDragging(true);
+  const iconRef = ref;
   if (iconRef && ResumeFolderRef.current && ProjectFolderRef.current) {
-    const BinRect = BinRef.current.getBoundingClientRect();
     const iconRect = iconRef.getBoundingClientRect();
+    const BinRect = BinRef.current.getBoundingClientRect();
+    const BinIconRect = BinIconRef.current?.getBoundingClientRect()
+      ?? { left: 0, right: 0, top: 0, bottom: 0 };
     const resumeFolderRect = ResumeFolderRef.current.getBoundingClientRect();
     const projectFolderRect = ProjectFolderRef.current.getBoundingClientRect();
     const desktopRect = DesktopRef.current.getBoundingClientRect();
     const diskRect = DiskRef.current.getBoundingClientRect();
     const PictureRect = PictureRef.current.getBoundingClientRect();
     const UtilityRect = UtilityRef.current.getBoundingClientRect();
-  
 
     const offset = 55;
 
-    if(name === 'My Computer' || name === 'RecycleBin') return; // prevent MyComputer from being dragged into folder
+    if (name === 'My Computer' || name === 'RecycleBin') return;
 
-    // Check for intersection with UserCreated folders
+    // UserCreated folders
     for (let i = 0; i < UserCreatedFolderRef.current.length; i++) {
       const ref = UserCreatedFolderRef.current[i];
       if (ref && ref.current) {
         const folderRect = ref.current.getBoundingClientRect();
-
         if (
           iconRect.left < folderRect.right - offset &&
           iconRect.right > folderRect.left + offset &&
           iconRect.top < folderRect.bottom - offset &&
           iconRect.bottom > folderRect.top + offset
         ) {
-          if (name === UserCreatedFolder[i].name) continue; // avoid self-drop
+          if (name === UserCreatedFolder[i].name) continue;
           setDropTargetFolder(UserCreatedFolder[i].name);
-          return; // stop once matched
+          return;
         }
       }
-}
-    // utility
+    }
+
+    const isOverBin =
+      (iconRect.left < BinRect.right - offset &&
+        iconRect.right > BinRect.left + offset &&
+        iconRect.top < BinRect.bottom - offset &&
+        iconRect.bottom > BinRect.top + offset) ||
+      (iconRect.left < BinIconRect.right - offset &&
+        iconRect.right > BinIconRect.left + offset &&
+        iconRect.top < BinIconRect.bottom - offset &&
+        iconRect.bottom > BinIconRect.top + offset);
+
     if (
       iconRect.left < UtilityRect.right - offset &&
       iconRect.right > UtilityRect.left + offset &&
       iconRect.top < UtilityRect.bottom - offset &&
       iconRect.bottom > UtilityRect.top + offset
     ) {
-      if(name === 'Utility') return;
+      if (name === 'Utility') return;
       setDropTargetFolder('Utility');
-    }
-
-    else if (
-      iconRect.left < BinRect.right - offset &&
-      iconRect.right > BinRect.left + offset &&
-      iconRect.top < BinRect.bottom - offset &&
-      iconRect.bottom > BinRect.top + offset
-    ) {
-      if(name === 'RecycleBin') return;
+    } else if (isOverBin) {
       setDropTargetFolder('RecycleBin');
-    }
-    
-    // Check for intersection with the Picture folder
-    else if (
+    } else if (
       iconRect.left < PictureRect.right - offset &&
       iconRect.right > PictureRect.left + offset &&
       iconRect.top < PictureRect.bottom - offset &&
       iconRect.bottom > PictureRect.top + offset
     ) {
-      if(name === 'Picture') return;
+      if (name === 'Picture') return;
       setDropTargetFolder('Picture');
-    }
-    
-    // Check for intersection with the Resume folder
-    else if (
+    } else if (
       iconRect.left < resumeFolderRect.right - offset &&
       iconRect.right > resumeFolderRect.left + offset &&
       iconRect.top < resumeFolderRect.bottom - offset &&
       iconRect.bottom > resumeFolderRect.top + offset
     ) {
-      if(name === 'Resume') return;
+      if (name === 'Resume') return;
       setDropTargetFolder('Resume');
-    }
-    // Check for intersection with the Project folder
-    else if (
+    } else if (
       iconRect.left < projectFolderRect.right - offset &&
       iconRect.right > projectFolderRect.left + offset &&
       iconRect.top < projectFolderRect.bottom - offset &&
       iconRect.bottom > projectFolderRect.top + offset
     ) {
-      if(name === 'My Projects') return;
+      if (name === 'My Projects') return;
       setDropTargetFolder('My Projects');
-    }
-    // Check for intersection with the Disk 
-    else if (
+    } else if (
       iconRect.left < diskRect.right - offset &&
       iconRect.right > diskRect.left + offset &&
       iconRect.top < diskRect.bottom - offset &&
       iconRect.bottom > diskRect.top + offset
-    ) { 
-      // check within MyComputer
+    ) {
       if (name === 'My Computer') return;
-      // add new folder in this array
       const validFolders = ['DiskC', 'DiskD', 'Resume', 'My Projects', 'Picture', 'RecycleBin', 'Utility', ...UserCreatedFolder.map(item => item.name)];
       if (validFolders.includes(currentFolder)) {
         setDropTargetFolder(currentFolder);
       }
-    }
-    else if (
+    } else if (
       iconRect.left < desktopRect.right &&
       iconRect.right > desktopRect.left &&
       iconRect.top < desktopRect.bottom &&
       iconRect.bottom > desktopRect.top
     ) {
       setDropTargetFolder('Desktop');
-    }
-    // Default case if not intersecting with any folder
-    else {
+    } else {
       setDropTargetFolder('Desktop');
     }
   }
@@ -1154,6 +1142,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     reMountRun, setReMountRun,
     ErrorPopup, setErrorPopup,
     remountRunPosition,
+    BinIconRef,
   }
 
 
