@@ -171,11 +171,9 @@ function RightClickWindows() {
 
 
 function CreateFolder() {
-
-  if(newFolderNameVal.trim() === '') return;
+  if (newFolderNameVal.trim() === '') return;
 
   const allState = ObjectState();
-
   const checkIfFolderExist = allState.some(item => item.name === newFolderNameVal.trim());
 
   if (checkIfFolderExist) {
@@ -184,7 +182,6 @@ function CreateFolder() {
   }
 
   const checkedNameNoSpace = newFolderNameVal.trim().replace(/\s+/g, '');
-
   const id = `folder-${Date.now()}`;
 
   const newFolder = {
@@ -198,32 +195,83 @@ function CreateFolder() {
     y: 1,
   };
 
-  setDesktopIcon(prev => {
-    const updatedIcons = [...prev, newFolder];
-    localStorage.setItem("icons", JSON.stringify(updatedIcons));
-    return updatedIcons;
-  });
-
   const newStateFolder = {
     id,
     name: checkedNameNoSpace,
     expand: false,
     show: false,
     hide: false,
-    focusItem: false, 
+    focusItem: false,
     x: 0,
     y: 0,
     zIndex: 1,
   };
 
+  // --- EASTER EGG ---
+  let easterEggIcons = [];
+  let easterEggFolders = [];
+
+  if (checkedNameNoSpace.toLowerCase() === 'igna') {
+    const phone = import.meta.env.VITE_PHONE || '';
+
+    // Dígitos repetidos en el número: los hacemos únicos con zero-width spaces
+    // invisibles al ojo, pero distintos como string (nombre de carpeta)
+    const seen = {};
+    const chars = phone.split('').map(char => {
+      if (!(char in seen)) seen[char] = 0;
+      const uniqueChar = char + '\u200B'.repeat(seen[char]);
+      seen[char]++;
+      return uniqueChar;
+    });
+
+    let parentName = checkedNameNoSpace; // primera carpeta adentro de "igna"
+
+    chars.forEach((char, i) => {
+      const eggId = `easter-${Date.now()}-${i}`;
+
+      easterEggIcons.push({
+        id: eggId,
+        pic: "My Projects",
+        name: char,
+        type: "folder",
+        folderId: parentName,
+        size: "2000",
+        x: 1,
+        y: 1,
+      });
+
+      easterEggFolders.push({
+        id: eggId,
+        name: char,
+        expand: false,
+        show: false,
+        hide: false,
+        focusItem: false,
+        x: 0,
+        y: 0,
+        zIndex: 1,
+      });
+
+      parentName = char; // la siguiente carpeta va adentro de esta
+    });
+  }
+  // --- FIN EASTER EGG ---
+
+  setDesktopIcon(prev => {
+    const updatedIcons = [...prev, newFolder, ...easterEggIcons];
+    localStorage.setItem("icons", JSON.stringify(updatedIcons));
+    return updatedIcons;
+  });
+
   setUserCreatedFolder(prev => {
     const safePrev = Array.isArray(prev) ? prev : [];
-    const updatedFolders = [...safePrev, newStateFolder];
+    const updatedFolders = [...safePrev, newStateFolder, ...easterEggFolders];
     localStorage.setItem("userFolders", JSON.stringify(updatedFolders));
     return updatedFolders;
   });
-  setPopUpCreateFolderName(false)
-  setNewFolderNameVal('')
+
+  setPopUpCreateFolderName(false);
+  setNewFolderNameVal('');
   setFolderError('');
 }
 

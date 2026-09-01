@@ -75,6 +75,11 @@ The link is valid only if it carries a cryptographic signature — so the messag
 
 To generate a link, use the file LINKS-GENERATOR.html
 
+
+## Easter eggs
+Try to create a folder with my name ;)
+
+
 ## Open source
 
 Of course this new version is open source aswell!  
