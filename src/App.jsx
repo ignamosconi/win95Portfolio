@@ -744,6 +744,10 @@ useEffect(() => {
       setMinLoadingDone(true);
       return;
     }
+
+    // Resetea cada vez que llega un saludo nuevo
+    setMinLoadingDone(false);
+
     const timer = setTimeout(() => setMinLoadingDone(true), 2500);
     return () => clearTimeout(timer);
   }, [greetingData]);
