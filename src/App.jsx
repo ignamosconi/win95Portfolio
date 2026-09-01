@@ -1198,7 +1198,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
             textAlign: 'center',
             fontFamily: 'monospace'
           }}>
-            <h2>{greetingData.lang === 'es' ? `Bienvenido, ${greetingData.name}.` : `Welcome, ${greetingData.name}.`}</h2>
+            <h2>{greetingData.lang === 'ES' ? `Bienvenido, ${greetingData.name}.` : `Welcome, ${greetingData.name}.`}</h2>
           </div>
         )}
 
