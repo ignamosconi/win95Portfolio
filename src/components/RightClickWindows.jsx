@@ -189,7 +189,7 @@ function CreateFolder() {
     pic: "My Projects",
     name: checkedNameNoSpace,
     type: "folder",
-    folderId: "Desktop",
+    folderId: currentRightClickFolder,  // ← Desktop, o la carpeta abierta donde hiciste click derecho
     size: "2000",
     x: 1,
     y: 1,
