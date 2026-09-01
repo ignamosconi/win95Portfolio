@@ -67,7 +67,6 @@ async function verifyHMAC(payload, sig, secret) {
 }
 
 
-
 /**
  * Carga los íconos del desktop aplicando merge inteligente:
  *  - Si la versión guardada coincide con ICONS_VERSION → merge:
@@ -142,6 +141,7 @@ export default function App() {
   const [currentRightClickFolder, setCurrentRightClickFolder] = useState('Desktop')
   const [ringMsn, setRingMsn] = useState(false)
   const [showChart, setShowChart] = useState(false)
+  const [minLoadingDone, setMinLoadingDone] = useState(false);
   const [keyRef, setKeyRef] = useState(0)
   const [localBg, setLocalBg] = useState(() => {
     const prevBg = localStorage.getItem('background')
@@ -739,6 +739,14 @@ useEffect(() => {
     }
   }, []);
 
+  useEffect(() => {
+    if (!greetingData) {
+      setMinLoadingDone(true);
+      return;
+    }
+    const timer = setTimeout(() => setMinLoadingDone(true), 2500);
+    return () => clearTimeout(timer);
+  }, [greetingData]);
 
 
 const handleOnDrag = (name, ref, type) => () => {
@@ -1183,7 +1191,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     )
   }
 
-  if(loading && !login) {
+  if ((loading || !minLoadingDone) && !login) {
     const localThemeBg = localStorage.getItem('theme') || '#098684';
 
     return(
