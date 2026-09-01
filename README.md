@@ -73,7 +73,7 @@ If you want to share the portfolio with a personal touch, you can generate a sig
 
 The link is valid only if it carries a cryptographic signature — so the message can't be tampered with. Once visited, the URL cleans itself and Clippy keeps the greeting for future visits.
 
-To generate a link, contact me directly.
+To generate a link, use the file LINKS-GENERATOR.html
 
 ## Open source
 

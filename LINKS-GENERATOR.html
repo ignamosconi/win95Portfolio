@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Generador links - Portfolio Igna</title>
+  <style>
+    body {
+      font-family: monospace;
+      max-width: 600px;
+      margin: 60px auto;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      padding: 0 20px;
+    }
+    h2 { color: #7eb8f7; }
+    label { display: block; margin-top: 16px; font-size: 13px; color: #aaa; }
+    input, select, textarea {
+      width: 100%;
+      margin-top: 6px;
+      padding: 8px;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      color: #e0e0e0;
+      border-radius: 4px;
+      font-family: monospace;
+      box-sizing: border-box;
+    }
+    textarea { height: 80px; resize: vertical; }
+    button {
+      margin-top: 24px;
+      padding: 10px 24px;
+      background: #7eb8f7;
+      color: #1a1a1a;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    button:hover { background: #5a9de0; }
+    #result {
+      margin-top: 24px;
+      padding: 12px;
+      background: #2a2a2a;
+      border: 1px solid #555;
+      border-radius: 4px;
+      word-break: break-all;
+      font-size: 13px;
+      display: none;
+    }
+    #result span { color: #7eb8f7; }
+    #copyBtn {
+      margin-top: 10px;
+      padding: 6px 16px;
+      background: #444;
+      color: #e0e0e0;
+      border: 1px solid #666;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      display: none;
+    }
+    #copyBtn:hover { background: #555; }
+    #copied {
+      margin-left: 10px;
+      color: #7eb8f7;
+      font-size: 13px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔗 Generador de links — Igna Portfolio</h2>
+
+  <label>Idioma</label>
+  <select id="lang">
+    <option value="ES">ES — Español</option>
+    <option value="EN">EN — English</option>
+  </select>
+
+  <label>Nombre del recruiter</label>
+  <input type="text" id="name" placeholder="Juan" maxlength="30" />
+
+  <label>Empresa</label>
+  <input type="text" id="company" placeholder="Google" maxlength="30" />
+
+  <button onclick="generate()">Generar link</button>
+
+  <div id="result"></div>
+  <button id="copyBtn" onclick="copyLink()">Copiar link</button>
+  <span id="copied">✓ Copiado</span>
+
+  <script>
+    const NOT_SO_SECRET = 'F2cv6cOt1IwbUM7vp0EX0ceXDZ1aRm2Lc86rtY1CUAPXRGYtdfzLMasfPTSAAQMh'; //coincide con main.jsx
+    const BASE_URL = 'https://ignamosconi.com.ar';  //http://localhost:5173 //https://ignamosconi.com.ar
+
+    async function generateHMAC(message, secret) {
+      const enc = new TextEncoder();
+      const key = await crypto.subtle.importKey(
+        'raw', enc.encode(secret),
+        { name: 'HMAC', hash: 'SHA-256' },
+        false, ['sign']
+      );
+      const signature = await crypto.subtle.sign('HMAC', key, enc.encode(message));
+      // Convertir a hex
+      return Array.from(new Uint8Array(signature))
+            .map(b => b.toString(16).padStart(2, '0'))
+            .join('')
+            .slice(0, 16); //tomamos los primeros 16 así no queda tan largo en el url
+    }
+
+    async function generate() {
+      const lang    = document.getElementById('lang').value.trim();
+      const name    = document.getElementById('name').value.trim();
+      const company = document.getElementById('company').value.trim();
+
+      if (!name || !company) {
+        alert('Nombre y empresa son obligatorios.');
+        return;
+      }
+
+      // El mensaje que se firma es exactamente los parámetros en orden fijo
+      const payload = `lang=${lang}&name=${name}&company=${company}`;
+      const sig = await generateHMAC(payload, NOT_SO_SECRET);
+
+      // Armamos la URL
+      const params = new URLSearchParams({ lang, name, company, sig });
+      const link = `${BASE_URL}/?${params.toString()}`;
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML = `<span>Link generado:</span><br><br>${link}`;
+
+      document.getElementById('copyBtn').style.display = 'inline-block';
+      document.getElementById('copied').style.display = 'none';
+
+      // Guardamos el link para el botón copiar
+      resultDiv.dataset.link = link;
+    }
+
+    function copyLink() {
+      const link = document.getElementById('result').dataset.link;
+      navigator.clipboard.writeText(link).then(() => {
+        const copied = document.getElementById('copied');
+        copied.style.display = 'inline';
+        setTimeout(() => { copied.style.display = 'none'; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
