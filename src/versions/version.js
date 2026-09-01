@@ -16,4 +16,4 @@
 // Formato sugerido: "vN"  →  v1, v2, v3 …
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const ICONS_VERSION = "v3";
+export const ICONS_VERSION = "v4";

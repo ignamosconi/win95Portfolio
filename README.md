@@ -20,7 +20,7 @@ Here's what changed:
 
 - Removed all of the original desktop apps.
 
-- Created a **My Projects** folder featuring four of my own projects:
+- Created a **My Projects** folder featuring some of my projects:
 
     - **adonde**:  
       An amazing geography game that tests your memory of flags and where they are!   
@@ -63,6 +63,7 @@ Here's what changed:
   - Fixed an edge case where Clippy could repeat the same phrase twice in a row.  
   - Added HMAC-signed custom greeting links for Clippy, so the assistant can display a personalized message for a specific recipient. The URL cleans itself after the first visit, so it looks like a regular link while browsing.
   - Freed up some space by removing unused assets from `src/assets`.  
+  - Now you can drag & drop icons to the REcycleBin or other folders.
 
 
 ## Customization
