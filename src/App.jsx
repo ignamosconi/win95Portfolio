@@ -47,6 +47,27 @@ const DELETE_ICON = [
   'MSN',
 ];
 
+
+/* 
+  PERSONALIZED GREETINGS LINK
+*/
+const NOT_SO_SECRET = 'F2cv6cOt1IwbUM7vp0EX0ceXDZ1aRm2Lc86rtY1CUAPXRGYtdfzLMasfPTSAAQMh';
+async function verifyHMAC(payload, sig, secret) {
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    'raw', enc.encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false, ['sign']
+  );
+  const fullSig = await crypto.subtle.sign('HMAC', key, enc.encode(payload));
+  const fullHex = Array.from(new Uint8Array(fullSig))
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('');
+  return fullHex.slice(0, 16) === sig;
+}
+
+
+
 /**
  * Carga los íconos del desktop aplicando merge inteligente:
  *  - Si la versión guardada coincide con ICONS_VERSION → merge:
@@ -102,7 +123,10 @@ function loadDesktopIcons() {
   }
 }
 
-function App() {
+export default function App() {
+  
+  const [greetingData, setGreetingData] = useState(null);
+  
   const [ classicTileMode, setClassicTileMode ] = useState(() => {
       const mode = localStorage.getItem('mode')
       return mode ? JSON.parse(mode) : false
@@ -527,153 +551,190 @@ useEffect(() => {
 
 
 
-    const connectWebSocket = async () => {
-      
-      try {
+  const connectWebSocket = async () => {
+    try {
 
-        // Wake up the Render backend
-        await fetch('https://notebackend-wrqt.onrender.com/ping');
+      // Wake up the Render backend
+      await fetch('https://notebackend-wrqt.onrender.com/ping');
 
-        // Close existing socket if still open or connecting
-        if (socket.current && socket.current.readyState !== WebSocket.CLOSED) {
-          // Remove old listeners
-          socket.current.onopen = null;
-          socket.current.onclose = null;
-          socket.current.onerror = null;
-          socket.current.onmessage = null;
+      // Close existing socket if still open or connecting
+      if (socket.current && socket.current.readyState !== WebSocket.CLOSED) {
+        // Remove old listeners
+        socket.current.onopen = null;
+        socket.current.onclose = null;
+        socket.current.onerror = null;
+        socket.current.onmessage = null;
 
-          // Close and wait for complete shutdown
-          socket.current.close();
+        // Close and wait for complete shutdown
+        socket.current.close();
 
-          await new Promise(resolve => {
-            socket.current.onclose = () => {
-              setWebsocketConnection(false);
-              resolve();
-            };
-          });
+        await new Promise(resolve => {
+          socket.current.onclose = () => {
+            setWebsocketConnection(false);
+            resolve();
+          };
+        });
+      }
+
+      // Create new WebSocket instance
+      socket.current = new WebSocket('wss://notebackend-wrqt.onrender.com');
+
+      socket.current.onopen = () => {
+        getChat()
+        setWebsocketConnection(true);
+        setLoading(false);
+      };
+
+      socket.current.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+
+        if (data.count !== undefined) {
+          setOnlineUser(data.count);
         }
 
-        // Create new WebSocket instance
-        socket.current = new WebSocket('wss://notebackend-wrqt.onrender.com');
+        if (data.key) {
+          setKeyChatSession(data.key);
+        } 
+        if (data.ring) {
+          setRingMsn(true)
+        }
+        else if (data.name && data.chat) {
+          setChatData(prevData => [...prevData, data]);
+          setLoadedMessages(prev => [...prev, data]);
 
-        socket.current.onopen = () => {
-          getChat()
-          setWebsocketConnection(true);
-          setLoading(false);
-        };
+          setTimeout(() => {
+            endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+          }, 100);
+        }
+      };
 
-        socket.current.onmessage = (event) => {
-          const data = JSON.parse(event.data);
-
-          if (data.count !== undefined) {
-            setOnlineUser(data.count);
-          }
-
-          if (data.key) {
-            setKeyChatSession(data.key);
-          } 
-          if (data.ring) {
-            setRingMsn(true)
-          }
-          else if (data.name && data.chat) {
-            setChatData(prevData => [...prevData, data]);
-            setLoadedMessages(prev => [...prev, data]);
-
-            setTimeout(() => {
-              endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-            }, 100);
-          }
-        };
-
-        socket.current.onerror = (error) => {
-          console.error('WebSocket error:', error);
-          setLoading(false);
-          setWebsocketConnection(false);
-        };
-
-        socket.current.onclose = () => {
-          setWebsocketConnection(false);
-        };
-
-      } catch (err) {
-        console.error('WebSocket connection error:', err);
+      socket.current.onerror = (error) => {
+        console.error('WebSocket error:', error);
         setLoading(false);
+        setWebsocketConnection(false);
+      };
+
+      socket.current.onclose = () => {
+        setWebsocketConnection(false);
+      };
+
+    } catch (err) {
+      console.error('WebSocket connection error:', err);
+      setLoading(false);
+      setWebsocketConnection(false);
+    }
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    connectWebSocket();
+
+    return () => {
+      if (socket.current) {
+        socket.current.onopen = null;
+        socket.current.onclose = null;
+        socket.current.onerror = null;
+        socket.current.onmessage = null;
+        socket.current.close();
         setWebsocketConnection(false);
       }
     };
-
-    useEffect(() => {
-      setLoading(true);
-      connectWebSocket();
-
-      return () => {
-        if (socket.current) {
-          socket.current.onopen = null;
-          socket.current.onclose = null;
-          socket.current.onerror = null;
-          socket.current.onmessage = null;
-          socket.current.close();
-          setWebsocketConnection(false);
-        }
-      };
-    }, []);
+  }, []);
 
 
-    useEffect(() => {
-      let invisibilityTimeout = null;
+  useEffect(() => {
+    let invisibilityTimeout = null;
 
-      const handleVisibilityChange = () => {
-        if (document.visibilityState === 'hidden') {
-          // Start a 30s countdown to close socket
-          invisibilityTimeout = setTimeout(() => {
-            if (socket.current && socket.current.readyState === WebSocket.OPEN) {
-              socket.current.close();
-              setWebsocketConnection(false);
-            }
-          }, 10000); 
-        } else {
-          // 
-          if (invisibilityTimeout) {
-            clearTimeout(invisibilityTimeout);
-            invisibilityTimeout = null;
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        // Start a 30s countdown to close socket
+        invisibilityTimeout = setTimeout(() => {
+          if (socket.current && socket.current.readyState === WebSocket.OPEN) {
+            socket.current.close();
+            setWebsocketConnection(false);
           }
+        }, 10000); 
+      } else {
+        // 
+        if (invisibilityTimeout) {
+          clearTimeout(invisibilityTimeout);
+          invisibilityTimeout = null;
         }
-      };
+      }
+    };
 
-      document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
-      return () => {
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
-        if (invisibilityTimeout) clearTimeout(invisibilityTimeout);
-      };
-    }, []);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      if (invisibilityTimeout) clearTimeout(invisibilityTimeout);
+    };
+  }, []);
 
 
-useEffect(() => { // touch support device === true
-  iconFocusIcon('') // make icon focus goes false
+  useEffect(() => { // touch support device === true
+    iconFocusIcon('') // make icon focus goes false
 
-  const htmlElement = document.documentElement; //check if user is in frontend
-  htmlElement.addEventListener('mouseenter', handleMouseSeen);
+    const htmlElement = document.documentElement; //check if user is in frontend
+    htmlElement.addEventListener('mouseenter', handleMouseSeen);
 
-  const onTouchStartSupported = 'ontouchstart' in document.documentElement;
-  setIsTouchDevice(onTouchStartSupported);
+    const onTouchStartSupported = 'ontouchstart' in document.documentElement;
+    setIsTouchDevice(onTouchStartSupported);
 
-  document.addEventListener('gesturestart', function (e) { // prevent zooming on mobile
-    e.preventDefault();
-  });
+    document.addEventListener('gesturestart', function (e) { // prevent zooming on mobile
+      e.preventDefault();
+    });
 
-  function handleKeyPress(event){ // hitting windows button activates start menu
-    if (event.keyCode === 91 || event.keyCode === 92 || event.keyCode === 93) {
-        setStartActive(prev => !prev)
+    function handleKeyPress(event){ // hitting windows button activates start menu
+      if (event.keyCode === 91 || event.keyCode === 92 || event.keyCode === 93) {
+          setStartActive(prev => !prev)
+      }
     }
-  }
-  document.addEventListener('keydown', handleKeyPress);
-  return () => {
-      document.removeEventListener('keydown', handleKeyPress);
-      htmlElement.removeEventListener('mouseenter', handleMouseSeen);
-  };
+    document.addEventListener('keydown', handleKeyPress);
+    return () => {
+        document.removeEventListener('keydown', handleKeyPress);
+        htmlElement.removeEventListener('mouseenter', handleMouseSeen);
+    };
 
-}, []);
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const lang    = params.get('lang');
+    const name    = params.get('name');
+    const company = params.get('company');
+    const sig     = params.get('sig');
+
+    if (lang && name && company && sig) {
+      const payload = `lang=${lang}&name=${name}&company=${company}`;
+      
+      verifyHMAC(payload, sig, NOT_SO_SECRET).then(valid => {
+        if (valid) {
+          // Link válido: Guardamos en local para el futuro y en estado para renderizar AHORA
+          const newGreeting = { lang, name, company, msg: '' };
+          localStorage.setItem('greeting', JSON.stringify(newGreeting));
+          setGreetingData(newGreeting);
+        } else {
+          // Link inválido: Limpiamos por seguridad
+          localStorage.removeItem('greeting');
+          setGreetingData(null);
+        }
+        window.history.replaceState({}, '', window.location.pathname);
+      });
+    } else if (params.has('lang') || params.has('name') || params.has('sig')) {
+      // Intento de link incompleto: limpiamos todo
+      localStorage.removeItem('greeting');
+      setGreetingData(null);
+      window.history.replaceState({}, '', window.location.pathname);
+    } else {
+      // Visita normal (sin link): Recuperamos el mensaje si existe de una sesión anterior
+      const savedGreeting = localStorage.getItem('greeting');
+      if (savedGreeting) {
+        setGreetingData(JSON.parse(savedGreeting));
+      }
+    }
+  }, []);
+
 
 
 const handleOnDrag = (name, ref, type) => () => {
@@ -1116,21 +1177,37 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
   }
 
   if(loading && !login) {
-    const localThemeBg = localStorage.getItem('theme') || '#098684'; 
+    const localThemeBg = localStorage.getItem('theme') || '#098684';
 
     return(
       <div 
       style={{
         width: '100%',
         height: '100svh',
-        background: localThemeBg
+        background: localThemeBg,
+        position: 'relative'
       }}>
-        <img src={loadingSpin} alt="loading" 
+        
+        {greetingData && (
+          <div style={{
+            position: 'absolute',
+            top: '40%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            color: 'white',
+            textAlign: 'center',
+            fontFamily: 'monospace'
+          }}>
+            <h2>{greetingData.lang === 'ES' ? `Bienvenido, ${greetingData.name}.` : `Welcome, ${greetingData.name}.`}</h2>
+          </div>
+        )}
+
+        <img src={loadingSpin} alt="loading"
           style={{
             width: '30px',
             position: 'absolute',
             left: '50%',
-            top: '50%',
+            top: greetingData ? '60%' : '50%', 
             transform: 'translate(-50%, -50%)',
           }}
         />
@@ -1974,5 +2051,3 @@ function handleShowMobile(name) {
 
   }
 }
-
-export default App
