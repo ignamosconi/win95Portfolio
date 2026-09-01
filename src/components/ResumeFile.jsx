@@ -140,7 +140,7 @@ function ResumeFile() {
             {ResumeFileExpand.show ? (
               <iframe 
               onClick={() => setDownloadBox(false)}
-              src="https://drive.google.com/file/d/1bP32dU_ctjcF8ihppYCSILCsvUQPwN8I/preview" 
+              src="https://drive.google.com/file/d/1D-3XOtHOmz_rL9TAgrRRQlMLHmEtrtWj/preview" 
               frameBorder='0'
             >
             </iframe>
