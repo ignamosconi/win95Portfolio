@@ -106,16 +106,18 @@ function loadDesktopIcons() {
 
     const merged = fresh.map(freshIcon => {
       const userIcon = savedMap.get(freshIcon.name);
-      // Si el usuario movió el ícono, respetamos su posición (x, y)
-      // pero actualizamos cualquier otra prop que haya cambiado en el JSON
       return userIcon
         ? { ...freshIcon, x: userIcon.x, y: userIcon.y, folderId: userIcon.folderId }
         : freshIcon;
     });
+    
+    const userOnlyIcons = saved.filter(i => !freshNames.has(i.name));
+    const final = [...merged, ...userOnlyIcons];
 
-    localStorage.setItem('icons', JSON.stringify(merged));
+    localStorage.setItem('icons', JSON.stringify(final));
     localStorage.setItem('icons_version', ICONS_VERSION);
-    return merged;
+
+    return final;
 
   } catch {
     localStorage.setItem('icons_version', ICONS_VERSION);
