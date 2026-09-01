@@ -1,6 +1,1 @@
-1. Que el spinner de inicio de sesión tenga un texto que diga "iniciando sesión en el usuario [name]". 
-
-2. Que el spinner tenga un race de 2seg frente al loading para que se muestre al menos n segundos.
-
-3. Easter egg: Si creás una carpeta con el nombre del usuario que se pasó, que la carpeta tenga data extra (capaz mi nro 
-   de teléfono? más fotos? cositas de la empresa?).
+1. Easter egg: Si creás una carpeta con el nombre del usuario que se pasó, que la carpeta tenga mi número de teléfono.
