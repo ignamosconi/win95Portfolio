@@ -493,7 +493,7 @@ export default function Footer() {
                             <img src={
                                 item === 'RecycleBin' && recycleBinLength === 0 ? binEmp
                                 : item === 'RecycleBin' && recycleBinLength > 0 ? bin
-                                : imageMapping(item)} alt={''} />
+                                : imageMapping(item) || project} alt={''} />
                             }
                             <p>{item}</p>
                         </div>
